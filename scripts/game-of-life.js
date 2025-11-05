@@ -3,10 +3,17 @@ const ctx = canvas.getContext('2d');
 
 // define parameters
 const CELL_SIZE = 40; // px
-const UPDATE_FREQ = 1; // seconds
+const UPDATE_FREQ = 3; // seconds
+const DEAD_COLOUR = [18, 63, 90];
+const ALIVE_COLOUR = [35, 93, 114];
+const FPS = 30; // rate at which to update colour gradients
 
 // declare the game board
 var board;
+var prevBoard; // used for colour gradients
+
+// for timing gradient transitions
+var lastT = 0;
 
 /**
  * Handles canvas resize events (which occur when the webpage is resized).
@@ -23,7 +30,6 @@ function resizeCanvas() {
     } else {
         resizeBoard(NUM_COLUMNS, NUM_ROWS);
     }
-    renderBoard();
 }
 
 /**
@@ -34,10 +40,13 @@ function resizeCanvas() {
 function initBoard(columns, rows) {
     // board has not been initialised, need to create it
     board = [];
+    prevBoard = [];
     for (let y = 0; y < rows; y++) {
         board[y] = [];
+        prevBoard[y] = [];
         for (let x = 0; x < columns; x++) {
             board[y][x] = Math.round(Math.random());
+            prevBoard[y][x] = 0;
         }
     }
 }
@@ -48,27 +57,24 @@ function initBoard(columns, rows) {
  * @param {Number} rows The number of rows in the new board
  */
 function resizeBoard(columns, rows) {
-    let newBoard = []
+    let newBoard = [];
+    let newPrevBoard = [];
     for (let y = 0; y < rows; y++) {
-        newBoard[y] = []
+        newBoard[y] = [];
+        newPrevBoard[y] = [];
         for (let x = 0; x < columns; x++) {
             if (y < board.length && x < board[y].length) {
                 newBoard[y][x] = board[y][x];
+                newPrevBoard[y][x] = prevBoard[y][x];
             } else {
-                newBoard[y][x] = 0; // dead
+                newBoard[y][x] = Math.round(Math.random());
+                newPrevBoard[y][x] = 0; // dead
             }
         }
     }
 
-    board = newBoard
-}
-
-/**
- * Updates and renders game of life board.
- */
-function step() {
-    updateBoard();
-    renderBoard();
+    board = newBoard;
+    prevBoard = newPrevBoard;
 }
 
 /**
@@ -79,6 +85,12 @@ function updateBoard() {
     let newBoard = [];
     for (let y = 0; y < board.length; y++) {
         newBoard[y] = board[y].slice();
+    }
+
+    // save previous board state
+    let tempPrevBoard = [];
+    for (let y = 0; y < board.length; y++) {
+        tempPrevBoard[y] = board[y].slice();
     }
 
     // iterate through the previous board state and update `newBoard`
@@ -98,11 +110,12 @@ function updateBoard() {
         }
     }
 
-    board = newBoard
+    board = newBoard;
+    prevBoard = tempPrevBoard;
 }
 
 /**
- * Helper function of updateBoard.
+ * Helper function for updateBoard.
  * Calculates the number of alive neighbours for a given cell in `board`.
  * @param {Number} cellX The x-value of the cell.
  * @param {Number} cellY The y-value of the cell.
@@ -135,17 +148,52 @@ function getAliveNeighbours(cellX, cellY) {
  * Renders game of life board on canvas.
  */
 function renderBoard() {
+    const padding = 2; // padding around tiles (px)
+
+    // get the current time of the rendering step and calculate completion extent
+    const d = new Date();
+    const t = d.getTime() % (UPDATE_FREQ * 1000);
+    const progress = Math.min(t / (UPDATE_FREQ * 1000), 1);
+    
+    // check whether update is needed
+    if (t < lastT) {
+        updateBoard();
+    }
+    lastT = t;
+
     // check if board has been initialised
     if (typeof board !== 'undefined') {
         // clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "red"; // TODO: change!
+        
+        // draw background
+        ctx.fillStyle = "rgb(" + DEAD_COLOUR[0] + ", " + DEAD_COLOUR[1] + ", " + DEAD_COLOUR[2] + ")";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
-                if (board[y][x] == 1) {
-                    ctx.fillRect(x*CELL_SIZE, y*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                if (prevBoard[y][x] == 1 || board[y][x] == 1) { // optimisation - prevent drawing unnecessary cells
+                    // define fill style
+                    if (board[y][x] != prevBoard[y][x]) {
+                        // get difference between colours
+                        // multiply by temporal difference in cell state; invert difference if transitioning from alive to dead
+                        let gradientColour = ALIVE_COLOUR.map(
+                            (element, index) => (element - DEAD_COLOUR[index]) * (board[y][x] - prevBoard[y][x])
+                        );
+
+                        // interpolate between colours
+                        baseColour = prevBoard[y][x] == 1 ? ALIVE_COLOUR : DEAD_COLOUR;
+                        gradientColour = gradientColour.map((element, index) => element * progress + baseColour[index]);
+
+                        // set fill style
+                        ctx.fillStyle = "rgb(" + gradientColour[0] + ", " + gradientColour[1] + ", " + gradientColour[2] + ")";
+                    } else {
+                        ctx.fillStyle = "rgb(" + ALIVE_COLOUR[0] + ", " + ALIVE_COLOUR[1] + ", " + ALIVE_COLOUR[2] + ")";
+                    }
+
+                    ctx.beginPath();
+                    ctx.roundRect(x*CELL_SIZE - padding, y*CELL_SIZE - padding, CELL_SIZE - 2*padding, CELL_SIZE - 2*padding, 8);
+                    ctx.fill();
                 }
             }
         }
@@ -154,4 +202,4 @@ function renderBoard() {
 
 window.addEventListener('resize', resizeCanvas);
 window.addEventListener('load', resizeCanvas);
-setTimeout(() => setInterval(step, UPDATE_FREQ * 1000), 1000);
+setInterval(renderBoard, 1000 / FPS);

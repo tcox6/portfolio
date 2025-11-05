@@ -1,0 +1,34 @@
+header {
+    background-color: rgba(34, 34, 34, 0.9);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerTitle {
+    color: white;
+    font-size: 4vw;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 12px;
+    color: #D2FBD4;
+    font-style: bold;
+}
+
+nav {
+    text-align: left;
+    margin-right: 36px;
+}
+
+nav a {
+    color: white;
+    font-size: 2vw;
+    text-decoration: none;
+    margin-left: 96px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
