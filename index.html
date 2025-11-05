@@ -9,13 +9,24 @@
   </head>
   <body>
     <canvas id="gameOfLifeCanvas"></canvas>
+    <script src="scripts/game-of-life.js"></script>
 
-    <div id="header"></div>
-    <script>
-        fetch("header/header.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("header").innerHTML = data);
-  </script>
-  <script src="scripts/game-of-life.js"></script>
+    <div class="firstViewPort">
+        <div id="header"></div>
+        <script>
+            fetch("header/header.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+        </script>
+    
+        <div class="introduction">
+            <p class="introductionBlurbTop" id="introductionTopBlurb"></p>
+            <h1 class="introductionTitle" id="introductionTitle"></h1>
+            <p class="introductionBlurbBottom" id="introductionBottomBlurb"></p>
+        </div>
+        <script src="scripts/introduction.js"></script>
+    </div>
+
+    <h1 class="mainHeading">Featured Projects</h1>
   </body>
 </html>

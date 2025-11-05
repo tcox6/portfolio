@@ -14,3 +14,45 @@ canvas {
     z-index: -1;
 
 }
+
+.firstViewPort {
+    height: 100%;
+}
+
+.introduction {
+    margin-left: 32px;
+    margin-top: 16vh;
+    background-color: rgba(34, 34, 34, 0.9);
+    width: 80vw;
+    padding: 16px;
+    padding-right: 32px;
+}
+
+.introduction .introductionTitle {
+    font-size: 8vw;
+    margin-top:12px;
+    color: #D2FBD4;
+    margin-left: 96px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.introduction .introductionBlurbTop {
+    font-size: 2vw;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.introduction .introductionBlurbBottom {
+    font-size: 2vw;
+    color: white;
+}
+
+.mainHeading {
+    font-size: 6vw;
+    color: #D2FBD4;
+    width: 100%;
+    background-color: rgba(34, 34, 34, 0.9);
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
