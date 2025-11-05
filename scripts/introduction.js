@@ -17,6 +17,7 @@ var blink = false;
  * @param {HTMLElement} element HTML element to animate.
  * @param {String} text Text to create animation for.
  * @param {Number} pause Amount to pause between each character
+ * @returns {Number} The total time needed for the animation.
  */
 function typeText(element, text, pause) {
     let accumulatedTime = 0;
@@ -34,6 +35,7 @@ function typeText(element, text, pause) {
         }
         setTimeout(() => produceText(element, currentText), accumulatedTime);
 
+        // increment the accumulated time
         if (char == ",") {
             accumulatedTime += 3 * pause;
         } else if (char == ".") {
@@ -43,6 +45,8 @@ function typeText(element, text, pause) {
             accumulatedTime += pause;
         }
     }
+
+    return accumulatedTime;
 }
 
 /**
@@ -68,11 +72,32 @@ function blinkingCursor() {
     blink = !blink;
 }
 
+function calculateAnimationTime(text, pause) {
+    let dummy = document.createElement("div");
+    dummy.style.visibility="false";
+
+    return typeText(dummy, text, pause);
+}
+
+// define parameters for each animation
+const TOP_BLURB_PAUSE = 100;
+const TITLE_PAUSE = 80;
+const BOTTOM_BLURB_PAUSE = 30;
+
+// calculate times needed for animations
+let topBlurbTime = calculateAnimationTime(topBlurb, TOP_BLURB_PAUSE);
+let titleTime = calculateAnimationTime(title, TITLE_PAUSE);
+let bottomBlurbTime = calculateAnimationTime(bottomBlurb, BOTTOM_BLURB_PAUSE);
+
 // top blurb
-setTimeout(() => typeText(topBlurbContainer, topBlurb, 100), 0);
+let waitTime = 0;
+setTimeout(() => typeText(topBlurbContainer, topBlurb, TOP_BLURB_PAUSE), waitTime);
 // title
-setTimeout(() => typeText(titleContainer, title, 80), 2000);
+waitTime += topBlurbTime + 100;
+setTimeout(() => typeText(titleContainer, title, TITLE_PAUSE), waitTime);
 // bottom blurb
-setTimeout(() => typeText(bottomBlurbContainer, bottomBlurb, 30), 3000);
+waitTime += titleTime + 200;
+setTimeout(() => typeText(bottomBlurbContainer, bottomBlurb, BOTTOM_BLURB_PAUSE), waitTime);
 // blinking cursor
-setTimeout(() => setInterval(blinkingCursor, BLINK_RATE), 11500);
+waitTime += bottomBlurbTime;
+setTimeout(() => setInterval(blinkingCursor, BLINK_RATE), waitTime);
