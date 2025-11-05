@@ -2,7 +2,7 @@ const canvas = document.getElementById('gameOfLifeCanvas');
 const ctx = canvas.getContext('2d');
 
 // define parameters
-const CELL_SIZE = 20; // px
+const CELL_SIZE = 40; // px
 const UPDATE_FREQ = 1; // seconds
 
 // declare the game board
@@ -42,15 +42,27 @@ function initBoard(columns, rows) {
     }
 
     // create starting pattern
-    board[Math.floor(rows / 2)][Math.floor(columns / 2) - 1] = 1;
-    board[Math.floor(rows / 2)][Math.floor(columns / 2) - 2] = 1;
-    board[Math.floor(rows / 2)][Math.floor(columns / 2) - 3] = 1;
-    board[Math.floor(rows / 2) - 1][Math.floor(columns / 2) - 3] = 1;
-    board[Math.floor(rows / 2) + 1][Math.floor(columns / 2) - 2] = 1;
-    board[Math.floor(rows / 2) - 1][Math.floor(columns / 2) + 1] = 1;
-    board[Math.floor(rows / 2) - 1][Math.floor(columns / 2) + 2] = 1;
-    board[Math.floor(rows / 2) - 1][Math.floor(columns / 2) + 3] = 1;
-    board[Math.floor(rows / 2)][Math.floor(columns / 2) + 2] = 1;
+    let seed = [
+        [1,1,1,0,1],
+        [1,0,0,0,0],
+        [0,0,0,1,1],
+        [0,1,1,0,1],
+        [1,0,1,0,1]
+    ]
+    // tile the pattern across the entire canvas
+    const TILE_X = Math.round(canvas.width / CELL_SIZE / 16)
+    const TILE_Y = Math.round(canvas.height / CELL_SIZE / 16)
+    for (let ty = 0; ty < TILE_Y; ty++) {
+        for (let tx = 0; tx < TILE_X; tx++) {
+            let startX = Math.round((columns / (TILE_X + 1)) * (tx+1)) - seed[0].length;
+            let startY = Math.round((rows / (TILE_Y + 1)) * (ty+1)) - seed.length;
+            for (let y = 0; y < seed.length; y++) {
+                for (let x = 0; x < seed[y].length; x++) {
+                    board[startY + y][startX + x] = seed[y][x];
+                }
+            }
+        }
+    }
 }
 
 /**
