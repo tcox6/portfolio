@@ -27,32 +27,75 @@ canvas {
     padding: 16px;
     padding-right: 32px;
 }
+    .introduction h1 {
+        font-size: 8vw;
+        margin-top:12px;
+        color: #D2FBD4;
+        margin-left: 96px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
 
-.introduction .introductionTitle {
-    font-size: 8vw;
-    margin-top:12px;
-    color: #D2FBD4;
-    margin-left: 96px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-}
+    .introduction .introductionBlurbTop {
+        font-size: 2vw;
+        color: white;
+        margin-bottom: 0px;
+    }
 
-.introduction .introductionBlurbTop {
-    font-size: 2vw;
-    color: white;
-    margin-bottom: 0px;
-}
+    .introduction .introductionBlurbBottom {
+        font-size: 2vw;
+        color: white;
+    }
 
-.introduction .introductionBlurbBottom {
-    font-size: 2vw;
-    color: white;
-}
-
-.mainHeading {
+.featuredProjectsHeading {
     font-size: 6vw;
     color: #D2FBD4;
     width: 100%;
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 16px;
     padding-bottom: 16px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
+
+.project {
+    width: 100%;
+    padding: 0x;
+    margin: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+    .project .projectImage {
+        display: inline-block;
+        width: 40vw;
+        padding: 32px;
+    }
+
+    .project .projectBlurb {
+        display: inline-block;
+        vertical-align: top;
+        width: 30vw;
+        padding: 16px;
+    }
+
+    .project h2 {
+        
+    }
+
+    .project p {
+        
+    }
+
+    .project img {
+        border-radius: 16px;
+        width: 100%;
+    }
+
+    @keyframes projectImageHoverAnimation {
+        from {scale: 1;}
+        to {scale: 1.05;}
+    }
+    .project img:hover {
+        animation-name: projectImageHoverAnimation;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }

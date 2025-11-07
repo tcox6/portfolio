@@ -72,6 +72,12 @@ function blinkingCursor() {
     blink = !blink;
 }
 
+/**
+ * Calculates the time required for an animation given the text and pause duration.
+ * @param {String} text The text to use for the animation.
+ * @param {Number} pause The amount of time to pause between characters during  the animation.
+ * @returns {Number} The total time required for the animation
+ */
 function calculateAnimationTime(text, pause) {
     let dummy = document.createElement("div");
     dummy.style.visibility="false";
