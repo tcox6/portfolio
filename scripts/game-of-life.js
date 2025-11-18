@@ -20,7 +20,7 @@ var lastT = 0;
  */
 function resizeCanvas() {
     canvas.width = window.innerWidth;
-    canvas.height = document.documentElement.scrollHeight;
+    canvas.height = document.documentElement.scrollHeight + 50; // the +50 prevents whitespace from appearing at the bottom of the canvas
 
     // recreate the game of life board
     const NUM_COLUMNS = canvas.width / CELL_SIZE;
