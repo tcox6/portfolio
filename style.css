@@ -110,6 +110,8 @@ canvas {
 
     .project h2 {
         font-size: 4vw;
+        margin-top: 4px;
+        margin-bottom: 16px;
     }
 
     .project p {
