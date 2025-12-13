@@ -4,8 +4,8 @@ const ctx = canvas.getContext('2d');
 // define parameters
 const CELL_SIZE = 40; // px
 const UPDATE_FREQ = 2; // seconds
-const DEAD_COLOUR = [18, 63, 90];
-const ALIVE_COLOUR = [35, 93, 114];
+const DEAD_COLOUR = [224, 135, 106];
+const ALIVE_COLOUR = [244, 166, 136];
 const FPS = 30; // rate at which to update colour gradients
 
 // declare the game board
