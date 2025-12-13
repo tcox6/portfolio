@@ -29,53 +29,10 @@
     <div class="featuredProjectsHeading">
         <h1>Featured Projects</h1>
     </div>
-    <div class="project">
-        <div class="projectImage">
-            <img src="/projects/allProjects/ecoacoustics/assets/Ecoacoustics_banner.jpg" alt="">
-        </div>
-        <div class="projectBlurb">
-            <h2>Machine Learning for Bioacoustic Classification</h2>
-            <p>This was completed as part of the UTAS Dean's Summer Research Program. The main objective of the project was to investigate the efficacy of the binary relevance technique for multi-label classification, and assess the adequacy of the initial training data that had been acquired for the project. The project involved training machine learning models (CNNs) on acoustic recordings, and Python scripts were developed to process JSON label files, as well as automate the extraction of individual call segments from long WAV files.</p>
-            <a href="/projects/allProjects/ecoacoustics/">Learn more...</a>
-        </div>
+    <div class="projectsContainer" id="projectsContainer">
+
     </div>
-    <div class="project">
-        <div class="projectBlurb">
-            <h2>Novel Reinforcement Learning Algorithm</h2>
-            <p>Completed as part of UTAS KAA308, this project focussed on implementing a novel reinforcement algorithm (invented by my supervisor for the project). The project focussed on the DMP protocol of the Morris watermaze experiment and the new algorithm aimed to facilitate goal-independent learning with environment obstacles using a model-free approach.</p>
-            <p>Note that the screen recording to the right shows the progression of an existing algorithm in the environment developed for the project.</p>
-            <a href="/projects/allProjects/generalisedCoordinateLearning/">Learn more...</a>
-        </div>
-        <div class="projectImage">
-            <video id="vid" autoplay muted loop>
-                <source src="/projects/allProjects/generalisedCoordinateLearning/assets/generalisedCoordinateLearning.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-    <div class="project">
-        <div class="projectImage">
-            <video id="vid" autoplay muted loop>
-                <source src="/projects/allProjects/vehicleRL/assets/vehicleRL.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="projectBlurb">
-            <h2>Vehicular RL with Custom Environment Editor</h2>
-            <p>Most custom reinforcement learning environments are implemented using a physics or game engine. However, I prefer to implement my environments 'from scratch', and that's what I've done here. The project features an environment editor allowing custom road networks to be constructed from straight and curved segments, as well as T-intersections and cross-intersections. The agent learns using the DDPG algorithm (an off-policy actor-critic algorithm designed for continuous action spaces). I am working on converting this into a multi-agent learning environment (MARL).</p>
-            <a href="/projects/allProjects/vehicleRL/">Learn more...</a>
-        </div>
-    </div>
-    <div class="project">
-        <div class="projectBlurb">
-            <h2>Chess Emulator with MiniMax Algorithm</h2>
-            <p>This began as my final project for KIT101 (Programming Fundamentals). The project was written in Java and implemented a GUI using the swing graphics library. An AI bot was implemented using the MiniMax algorithm to calculate optimal moves.</p>
-            <a href="/projects/allProjects/chess/">Learn more...</a>
-        </div>
-        <div class="projectImage">
-            <video id="vid" autoplay muted loop>
-                <source src="/projects/allProjects/chess/assets/chess.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
+    <script src="projects/scripts/generate-project-html.js"></script>
     <div class="moreProjects">
         <h3>This is just the start. View more projects <a href="/projects/allProjects/">here</a>.</h3>
     </div>

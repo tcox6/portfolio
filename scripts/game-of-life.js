@@ -203,3 +203,6 @@ function renderBoard() {
 window.addEventListener('resize', resizeCanvas);
 window.addEventListener('load', resizeCanvas);
 setInterval(renderBoard, 1000 / FPS);
+
+// declare a global variable that allows any script to refresh the canvas
+var gameOfLifeCanvasResize = resizeCanvas

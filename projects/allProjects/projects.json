@@ -1,7 +1,7 @@
 {
     "Projects": [
         {
-            "Name": "Machine Learning for Bioacoustic Classification",
+            "Title": "Machine Learning for Bioacoustic Classification",
             "Blurb": [
                 "This was completed as part of the UTAS Dean's Summer Research Program. The main objective of the project was to investigate the efficacy of the binary relevance technique for multi-label classification, and assess the adequacy of the initial training data that had been acquired for the project. The project involved training machine learning models (CNNs) on acoustic recordings, and Python scripts were developed to process JSON label files, as well as automate the extraction of individual call segments from long WAV files."
             ],
@@ -10,7 +10,7 @@
             "Link": "/projects/allProjects/ecoacoustics/"
         },
         {
-            "Name": "Novel Reinforcement Learning Algorithm",
+            "Title": "Novel Reinforcement Learning Algorithm",
             "Blurb": [
                 "Undertaken as part of UTAS KAA308, this project focussed on implementing a novel reinforcement algorithm (invented by my supervisor for the project). The project focussed on the DMP protocol of the Morris watermaze experiment and the new algorithm aimed to facilitate goal-independent learning with environment obstacles using a model-free approach.",
 
@@ -21,7 +21,7 @@
             "Link": "/projects/allProjects/generalisedCoordinateLearning/"
         },
         {
-            "Name": "Vehicular RL with Custom Environment Editor",
+            "Title": "Vehicular RL with Custom Environment Editor",
             "Blurb": [
                 "Most custom reinforcement learning environments are implemented using a physics or game engine. However, I prefer to implement my environments 'from scratch', and that's what I've done here. The project features an environment editor allowing custom road networks to be constructed from straight and curved segments, as well as T-intersections and cross-intersections. The agent learns using the DDPG algorithm (an off-policy actor-critic algorithm designed for continuous action spaces). I am working on converting this into a multi-agent learning environment (MARL)."
             ],
@@ -30,7 +30,7 @@
             "Link": "/projects/allProjects/vehicleRL/"
         },
         {
-            "Name": "Chess Emulator with MiniMax Algorithm",
+            "Title": "Chess Emulator with MiniMax Algorithm",
             "Blurb": [
                 "This began as my final project for KIT101 (Programming Fundamentals). The project was written in Java and implemented a GUI using the swing graphics library. An AI bot was implemented using the MiniMax algorithm to calculate optimal moves."
             ],

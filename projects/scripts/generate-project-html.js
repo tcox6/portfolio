@@ -1,8 +1,90 @@
+// get JSON and generate HTML
 fetch('/projects/allProjects/projects.json')
     .then(response => {
         return response.json();
     })
     .then(data => {
-        const projects = JSON.parse(data)
-        // TODO
+        const projects = data;
+
+        // generate a random order for the projects
+        let projectsOrder = [];
+        for (let i = 0; i < projects.Projects.length; i++) {
+            projectsOrder[i] = i;
+        }
+        projectsOrder.sort(() => Math.random() - 0.5);
+
+        // generate the html for all projects
+        
+        for (let i = 0; i < projects.Projects.length; i++) {
+            // get the current project
+            let currentProject = projects.Projects[projectsOrder[i]];
+
+            // create the parent container for the project
+            const projectDiv = document.createElement("div");
+            projectDiv.className = "project";
+
+            // create the image/video thumbnail
+            const projectImageDiv = document.createElement("div");
+            projectImageDiv.className = "projectImage";
+            // add either an image or video element to the div
+            if (currentProject.ThumbnailType == "Static Image") {
+                // create image element
+                const projectImage = document.createElement("img");
+                projectImage.src = currentProject.ThumbnailLink;
+
+                // add to the parent div
+                projectImageDiv.appendChild(projectImage);
+            } else if (currentProject.ThumbnailType == "Video") {
+                // create video element
+                const projectVideo = document.createElement("video");
+                projectVideo.id = "vid";
+                projectVideo.autoplay = true
+                projectVideo.muted = true
+                projectVideo.loop = true
+                
+                // create video source element
+                const videoSource = document.createElement("source");
+                videoSource.src = currentProject.ThumbnailLink;
+                videoSource.type = "video/mp4";
+                projectVideo.appendChild(videoSource);
+
+                // add to the parent div
+                projectImageDiv.appendChild(projectVideo);
+            }
+
+            // create the project blurb
+            const projectBlurbDiv = document.createElement("div");
+            projectBlurbDiv.className = "projectBlurb";
+            // blurb header
+            const blurbHeader = document.createElement("h2");
+            blurbHeader.textContent = currentProject.Title;
+            projectBlurbDiv.appendChild(blurbHeader);
+            // blurb paragraphs
+            const paragraphs = [];
+            for (let p = 0; p < currentProject.Blurb.length; p++) {
+                paragraphs[p] = document.createElement("p");
+                paragraphs[p].textContent = currentProject.Blurb[p];
+                projectBlurbDiv.appendChild(paragraphs[p]);
+            }
+            // link
+            const blurbLink = document.createElement("a");
+            blurbLink.href = currentProject.Link;
+            blurbLink.textContent = "Learn more..."
+            projectBlurbDiv.appendChild(blurbLink);
+
+            // add all elements to their parent container
+            if (i % 2 == 0) {
+                // blurb to the left when i is even
+                projectDiv.appendChild(projectBlurbDiv);
+                projectDiv.appendChild(projectImageDiv);
+            } else {
+                // image to the left when i is odd
+                projectDiv.appendChild(projectImageDiv);
+                projectDiv.appendChild(projectBlurbDiv);
+            }
+            document.getElementById("projectsContainer").appendChild(projectDiv);
+
+            // force the game of life canvas to resize
+            setTimeout(gameOfLifeCanvasResize, 20);  
+        }
     })
