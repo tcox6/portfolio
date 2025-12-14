@@ -13,6 +13,7 @@
             display: inline-block;
             width: 30vw;
             padding: 32px;
+            margin: 48px;
         }
             .project .projectImage video {
                 width: 100%;
@@ -44,10 +45,12 @@
             vertical-align: top;
             width: 30vw;
             padding: 16px;
+            margin: 48px;
+            margin-top: 96px;
         }
 
         .project h2 {
-            font-size: 4vw;
+            font-size: 2vw;
             margin-top: 4px;
             margin-bottom: 16px;
         }

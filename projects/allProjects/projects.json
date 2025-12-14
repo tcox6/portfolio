@@ -66,6 +66,39 @@
             "ThumbnailLink": "/projects/allProjects/createt/assets/createtThumbnail.mp4",
             "Link": "/projects/allProjects/createt/",
             "Featured": false
+        },
+
+        {
+            "Title": "NaviMate - Browser Extension",
+            "Blurb": [
+                "TODO."
+            ],
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.PNG",
+            "Link": "/projects/allProjects/NaviMate/",
+            "Featured": false
+        },
+
+        {
+            "Title": "FlappyBird in Java",
+            "Blurb": [
+                "TODO."
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "/projects/allProjects/flappyBird/assets/FlappyBirdThumbnail.mp4",
+            "Link": "/projects/allProjects/flappyBird/",
+            "Featured": false
+        },
+
+        {
+            "Title": "Procedural Minions Animation",
+            "Blurb": [
+                "TODO."
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "/projects/allProjects/MinionsProceduralAnimation/assets/MinionsProceduralAnimationThumbnail.mp4",
+            "Link": "/projects/allProjects/MinionsProceduralAnimation/",
+            "Featured": false
         }
     ]
 }

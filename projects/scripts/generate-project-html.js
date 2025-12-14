@@ -14,6 +14,7 @@ fetch('/projects/allProjects/projects.json')
         projectsOrder.sort(() => Math.random() - 0.5);
 
         // generate the html for all projects
+        let projectCount = 0; // number of projects processed
         for (let i = 0; i < projects.Projects.length; i++) {
             // get the current project
             let currentProject = projects.Projects[projectsOrder[i]];
@@ -73,7 +74,7 @@ fetch('/projects/allProjects/projects.json')
                 projectBlurbDiv.appendChild(blurbLink);
 
                 // add all elements to their parent container
-                if (i % 2 == 0) {
+                if (projectCount % 2 == 0) {
                     // blurb to the left when i is even
                     projectDiv.appendChild(projectBlurbDiv);
                     projectDiv.appendChild(projectImageDiv);
@@ -83,9 +84,11 @@ fetch('/projects/allProjects/projects.json')
                     projectDiv.appendChild(projectBlurbDiv);
                 }
                 document.getElementById("projectsContainer").appendChild(projectDiv);
+
+                projectCount++;
             }
         }
 
         // force the game of life canvas to resize
-        setTimeout(gameOfLifeCanvasResize, 20);
+        setTimeout(gameOfLifeCanvasResize, 200);
     })
