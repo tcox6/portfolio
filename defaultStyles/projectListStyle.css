@@ -1,12 +1,12 @@
 .projectsContainer {
     margin: 0px;
     padding: 0px;
+    margin-left: 144px;
 }
     .project {
         padding: 0x;
         margin: 0px;
         background-color: rgba(255, 255, 255, 0.6);
-        margin-left: 144px;
         margin-right: 72px;
     }
         .project .projectImage {

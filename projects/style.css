@@ -1,0 +1,56 @@
+@keyframes blurbFlyIn {
+    from {margin-left: -100vw}
+    to {margin-left: 32px}
+}
+
+.blurb {
+    margin-left: 32px;
+    margin-top: 8vh;
+    background-color: rgba(34, 34, 34, 0.9);
+    width: 80vw;
+    padding: 16px;
+    padding-right: 32px;
+
+    animation-name: blurbFlyIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+    .blurb p {
+        font-size: 2vw;
+        color: white;
+        margin-bottom: 0px;
+    }
+
+@keyframes projectsHeadingFlyIn {
+    from {margin-left: 100vw}
+    to {margin-left: 144px}
+}
+
+.allProjectsHeading {
+    font-size: 6vw;
+    color: #FBEFCC;;
+    background-color: rgba(34, 34, 34, 0.9);
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-left: 144px;
+    margin-right: 72px;
+    margin-top: 256px;
+
+    animation-name: projectsHeadingFlyIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+    .allProjectsHeading h1 {
+        font-size: 6vw;
+        color: #FBEFCC;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 32px;
+    }
+
+.projectsContainer {
+    animation-name: projectsHeadingFlyIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}

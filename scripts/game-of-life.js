@@ -15,21 +15,39 @@ var prevBoard; // used for colour gradients
 // for timing gradient transitions
 var lastT = 0;
 
+// store the previous canvas sizes
+let prevCanvasWidth = 0;
+let prevCanvasHeight = 0;
+
 /**
  * Handles canvas resize events (which occur when the webpage is resized).
  */
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = document.documentElement.scrollHeight + 50; // the +50 prevents whitespace from appearing at the bottom of the canvas
+    // first need to hide the game of life canvas
+    canvas.style.display = "none";
 
-    // recreate the game of life board
-    const NUM_COLUMNS = canvas.width / CELL_SIZE;
-    const NUM_ROWS = canvas.height / CELL_SIZE;
-    if (typeof board == 'undefined') {
-        initBoard(NUM_COLUMNS, NUM_ROWS);
-    } else {
-        resizeBoard(NUM_COLUMNS, NUM_ROWS);
+    let newCanvasWidth = window.innerWidth;
+    let newCanvasHeight = document.documentElement.scrollHeight + 100; // the +100 prevents whitespace from appearing at the bottom of the canvas
+
+    if (newCanvasWidth != prevCanvasWidth || newCanvasHeight != prevCanvasHeight) {
+        prevCanvasWidth = newCanvasWidth;
+        prevCanvasHeight = newCanvasHeight;
+
+        canvas.width = newCanvasWidth;
+        canvas.height = newCanvasHeight;
+
+        // recreate the game of life board
+        const NUM_COLUMNS = canvas.width / CELL_SIZE;
+        const NUM_ROWS = canvas.height / CELL_SIZE;
+        if (typeof board == 'undefined') {
+            initBoard(NUM_COLUMNS, NUM_ROWS);
+        } else {
+            resizeBoard(NUM_COLUMNS, NUM_ROWS);
+        }
     }
+
+    // set canvas to visible
+    canvas.style.display = "block";
 }
 
 /**

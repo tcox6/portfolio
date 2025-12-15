@@ -89,6 +89,7 @@ fetch('/projects/allProjects/projects.json')
             }
         }
 
-        // force the game of life canvas to resize
-        setTimeout(gameOfLifeCanvasResize, 200);
+        for (let i = 0; i < 10; i++) {
+            setTimeout(gameOfLifeCanvasResize, 200*i);
+        }
     })
