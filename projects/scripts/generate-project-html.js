@@ -68,10 +68,12 @@ fetch('/projects/allProjects/projects.json')
                     projectBlurbDiv.appendChild(paragraphs[p]);
                 }
                 // link
+                const blurbLinkText = document.createElement("strong");
                 const blurbLink = document.createElement("a");
                 blurbLink.href = currentProject.Link;
-                blurbLink.textContent = "Learn more..."
+                blurbLinkText.textContent = "Learn more...";
                 projectBlurbDiv.appendChild(blurbLink);
+                blurbLink.appendChild(blurbLinkText);
 
                 // add all elements to their parent container
                 if (projectCount % 2 == 0) {
@@ -90,6 +92,6 @@ fetch('/projects/allProjects/projects.json')
         }
 
         for (let i = 0; i < 10; i++) {
-            setTimeout(gameOfLifeCanvasResize, 200*i);
+            setTimeout(gameOfLifeCanvasResize, 400*i);
         }
     })

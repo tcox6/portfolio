@@ -1,26 +1,41 @@
-@keyframes blurbFlyIn {
+@keyframes headingFlyIn {
     from {margin-left: -100vw}
     to {margin-left: 32px}
 }
 
-.blurb {
+.heading {
     margin-left: 32px;
     margin-top: 8vh;
     background-color: rgba(34, 34, 34, 0.9);
-    width: 80vw;
-    padding: 16px;
-    padding-right: 32px;
+    width: calc(100vw - 64px);
+    height: fit-content;
+    padding: 0px;
 
-    animation-name: blurbFlyIn;
+    animation-name: headingFlyIn;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
-
-    .blurb p {
-        font-size: 2vw;
-        color: white;
-        margin-bottom: 0px;
+    .blurb {
+        display: inline-block;
+        width: 75%;
+        margin-left: 5vw;
     }
+
+        .blurb p {
+            font-size: 2vw;
+            color: white;
+        }
+
+    .spannerIcon {
+        display: inline-block;
+        height: 100%;
+    }
+        .spannerIcon img {
+            height: 8vw;
+            margin-left: 25%;
+            margin-top: 25%;
+            margin-bottom: 25%;
+        }
 
 @keyframes projectsHeadingFlyIn {
     from {margin-left: 100vw}
@@ -35,7 +50,7 @@
     padding-bottom: 16px;
     margin-left: 144px;
     margin-right: 72px;
-    margin-top: 256px;
+    margin-top: 96px;
 
     animation-name: projectsHeadingFlyIn;
     animation-duration: 1s;

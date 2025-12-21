@@ -49,7 +49,7 @@
         {
             "Title": "RC Mini Motorbike",
             "Blurb": [
-                "TODO."
+                "This was a four-week holiday project that I undertook during the 2024 inter-semester break. I designed the (theoretically) self-balancing remote-control motorbike from the ground-up, which included counter-rotating and counter-tilting flywheels, inspired by the Brennan monorail and designed to balance the bike. Ultimately, the bike could not achieve a sustained balance (likely because the flywheels' tilting system did not include a feedback mechanism). A dramatic point in the project was when the flywheels exploded."
             ],
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/RCMotorbike/assets/RCBikeThumbnail.jpg",
@@ -60,7 +60,7 @@
         {
             "Title": "createt Designs",
             "Blurb": [
-                "TODO."
+                "3D printing has been a hobby of mine for the past few years. I publish my designs under the online alter ego 'createt', and have amassed over 150,000 views, over 10,000 downloads, thousands of likes, and hundreds of sales. I specialise in making unique novelty items, especially those with mechanical components."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/createt/assets/createtThumbnail.mp4",
@@ -71,7 +71,7 @@
         {
             "Title": "NaviMate - Browser Extension",
             "Blurb": [
-                "TODO."
+                "NaviMate is a browser extension that automatically bookmarks users' last scroll position on webpages, and allows users to add their own bookmarks. Features include an app-style GUI created using vanilla HTML+CSS+JS, options to stop bookmarking specific pages or sites, a settings page, and an embedded feedback-collection form."
             ],
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.PNG",
@@ -82,7 +82,7 @@
         {
             "Title": "FlappyBird in Java",
             "Blurb": [
-                "TODO."
+                "The main component of this project was a tutorial on the Java swing graphics API, and the game itself was used as motivation for the tutorial."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/flappyBird/assets/FlappyBirdThumbnail.mp4",
@@ -93,7 +93,7 @@
         {
             "Title": "Procedural Minions Animation",
             "Blurb": [
-                "TODO."
+                "This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming); one of my favourite units at UTAS. Everything is in the animation is generated procedurally in code. This includes meshes, all animations, mesh deformations (skinning), and textures. The animation was selected for exhibition in the UTAS School of ICT Connect & Collaborate Expo."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/MinionsProceduralAnimation/assets/MinionsProceduralAnimationThumbnail.mp4",
