@@ -1,0 +1,28 @@
+.background {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4vh;
+    margin-bottom: 6vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 32px;
+}
+
+    p {
+        font-size: 18px;
+        margin: 0px;
+        margin-bottom: 18px;
+    }
+
+    .resultsList {
+        width: 50%;
+    }
+
+        .resultsList li {
+        display: flex;
+        justify-content: space-between;
+        }
+
+            .resutlsList span .mark {
+                min-width: 3ch;
+                text-align: right;
+            }

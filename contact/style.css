@@ -1,0 +1,43 @@
+.background {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4vh;
+    margin-bottom: 6vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 32px;
+}
+    .emailSpan {
+        background-color: #e0876a;
+        color: #e0876a;
+        user-select: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+@keyframes copyEmailFadeOut {
+    from {opacity: 1;}
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.copyEmailClipboard {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom: 16px;
+}
+
+    .copyEmailClipboard span {
+        background-color: green;
+        color: white;
+        border-radius: 6px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 8px;
+        padding-right: 8px;
+        visibility: hidden;
+        user-select: none;
+        cursor: pointer;
+    }

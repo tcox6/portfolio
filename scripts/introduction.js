@@ -1,7 +1,7 @@
 // define strings to be 'typed' onto the screen
 const topBlurb = "Hi, my name is";
 const title = "Tim.";
-const bottomBlurb = "I'm a student at the University of Tasmania studying a bachelor of ICT. My interests include algorithm design and optimisation, machine learning (especially reinforcement learning), and scientific programming. This website is a portfolio of some of the things I've done.";
+const bottomBlurb = "I'm a student at the University of Tasmania studying a Bachelor of ICT. My interests include algorithm design and optimisation, machine learning (especially reinforcement learning), and scientific programming. This website is a portfolio of some of the things I've done.";
 
 const topBlurbContainer = document.getElementById("introductionTopBlurb");
 const titleContainer = document.getElementById("introductionTitle");

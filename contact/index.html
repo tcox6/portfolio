@@ -16,5 +16,17 @@
         <!--LOAD HEADER-->
         <div id="header"></div>
         <script src="/header/load-header.js"></script>
+
+        <div class="copyEmailClipboard">
+            <span id="copyEmailClipboardSpan"><strong>Click to copy email to clipboard.</strong></span>
+        </div>
+
+        <div class="background">
+            <h1>Email</h1>
+            <p id="emailParagraph">You can contact me here: <span id="email" class="emailSpan">noRobots@outlook.com</span> (click to reveal).</p>
+            <p>To prevent scraping, I store my email address on the client side using a very simple encryption scheme, and only decrypt it after a user-initiated event, which should deter most web scrapers.</p>
+            <h1>Embedded Form</h1>
+        </div>
+        <script src="/contact/reveal-email.js"></script>
     </body>
 </html>
