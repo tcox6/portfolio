@@ -80,7 +80,7 @@ function blinkingCursor() {
  */
 function calculateAnimationTime(text, pause) {
     let dummy = document.createElement("div");
-    dummy.style.visibility="false";
+    dummy.style.visibility="hidden";
 
     return typeText(dummy, text, pause);
 }

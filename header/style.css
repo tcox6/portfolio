@@ -7,37 +7,42 @@ header {
     justify-content: space-between;
     font-family:'Courier New', Courier, monospace;
 }
+    .homePageLink {
+        text-decoration: none;
+    }
+        .headerTitle {
+            color: white;
+            font-size: 4vw;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            margin-left: 12px;
+            color: #FBEFCC;
+            font-style: bold;
+        }
 
-.headerTitle {
-    color: white;
-    font-size: 4vw;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    margin-left: 12px;
-    color: #FBEFCC;
-    font-style: bold;
-}
+    nav {
+        text-align: left;
+        margin-right: 36px;
+    }
 
-nav {
-    text-align: left;
-    margin-right: 36px;
-}
+        nav a {
+            color: white;
+            font-size: 2vw;
+            text-decoration: none;
+            margin-left: 96px;
 
-nav a {
-    color: white;
-    font-size: 2vw;
-    text-decoration: none;
-    margin-left: 96px;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
-.homePageLink {
-    text-decoration: none;
-}
+    .banner {
+        width: 100%;
+        text-align: center;
+        background-color: #fbef;
+        visibility: hidden;
+    }

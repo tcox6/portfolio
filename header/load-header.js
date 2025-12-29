@@ -1,5 +1,11 @@
 fetch("/header/header.html")
     .then(response => response.text())
-    .then(data => document.getElementById("header").innerHTML = data);
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
 
-// add a banner notice that the website is designed for desktop viewing (if necessary)
+        // inject the banner script
+        const script = document.createElement("script");
+        script.src = "/header/banner.js";
+        script.defer = true;
+        document.body.appendChild(script);
+    });
