@@ -18,15 +18,69 @@
         <script src="/header/load-header.js"></script>
 
         <div class="copyEmailClipboard">
-            <span id="copyEmailClipboardSpan"><strong>Click to copy email to clipboard.</strong></span>
+            <span id="copyEmailClipboardSpan" title="Copy email to clipboard."><strong>Click to copy email to clipboard.</strong></span>
         </div>
 
         <div class="background">
             <h1>Email</h1>
-            <p id="emailParagraph">You can contact me here: <span id="email" class="emailSpan">noRobots@outlook.com</span> (click to reveal).</p>
+
+            <p id="emailParagraph">You can contact me here: <span id="email" class="emailSpan" title="Click to reveal email.">noRobots@outlook.com</span> (click to reveal).</p>
+
             <p>To prevent scraping, I store my email address on the client side using a very simple encryption scheme, and only decrypt it after a user-initiated event, which should deter most web scrapers.</p>
+
             <h1>Embedded Form</h1>
+
+            <form action="" class="contactForm" id="contactForm">
+                <div class="labelFieldPair">
+                    <span class="label">
+                        <label for="firstName">First name:</label>
+                    </span>
+                    <span class="field">
+                        <input type="text" id="firstName" name="firstName"><br>
+                    </span>
+                </div>
+                <div class="labelFieldPair">
+                    <span class="label">
+                        <label for="lastName">Last name:</label>
+                    </span>
+                    <span class="field">
+                        <input type="text" id="lastName" name="lastName"><br>
+                    </span>
+                </div>
+                <div class="labelFieldPair">
+                    <span class="label">
+                        <label for="emailAddress">Email address:</label>
+                    </span>
+                    <span class="field">
+                        <input type="email" id="emailAddress" name="emailAddress"><br>
+                    </span>
+                </div>
+
+                <br><label for="messageField">Message:</label><br>
+                <textarea id="messageField" rows="10" cols="100">Hi Tim, I'd like to offer you a job with an annual salary of $1,000,000.</textarea>
+
+                <br><input type="checkbox" id="sellMyData">
+                <label for="sellMyData">Sell my data</label><br>
+
+                <input type="checkbox" id="subscribe">
+                <label for="subscribe">Subscribe for news and special offers</label><br>
+
+                <input type="checkbox" id="privacyPolicy">
+                <label for="privacyPolicy">I consent to the <a href="/privacyPolicy/" target="_blank">privacy policy</a></label><br>
+
+                <input type="checkbox" id="untick" title="Bad things will happen if this box is ticked.">
+                <label for="untick" title="Bad things will happen if this box is ticked.">IMPORTANT!: Untick this box</label>
+
+                <p style="margin-bottom: 0; margin-top: 8px;">Do you like my website?</p>
+                <input type="radio" id="likeWebsiteTrue" name="likeWebsite">
+                <label for="likeWebsiteTrue">Yes!</label>
+                <input type="radio" id="likeWebsiteFalse" name="likeWebsite">
+                <label for="likeWebsiteFalse">No🙁</label><br>
+
+                <br><input type="submit">
+            </form>
         </div>
         <script src="/contact/reveal-email.js"></script>
+        <script src="/contact/form-submit-handler.js"></script>
     </body>
 </html>

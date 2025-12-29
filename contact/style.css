@@ -14,6 +14,22 @@
         cursor: pointer;
     }
 
+    .contactForm .labelFieldPair {
+        display: flex;
+        justify-content: space-between;
+        width: 312px;
+    }
+
+        .contactForm .labelFieldPair .field {
+            min-width: 3ch;
+            text-align: right;
+        }
+
+        .contactForm textarea {
+            max-width: 80%;
+            min-width: 484px;
+        }
+
 @keyframes copyEmailFadeOut {
     from {opacity: 1;}
     to {

@@ -2,7 +2,7 @@ const emailSpan = document.getElementById("email");
 const emailParagraph = document.getElementById("emailParagraph");
 const copyEmail = document.getElementById("copyEmailClipboardSpan");
 
-reverseEmailAddress = "moc.kooltuo@emoh02mit"; // email address in reverse
+var reverseEmailAddress = "moc.kooltuo@emoh02mit"; // email address in reverse
 
 /**
  * Decrypts the email address (stored in reverse to prevent scraping).
@@ -28,6 +28,9 @@ function revealEmail() {
     copyEmail.style.animationDelay = "3s";
     copyEmail.style.animationFillMode = "forwards";
 }
+
+// store a pointer to the revealEmail function in a global variable
+var revealEmailGlobal = revealEmail;
 
 emailSpan.addEventListener('click', revealEmail);
 

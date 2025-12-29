@@ -18,8 +18,8 @@
     }
 
         .resultsList li {
-        display: flex;
-        justify-content: space-between;
+            display: flex;
+            justify-content: space-between;
         }
 
             .resutlsList span .mark {

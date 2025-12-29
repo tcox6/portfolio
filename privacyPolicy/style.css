@@ -1,0 +1,8 @@
+.background {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4vh;
+    margin-bottom: 6vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 32px;
+}
