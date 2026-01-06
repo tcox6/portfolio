@@ -38,7 +38,7 @@ function resizeCanvas() {
 
         // recreate the game of life board
         const NUM_COLUMNS = canvas.width / CELL_SIZE;
-        const NUM_ROWS = canvas.height / CELL_SIZE;
+        const NUM_ROWS = canvas.height / CELL_SIZE + 1;
         if (typeof board == 'undefined') {
             initBoard(NUM_COLUMNS, NUM_ROWS);
         } else {

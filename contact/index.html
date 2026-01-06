@@ -18,7 +18,7 @@
         <script src="/header/load-header.js"></script>
 
         <div class="copyEmailClipboard">
-            <span id="copyEmailClipboardSpan" title="Copy email to clipboard."><strong>Click to copy email to clipboard.</strong></span>
+            <span id="copyEmailClipboardSpan" title="Copy email to clipboard."><strong>Click here to copy email to clipboard.</strong></span>
         </div>
 
         <div class="background">
@@ -33,10 +33,10 @@
             <form action="" class="contactForm" id="contactForm">
                 <div class="labelFieldPair">
                     <span class="label">
-                        <label for="firstName">First name:</label>
+                        <label for="firstName">First name:*</label>
                     </span>
                     <span class="field">
-                        <input type="text" id="firstName" name="firstName"><br>
+                        <input type="text" id="firstName" name="firstName" required><br>
                     </span>
                 </div>
                 <div class="labelFieldPair">
@@ -49,15 +49,15 @@
                 </div>
                 <div class="labelFieldPair">
                     <span class="label">
-                        <label for="emailAddress">Email address:</label>
+                        <label for="emailAddress">Email address:*</label>
                     </span>
                     <span class="field">
-                        <input type="email" id="emailAddress" name="emailAddress"><br>
+                        <input type="email" id="emailAddress" name="emailAddress" required><br>
                     </span>
                 </div>
 
-                <br><label for="messageField">Message:</label><br>
-                <textarea id="messageField" rows="10" cols="100">Hi Tim, I'd like to offer you a job with an annual salary of $1,000,000.</textarea>
+                <br><label for="messageField">Message:*</label><br>
+                <textarea id="messageField" rows="10" cols="100" required>Hi Tim, I'd like to offer you a job with an annual salary of $1,000,000.</textarea>
 
                 <br><input type="checkbox" id="sellMyData">
                 <label for="sellMyData">Sell my data</label><br>
