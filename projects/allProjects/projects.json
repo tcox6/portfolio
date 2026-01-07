@@ -91,7 +91,7 @@
         },
 
         {
-            "Title": "Procedural Minions Animation",
+            "Title": "Procedural 3D Animation",
             "Blurb": [
                 "This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming); one of my favourite units at UTAS. Everything is in the animation is generated procedurally in code. This includes meshes, all animations, mesh deformations (skinning), and textures. The animation was selected for exhibition in the UTAS School of ICT Connect & Collaborate Expo."
             ],
