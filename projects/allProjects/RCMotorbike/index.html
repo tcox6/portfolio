@@ -16,5 +16,45 @@
     <!--LOAD HEADER-->
     <div id="header"></div>
     <script src="/header/load-header.js"></script>
+
+    <div class="background">
+      <h1>RC Motorbike</h1>
+
+      <p>I undertook this project during the 2024 inter-semester winter break. I designed everything from the ground-up, and 3D-printed most parts. Ultimately, it was quite an eventful project; the bike exploded at one point.</p>
+
+      <p>The bike's balancing mechanism was entirely passive, and was inspired by the <a href="https://www.youtube.com/watch?v=kUYzuAJeg3M">Brennan Monorail</a>. Instead of using gyroscopic precession from a single flywheel (which would cause the bike to flip over when turning corners), the Brennan Monorail used two flywheels that each pivoted about an axle in the Y-axis (i.e., a vertical axle). The flywheels were connected together such they would rotate in opposite directions and pivot inversely (as shown in the screenshot below). In theory, this design would allow the bike to lean into corners, while still maintaining its balance (a single flywheel's precession would cause the bike to fall over; two flywheels mitigate this since they cancel-out unwanted precession in the z-axis). However, in practice, this was not the case, and the flywheels could only balance a stationary bike for a few seconds before careening wildly out of control. With great patience, I could drive the bike about halfway around a basketball court, but it never stayed upright for long. I believe that, to be successful, the flywheels would need some sort of feedback mechanism, which I originally omitted because it would've been too complicated to implement with the resources available.</p>
+
+      <div class="singleImageContainer">
+        <img class="singleImage" src="./assets/flywheels.jpg" alt="Close-up of flywheel assembly in CAD.">
+      </div>
+      <br>
+
+      <p>Because they're quite expensive to buy, the flywheels were made of 3D-printed shells filled with five-cent coins (72 in each flywheel). At one point, the flywheels exploded in my driveway, flinging five-cent coins everywhere. Luckily, no-one was hurt (aside from some minor cuts for myself), and nothing was broken (aside from the bike, which was <i>very</i> broken). It was difficult to explain to the neighbours though. I was very lucky that the battery wasn't punctured, especially considering the state of the surrounding chassis. In fact, in hindsight, everything about the design was incredibly sketchy: the 3D printed chassis housing high-power components, the use of a LiPo battery, and the materials that the flywheels were made of (i.e., brittle plastic with standard M3 screws as axles). Additionally, I didn't want to purchase a proper motor controller (which would have been expensive), so I used robotics PWM controller that I had lying around from a previous project, and used a Raspberry Pi Pico to translate the receiver's signals into PWM signals that the controller could understand. I was even stupid enough to design my own PCB 'power distribution' boards and get a small batch of them made - of course I didn't account for the immense current that the motors would draw, and the boards quickly disappeared into smoke when I first tried to use them. I did a lot of dumb things while building the bike, but this was probably the dumbest.</p>
+
+      <p>After the <del>explosion</del> spontaneous self-disassembly, I rebuilt the bike and tested it briefly (with the flywheel motors connected in series so as to be less powerful, and the flywheels made of a stronger plastic), but I've been too scared to do much else with it. The flywheels are also very loud, so even if it did work, it wouldn't be all that pleasant to operate.</p>
+
+      <div class="singleImageContainer">
+        <img class="singleImage" src="./assets/broken.jpg" alt="The bike is broken😢.">
+      </div>
+      <br>
+
+      <p>Here are some pretty pictures:</p>
+
+      <div class="imageRow">
+        <div class="imageColumn">
+          <img src="./assets/image1.jpg" alt="Finished bike." style="width:100%">
+        </div>
+        <div class="imageColumn">
+          <img src="./assets/image2.jpg" alt="Finished bike." style="width:100%">
+        </div>
+        <div class="imageColumn">
+          <img src="./assets/image3.jpg" alt="Finished bike." style="width:100%">
+        </div>
+      </div>
+
+      <div class="singleImageContainer" style="text-align: center;">
+        <img class="singleImage" src="./assets/image4.jpg" alt="Motorbike in CAD.">
+      </div>
+    </div>
   </body>
 </html>

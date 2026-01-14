@@ -25,3 +25,11 @@ h1 {
   flex: 33.33%;
   padding: 5px;
 }
+
+.singleImageContainer {
+  text-align: center;
+}
+  .singleImageContainer .singleImage {
+    max-width: 50%;
+    max-height: 50vh;
+  }
