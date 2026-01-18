@@ -10,32 +10,34 @@
     <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
   </head>
   <body>
+    <div class="mainContent" id="mainContent">
+        <div class="firstViewPort">
+            <!--LOAD HEADER-->
+            <div id="header"></div>
+            <script src="/header/load-header.js"></script>
+            
+            <div class="introduction">
+                <p class="introductionBlurbTop" id="introductionTopBlurb"></p>
+                <h1 id="introductionTitle"></h1>
+                <p class="introductionBlurbBottom" id="introductionBottomBlurb"></p>
+            </div>
+            <script src="scripts/introduction.js"></script>
+        </div>
+
+        <div class="featuredProjectsHeading">
+            <h1>Featured Projects</h1>
+        </div>
+        <div class="projectsContainer" id="projectsContainer"></div>
+        <script src="projects/scripts/set-featured-flag-true.js"></script>
+        <script src="projects/scripts/generate-project-html.js"></script>
+        <div class="moreProjects">
+            <h3>This is just the start. View more projects <a href="/projects/">here</a>.</h3>
+        </div>
+        <div class="bottomPadding"></div>
+    </div>
+
     <!--LOAD GAME OF LIFE BACKGROUND-->
     <canvas id="gameOfLifeCanvas"></canvas>
     <script src="scripts/game-of-life.js"></script>
-
-    <div class="firstViewPort">
-        <!--LOAD HEADER-->
-        <div id="header"></div>
-        <script src="/header/load-header.js"></script>
-        
-        <div class="introduction">
-            <p class="introductionBlurbTop" id="introductionTopBlurb"></p>
-            <h1 id="introductionTitle"></h1>
-            <p class="introductionBlurbBottom" id="introductionBottomBlurb"></p>
-        </div>
-        <script src="scripts/introduction.js"></script>
-    </div>
-
-    <div class="featuredProjectsHeading">
-        <h1>Featured Projects</h1>
-    </div>
-    <div class="projectsContainer" id="projectsContainer"></div>
-    <script src="projects/scripts/set-featured-flag-true.js"></script>
-    <script src="projects/scripts/generate-project-html.js"></script>
-    <div class="moreProjects">
-        <h3>This is just the start. View more projects <a href="/projects/">here</a>.</h3>
-    </div>
-    <div class="bottomPadding"></div>
   </body>
 </html>

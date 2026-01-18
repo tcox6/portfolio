@@ -9,20 +9,22 @@
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <div class="mainContent" id="mainContent">
+            <!--LOAD HEADER-->
+            <div id="header"></div>
+            <script src="/header/load-header.js"></script>
+
+            <div class="background">
+                <h1>Privacy Policy</h1>
+                <p><strong>Please read this very carefully. It is imperative that you understand the terms of this policy.</strong></p>
+                <p id="policy"></p>
+                <p>The end.</p>
+            </div>
+            <script src="/privacyPolicy/generate-policy.js"></script>
+        </div>
+
         <!--LOAD GAME OF LIFE BACKGROUND-->
         <canvas id="gameOfLifeCanvas"></canvas>
         <script src="/scripts/game-of-life.js"></script>
-
-        <!--LOAD HEADER-->
-        <div id="header"></div>
-        <script src="/header/load-header.js"></script>
-
-        <div class="background">
-            <h1>Privacy Policy</h1>
-            <p><strong>Please read this very carefully. It is imperative that you understand the terms of this policy.</strong></p>
-            <p id="policy"></p>
-            <p>The end.</p>
-        </div>
-        <script src="/privacyPolicy/generate-policy.js"></script>
     </body>
 </html>

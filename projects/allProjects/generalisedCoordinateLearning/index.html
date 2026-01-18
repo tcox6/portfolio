@@ -9,24 +9,26 @@
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <div class="mainContent" id="mainContent">
+            <!--LOAD HEADER-->
+            <div id="header"></div>
+            <script src="/header/load-header.js"></script>
+
+            <div class="background">
+                <h1>Novel Reinforcement Learning Algorithm</h1>
+
+                <p>This was a UTAS research project that I completed during the second year of my BICT, supervised by Dr. Robert Ollington. The project focussed on generalising an existing RL algorithm, within a navigational context (though it was theorised that, if successful, the new algorithm could be applied to any learning problem). The project had three distinct stages: replicating the results of previous researchers (and developing a training environment to do so); showing that the existing algorithm of interest lacks efficacy when the training environment contains obstacles; and developing and testing the new algorithm. I also wrote an (unpublished) scientific paper on the project.</p>
+
+                <p>The training environment used for the project was inspired by experiments undertaken in the late 1990s. The delayed matching-to-place watermaze (DMP environment) refers to an environment where rats were placed into a circular tank of water with a hidden (submerged) escape platform. Rats were given several trials int eh watermaze per day, and the location of the escape platform was changed each day. Researchers found that the rats exhibited 'one-trial' learning, where their escape latencies converged after a single trial in the altered watermaze.</p>
+
+                <p>One-trial learning is difficult to achieve with traditional reinforcement learning algorithms since they are inhibited by learning from previous trials with inconsistent goal states. Goal-independent learning algorithms have been developed by various researchers, however the project focussed on generalising an algorithm where the agent learnt an encoding of its position within the watermaze, as opposed to learning a concrete mapping to the goal state. This algorithm was found to be effective in the standard DMP environment, but failed when the environment contained obstacles.</p>
+
+                <p>My supervisor's idea was to extend the original algorithm by learning a hyperdimensional encoding of the agent's position within the watermaze. However, the new algorithm was not successful.</p>
+            </div>
+        </div>
+        
         <!--LOAD GAME OF LIFE BACKGROUND-->
         <canvas id="gameOfLifeCanvas"></canvas>
         <script src="/scripts/game-of-life.js"></script>
-
-        <!--LOAD HEADER-->
-        <div id="header"></div>
-        <script src="/header/load-header.js"></script>
-
-        <div class="background">
-            <h1>Novel Reinforcement Learning Algorithm</h1>
-
-            <p>This was a UTAS research project that I completed during the second year of my BICT, supervised by Dr. Robert Ollington. The project focussed on generalising an existing RL algorithm, within a navigational context (though it was theorised that, if successful, the new algorithm could be applied to any learning problem). The project had three distinct stages: replicating the results of previous researchers (and developing a training environment to do so); showing that the existing algorithm of interest lacks efficacy when the training environment contains obstacles; and developing and testing the new algorithm. I also wrote an (unpublished) scientific paper on the project.</p>
-
-            <p>The training environment used for the project was inspired by experiments undertaken in the late 1990s. The delayed matching-to-place watermaze (DMP environment) refers to an environment where rats were placed into a circular tank of water with a hidden (submerged) escape platform. Rats were given several trials int eh watermaze per day, and the location of the escape platform was changed each day. Researchers found that the rats exhibited 'one-trial' learning, where their escape latencies converged after a single trial in the altered watermaze.</p>
-
-            <p>One-trial learning is difficult to achieve with traditional reinforcement learning algorithms since they are inhibited by learning from previous trials with inconsistent goal states. Goal-independent learning algorithms have been developed by various researchers, however the project focussed on generalising an algorithm where the agent learnt an encoding of its position within the watermaze, as opposed to learning a concrete mapping to the goal state. This algorithm was found to be effective in the standard DMP environment, but failed when the environment contained obstacles.</p>
-
-            <p>My supervisor's idea was to extend the original algorithm by learning a hyperdimensional encoding of the agent's position within the watermaze. However, the new algorithm was not successful.</p>
-        </div>
     </body>
 </html>

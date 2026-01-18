@@ -90,8 +90,4 @@ fetch('/projects/allProjects/projects.json')
                 projectCount++;
             }
         }
-
-        for (let i = 0; i < 10; i++) {
-            setTimeout(gameOfLifeCanvasResize, 400*i);
-        }
     })

@@ -6,6 +6,10 @@ html, body {
     font-family:'Courier New', Courier, monospace;
 }
 
+html {
+    background-color: #e0876a;
+}
+
 canvas {
     position: absolute;
     top: 0;
@@ -16,4 +20,11 @@ canvas {
 
 a {
     color: #e0876a;
+}
+
+.mainContent {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
