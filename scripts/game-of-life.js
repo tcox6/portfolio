@@ -53,7 +53,7 @@ function checkPageResize() {
  */
 function resizeCanvas() {
     let newCanvasWidth = window.innerWidth;
-    let newCanvasHeight = document.documentElement.scrollHeight + 100; // the +100 prevents whitespace from appearing at the bottom of the canvas
+    let newCanvasHeight = document.documentElement.scrollHeight + 0; // +0 replaces previous +100 which is not necessary with opaque footer
 
     canvas.width = newCanvasWidth;
     canvas.height = newCanvasHeight;

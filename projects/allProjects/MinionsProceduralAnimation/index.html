@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procedural Minions Animation - Tim's Portfolio</title>
-    <link rel="stylesheet" href="/defaultStyles/style.css">
-    <link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-    <div class="mainContent" id="mainContent">
-      <!--LOAD HEADER-->
-      <div id="header"></div>
-      <script src="/header/load-header.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Procedural Minions Animation - Tim's Portfolio</title>
+		<link rel="stylesheet" href="/defaultStyles/style.css">
+		<link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
+		<link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+		<div class="mainContent" id="mainContent">
+			<!--LOAD HEADER-->
+			<div id="header"></div>
+			<script src="/header/load-header.js"></script>
 
-      <div class="background">
-        <h1>Procedural Minions Animation</h1>
-        <p>This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming). Obviously, the subject-matter was left to the individuals' discretion. Everything in the animation is generated procedurally, including meshes, animations and camera movements, texture mapping, and mesh skinning. Aside from the texture on the castle (which I created myself) and other solid textures, the animation does not use any imported assets. The animation was programmed using the Unity API.</p>
+			<div class="background">
+				<h1>Procedural Minions Animation</h1>
+				<p>This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming). Obviously, the subject-matter was left to the individuals' discretion. Everything in the animation is generated procedurally, including meshes, animations and camera movements, texture mapping, and mesh skinning. Aside from the texture on the castle (which I created myself) and other solid textures, the animation does not use any imported assets. The animation was programmed using the Unity API.</p>
 
-        <p>A major part of this project was programming the characters' skinning animations. Skinning refers to a mesh deformation technique where a character's mesh is organically deformed to follow an internal skeleton. In my implementation, each mesh vertex can be associated with a maximum of three bones, and for each associated bone, a 'bone weight' stipulates the extent to which the vertex should be transformed by the bone (where the sum of the bone weights for a vertex is 1.0). Once implemented, the I found that the single-threaded skinning calculations took too long to execute, so I used the Unity Jobs system to parallelise the calculations according to the SIMD paradigm.</p>
+				<p>A major part of this project was programming the characters' skinning animations. Skinning refers to a mesh deformation technique where a character's mesh is organically deformed to follow an internal skeleton. In my implementation, each mesh vertex can be associated with a maximum of three bones, and for each associated bone, a 'bone weight' stipulates the extent to which the vertex should be transformed by the bone (where the sum of the bone weights for a vertex is 1.0). Once implemented, the I found that the single-threaded skinning calculations took too long to execute, so I used the Unity Jobs system to parallelise the calculations according to the SIMD paradigm.</p>
 
-        <p>I'd love to say more about the project and dive into some of the technical components, but I fear that doing so could constitute an academic integrity violation😢.</p>
+				<p>I'd love to say more about the project and dive into some of the technical components, but I fear that doing so could constitute an academic integrity violation😢.</p>
 
-        <p>Here's the full animation:</p>
+				<p>Here's the full animation:</p>
 
-        <video width="100%" controls>
-          <source src="./assets/MinionsProceduralAnimationWidescreenHD.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
+				<video width="100%" controls>
+					<source src="./assets/MinionsProceduralAnimationWidescreenHD.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
 
-    <!--LOAD GAME OF LIFE BACKGROUND-->
-    <canvas id="gameOfLifeCanvas"></canvas>
-    <script src="/scripts/game-of-life.js"></script>
-  </body>
+			<!--LOAD FOOTER-->
+			<div id="footer"></div>
+			<script src="/footer/load-footer.js"></script>
+		</div>
+
+		<!--LOAD GAME OF LIFE BACKGROUND-->
+		<canvas id="gameOfLifeCanvas"></canvas>
+		<script src="/scripts/game-of-life.js"></script>
+	</body>
 </html>

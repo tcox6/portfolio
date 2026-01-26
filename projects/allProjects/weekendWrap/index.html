@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Automated Graphical Cricket Summaries - Tim's Portfolio</title>
+        <link rel="stylesheet" href="/defaultStyles/style.css">
+        <link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
+        <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div class="mainContent" id="mainContent">
+            <!--LOAD HEADER-->
+            <div id="header"></div>
+            <script src="/header/load-header.js"></script>
+
+            <div class="background">
+                <h1>Automated 'Weekend Wrap'</h1>
+
+                <p>I volunteer to compile my cricket club's weekly 'weekend wrap'; a graphical summary of each game played over the weekend. The 'wrap' consists of key details from each game including the top three bowlers and batters, team scores, and opposition team (example below). Ordinarily, its compilation would involve manually sifting through scorecards and copying stats into a Canva design. My idea was to automate this process using a Python script to automatically pull and extract the stats from a webpage, and copy them into a PowerPoint file. The final script reduced the requisite time to complete the wraps from approximately half an hour to just a few minutes.</p>
+
+                <p>The first stage of the project was to extract the game stats from a webpage. Fortunately, I discovered that the PlayCricket website uses a simple GET request to facilitate client-side rendering of the scorecard webpage. Furthermore, the game ID required for the request's query parameters is contained within the scorecard's URL. Therefore, I designed my script to take PlayCricket URLs of completed games, construct an appropriate GET request, and then sift through the returned JSON data for the relevant stats.</p>
+
+                <p>Once I'd written a script to obtain and format the data, all I had to do was regurgitate that data into the Canva design. Thankfully, Canva allows designs to be exported as PowerPoint files, which was perfect for me since PowerPoint files are merely uncompressed ZIP files, the contents of which can be extracted and edited. The main layout of a PowerPoint slide is stored in a single XML file, and paths to any embedded images are stored in a separate XML file. The structure of these XML files is quite complicated, so instead of trying to understand it, I decided to simply add unique placeholder strings which could easily be replaced by the real stats. I created a template PowerPoint file using these placeholder strings, and designed the script to simply open the XML styling file, and replace the placeholder text.</p>
+
+                <p>A current limitation of the script is that it is limited to one slide per PowerPoint file (adding slides looked too complicated). Therefore, if multiple scorecard URLs are inputted, the script will produce as many PowerPoint files.</p>
+
+                <p>Example 'wraps':</p>
+
+                <div class="imageRow">
+                    <div class="imageColumn">
+                        <img src="./assets/example1.png" alt="Example 'wrap'." style="width:100%">
+                    </div>
+                    <div class="imageColumn">
+                        <img src="./assets/example2.png" alt="Example 'wrap'." style="width:100%">
+                    </div>
+                    <div class="imageColumn">
+                        <img src="./assets/example3.png" alt="Example 'wrap'." style="width:100%">
+                    </div>
+                </div>
+            </div>
+
+            <!--LOAD FOOTER-->
+            <div id="footer"></div>
+            <script src="/footer/load-footer.js"></script>
+        </div>
+
+        <!--LOAD GAME OF LIFE BACKGROUND-->
+        <canvas id="gameOfLifeCanvas"></canvas>
+        <script src="/scripts/game-of-life.js"></script>
+    </body>
+</html>

@@ -99,6 +99,17 @@
             "ThumbnailLink": "/projects/allProjects/MinionsProceduralAnimation/assets/MinionsProceduralAnimationThumbnail.mp4",
             "Link": "/projects/allProjects/MinionsProceduralAnimation/",
             "Featured": false
+        },
+
+        {
+            "Title": "Automated Graphical Cricket Summaries",
+            "Blurb": [
+                "I volunteer to compile my cricket club's weekly 'weekend wrap'; a graphical summary of each game played over the weekend. The 'wrap' consists of key details from each game including the top three bowlers and batters, team scores, and opposition team. Ordinarily, its compilation would involve manually sifting through scorecards and copying stats into a Canva design. My idea was to automate this process using a Python script to automatically pull and extract the stats from a webpage, and copy them into a PowerPoint file. The final script drastically reduced the requisite time to complete the wraps."
+            ],
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "/projects/allProjects/weekendWrap/assets/thumbnail.jpg",
+            "Link": "/projects/allProjects/weekendWrap",
+            "Featured": false
         }
     ]
 }

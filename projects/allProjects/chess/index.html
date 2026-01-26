@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess - Tim's Portfolio</title>
-    <link rel="stylesheet" href="/defaultStyles/style.css">
-    <link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-    <div class="mainContent" id="mainContent">
-      <!--LOAD HEADER-->
-      <div id="header"></div>
-      <script src="/header/load-header.js"></script>
-    </div>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chess - Tim's Portfolio</title>
+        <link rel="stylesheet" href="/defaultStyles/style.css">
+        <link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
+        <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div class="mainContent" id="mainContent">
+            <!--LOAD HEADER-->
+            <div id="header"></div>
+            <script src="/header/load-header.js"></script>
 
-    <!--LOAD GAME OF LIFE BACKGROUND-->
-    <canvas id="gameOfLifeCanvas"></canvas>
-    <script src="/scripts/game-of-life.js"></script>
-  </body>
+            <div class="background">
+                <h1>Chess Emulator with MiniMax Algorithm</h1>
+                <p>This was my final project for KIT101 (Programming Fundamentals), so was one of my first major projects. I implemented an emulator with a GUI created using the Java swing graphics library. I also implemented serialisation for saving and loading games, and HTML documentation that was accessible via the GUI (though opened in a browser).</p>
+
+                <p>One of the biggest challenges I had while developing the emulator was designing an algorithm that could generate valid moves for any given piece. Abstractly, each unique piece was implemented as a child of a </p>
+
+                <p>A major part of the project was the </p>
+            </div>
+
+            <!--LOAD FOOTER-->
+            <div id="footer"></div>
+            <script src="/footer/load-footer.js"></script>
+        </div>
+
+        <!--LOAD GAME OF LIFE BACKGROUND-->
+        <canvas id="gameOfLifeCanvas"></canvas>
+        <script src="/scripts/game-of-life.js"></script>
+    </body>
 </html>
