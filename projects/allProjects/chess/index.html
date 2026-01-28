@@ -6,6 +6,7 @@
         <title>Chess - Tim's Portfolio</title>
         <link rel="stylesheet" href="/defaultStyles/style.css">
         <link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
+        <link rel="stylesheet" href="/defaultStyles/slideshowStyles.css">
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     </head>
     <body>
@@ -16,11 +17,126 @@
 
             <div class="background">
                 <h1>Chess Emulator with MiniMax Algorithm</h1>
-                <p>This was my final project for KIT101 (Programming Fundamentals), so was one of my first major projects. I implemented an emulator with a GUI created using the Java swing graphics library. I also implemented serialisation for saving and loading games, and HTML documentation that was accessible via the GUI (though opened in a browser).</p>
+                <p>This was my final project for KIT101 (Programming Fundamentals), so was one of my first major projects. I implemented a chess emulator with a GUI created using the Java swing graphics library, as well as a MiniMax bot (though this wasn't <i>quite</i> working when I submitted it for KIT101). I also implemented serialisation for saving and loading games, and HTML documentation that was accessible via the GUI (though opened in a browser). A later addition to the project was multithreading to speed-up execution of the MiniMax algorithm.</p>
 
-                <p>One of the biggest challenges I had while developing the emulator was designing an algorithm that could generate valid moves for any given piece. Abstractly, each unique piece was implemented as a child of a </p>
+                <p>One of the biggest challenges I had while developing the emulator was designing an algorithm that could generate valid moves for any given piece. To do this, abstractly, each unique piece was implemented as a subclass of a generic superclass. The superclass contained a method for generating valid moves given a piece's movement directions and maximum movement scaling (i.e., the scalar multiplier of a movement direction that would result in the piece's largest allowable movement). The individual subclasses each contained fields for the pieces' movement directions (an (x,y) tuple), and the maximum movement scaling. Aside from special cases for pawns (the subclass for which contained an override instance method for generating valid moves), this algorithm worked for all pieces. For example, the movement directions for a queen would be [(0, 1), (1,1), (1, 0),...] and its maximum movement scaling would be 8. For a knight, its movement directions would be [(2,1), (2, -1), (-2,1),...] and its maximum movement scaling would be 1 (i.e., its movement directions mapped directly to the allowable moves). When generating valid moves, the algorithm would simply iterate through to the movement scaling and movement directions as per the pseudocode below (where (x<sub>0</sub>, y<sub>0</sub>) refers to the piece's board position):</p>
 
-                <p>A major part of the project was the </p>
+                <div class="singleImageContainer" style="text-align: center;">
+                    <img class="singleImage" src="./assets/pseudocode.jpg" alt="Pseudocode for my chess move-generation algorithm.">
+                </div>
+
+                <p>A major part of the project was the MiniMax bot. The MiniMax algorithm executes a brute-force shallow exploration of the game tree and selects moves by assuming that both players are playing optimally. Once the game tree has been computed, the algorithm will assign a score to the leaf nodes (based on the bpt's total piece value, in my case), and then backtrack through the tree to find the optimal move for the game state at the root node. For the purposes of backtracking, the opposition player is considered the 'minimiser' (because it wants to minimise the bot's score), and the bot is the 'maximiser'. When backtracking, the algorithm selects the highest-value node at odd levels of the tree, and the lowest-value node at even levels (i.e., it assumes that the opposition is playing optimally). By backtracking through the game tree using this rule, the algorithm can compute its 'optimal' move.</p>
+
+                <p>To consolidate an understanding of MiniMax, consider the following noughts and crosses example. For this example, the bot has next go and is playing as 'X', and the opposition is 'O'. Also, scores are as follows: 0 if no result, -1 if opposition wins, and 1 if the bot wins. More complicated heuristics are needed for games where a complete game tree cannot be computed.</p>
+
+                <div class="slideshowContainer">
+                    <img src="./assets/minimaxDemo/Slide1.JPG" alt="" id="minimaxImage" class="slideshowImage">
+                    <p class="slideshowDescription" id="minimaxDescription">NULL</p>
+
+                    <div class="slideshowControls" id="slideshowControls">
+                        <div class="slideshowControlBack" id="minimaxBack">
+                            <img src="/assets/arrow-back.svg" alt="Back.">
+                            <p style="float: right; color: white;">Back</p>
+                        </div>
+                        <div class="slideshowControlForward" id="minimaxForward">
+                            <img src="/assets/arrow-forward.svg" alt="Forward.">
+                            <p style="float: left; color: white;">Forward</p>
+                        </div>
+                    </div>
+                </div>
+                <!--SET SLIDESHOW SOURCES AND DESCRIPTIONS-->
+                <script src="/scripts/slideshow.js"></script>
+                <script>
+                    var slideshowImages = [
+                        "./assets/minimaxDemo/Slide1.JPG",
+                        "./assets/minimaxDemo/Slide2.JPG",
+                        "./assets/minimaxDemo/Slide3.JPG",
+                        "./assets/minimaxDemo/Slide4.JPG",
+                        "./assets/minimaxDemo/Slide5.JPG",
+                        "./assets/minimaxDemo/Slide6.JPG",
+                        "./assets/minimaxDemo/Slide7.JPG",
+                        "./assets/minimaxDemo/Slide8.JPG",
+                        "./assets/minimaxDemo/Slide9.JPG",
+                        "./assets/minimaxDemo/Slide10.JPG",
+                        "./assets/minimaxDemo/Slide11.JPG",
+                        "./assets/minimaxDemo/Slide12.JPG"
+                    ];
+
+                    var slideshowDescriptions = [
+                        "Conceptually, the first step is to construct a game tree.",
+                        "We start with the initial game state as the root. At this point, it is the bot's turn.",
+                        "We generate all possible moves from the root state. At each of these new game states, it is now the opposition's turn.",
+                        "For each previous game state, generate all possible new game states.",
+                        "We have now reached a terminal state across all leaf nodes, so we stop exploring. In most applications, we cannot compute a complete exploration, so we need to define a maximal exploration depth.",
+                        "Now we assign a score to each of our terminal/leaf states.",
+                        "The scores indicate the resultant benefit to the bot as a result of its previous turn.",
+                        "We now apply the MiniMax algorithm and backtrack through the tree to find the bot's best move at the root game state.",
+                        "It is the maximiser's (bot's) turn at the third level of the tree. For each node at this level, we calculate the maximum score of the node's child game states.",
+                        "Next, it is the minimiser's turn (opposition's turn). We calculate the minimum score for each node's children. Remember that the minimiser will always aim for a low-score game state.",
+                        "At the root game state, it is the maximiser's turn. Evidently, the best move it can make will only yield a draw.",
+                        "Note that even though some leaf nodes had scores of 1, the minimiser should never allow these game states to eventuate, hence the expected yield of the maximiser's best move being 0."
+                    ];
+
+                    slideshow(slideshowImages, slideshowDescriptions, "minimaxImage", "minimaxDescription", "minimaxBack", "minimaxForward");
+                </script>
+
+                <br>
+                <p>Note that, as implemented, the algorithm doesn't explicitly build a game tree. It is included for conceptualisation purposes only.</p>
+
+                <p>I added alpha-beta pruning to reduce the algorithm's search space. Alpha-beta pruning works by pruning branches of the game tree that will never be eventuate if both players are playing optimally. Consider the example below. Note that the example is illustrative only, and its steps are not representative of how the algorithm would be implemented.</p>
+
+                <div class="slideshowContainer">
+                    <img src="./assets/minimaxDemo/Slide1.JPG" alt="" id="alphabetaImage" class="slideshowImage">
+                    <p class="slideshowDescription" id="alphabetaDescription">NULL</p>
+
+                    <div class="slideshowControls" id="slideshowControls">
+                        <div class="slideshowControlBack" id="alphabetaBack">
+                            <img src="/assets/arrow-back.svg" alt="Back.">
+                            <p style="float: right; color: white;">Back</p>
+                        </div>
+                        <div class="slideshowControlForward" id="alphabetaForward">
+                            <img src="/assets/arrow-forward.svg" alt="Forward.">
+                            <p style="float: left; color: white;">Forward</p>
+                        </div>
+                    </div>
+                </div>
+                <!--SET SLIDESHOW SOURCES AND DESCRIPTIONS-->
+                <script src="/scripts/slideshow.js"></script>
+                <script>
+                    var slideshowImages = [
+                        "./assets/alphabetaDemo/Slide1.JPG",
+                        "./assets/alphabetaDemo/Slide2.JPG",
+                        "./assets/alphabetaDemo/Slide3.JPG",
+                        "./assets/alphabetaDemo/Slide4.JPG",
+                        "./assets/alphabetaDemo/Slide5.JPG",
+                        "./assets/alphabetaDemo/Slide6.JPG",
+                        "./assets/alphabetaDemo/Slide7.JPG",
+                        "./assets/alphabetaDemo/Slide8.JPG"
+                    ];
+
+                    var slideshowDescriptions = [
+                        "As with our conceptual understanding of the unoptimized MiniMax algorithm, we start by building a game tree.",
+                        "Note that the game tree hasn't been fully explored yet. Also note that the scores are not reflective of the pictured game states.",
+                        "As usual, we determine the minimiser's best scores for the game states at the penultimate level of the tree.",
+                        "For the leftmost node at this level, we can apply MiniMax as usual.",
+                        "The second node's game tree has not been fully expanded. However, we know that the minimiser's best move is guaranteed to yield a score less-than or equal to 5.",
+                        "Similarly, regardless of what the unevaluated child game states are, the expected score will be less-than or equal to -7.",
+                        "Now we continue MiniMax to determine the bot's best move.",
+                        "The maximiser's best move has an expected yield of 2."
+                    ];
+
+                    slideshow(slideshowImages, slideshowDescriptions, "alphabetaImage", "alphabetaDescription", "alphabetaBack", "alphabetaForward");
+                </script>
+
+                <p>I also implemented a crude multithreaded implementation of the algorithm, which yielded a drastic speed-up. The next step might be to compute an explicit game tree, which could be reused across consecutive turns.</p>
+
+                <p>Additionally, as a debugging feature, I included a visualisation of the MiniMax algorithm's calculated optimal gameplay:</p>
+
+                <video width="60%" controls style="margin-left: 20%;">
+                    <source src="./assets/minimaxDebugging.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
             </div>
 
             <!--LOAD FOOTER-->
