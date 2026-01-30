@@ -74,7 +74,7 @@
                 "NaviMate is a browser extension that automatically bookmarks users' last scroll position on webpages, and allows users to add their own bookmarks. Features include an app-style GUI created using vanilla HTML+CSS+JS, options to stop bookmarking specific pages or sites, a settings page, and an embedded feedback-collection form."
             ],
             "ThumbnailType": "Static Image",
-            "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.PNG",
+            "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.jpg",
             "Link": "/projects/allProjects/NaviMate/",
             "Featured": false
         },
