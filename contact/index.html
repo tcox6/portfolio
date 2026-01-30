@@ -19,13 +19,19 @@
             </div>
 
             <div class="background">
-                <h1>Email</h1>
+                <!--MAIN HEADER FOR CONTACTING-->
+                <h1 id="mainHeader">Contact Me!</h1>
+                
+                <!--INTRO SENTENCE FOR CONTACTING-->
+                <p id="intro"></p>
+
+                <h2>Email</h2>
 
                 <p id="emailParagraph">You can contact me here: <span id="email" class="emailSpan" title="Click to reveal email.">noRobots@outlook.com</span> (click to reveal).</p>
 
-                <p>To prevent scraping, I store my email address on the client side using a very simple encryption scheme, and only decrypt it after a user-initiated event, which should deter most web scrapers.</p>
+                <p id="preventScraping">To prevent scraping, I store my email address on the client side using a very simple encryption scheme, and only 'decrypt' it after a user-initiated event. This should deter most web scrapers.</p>
 
-                <h1>Embedded Form</h1>
+                <h2>Embedded Form</h2>
 
                 <form action="" class="contactForm" id="contactForm">
                     <div class="labelFieldPair">
@@ -53,32 +59,35 @@
                         </span>
                     </div>
 
-                    <br><label for="messageField">Message:*</label><br>
+                    <br><label for="messageField" id="messageLabel">Message:*</label><br>
                     <textarea id="messageField" rows="10" cols="100" required>Hi Tim, I'd like to offer you a job with an annual salary of $1,000,000.</textarea>
 
-                    <br><input type="checkbox" id="sellMyData">
-                    <label for="sellMyData">Sell my data</label><br>
+                    <div id="sillyOptions">
+                        <br><input type="checkbox" id="sellMyData">
+                        <label for="sellMyData">Sell my data</label><br>
 
-                    <input type="checkbox" id="subscribe">
-                    <label for="subscribe">Subscribe for news and special offers</label><br>
+                        <input type="checkbox" id="subscribe">
+                        <label for="subscribe">Subscribe for news and special offers</label><br>
 
-                    <input type="checkbox" id="privacyPolicy">
-                    <label for="privacyPolicy">I consent to the <a href="/privacyPolicy/" target="_blank">privacy policy</a></label><br>
+                        <input type="checkbox" id="privacyPolicy">
+                        <label for="privacyPolicy">I consent to the <a href="/privacyPolicy/" target="_blank">privacy policy</a></label><br>
 
-                    <input type="checkbox" id="untick" title="Bad things will happen if this box is ticked.">
-                    <label for="untick" title="Bad things will happen if this box is ticked.">IMPORTANT!: Untick this box</label>
+                        <input type="checkbox" id="untick" title="Bad things will happen if this box is ticked.">
+                        <label for="untick" title="Bad things will happen if this box is ticked.">IMPORTANT!: Untick this box</label>
 
-                    <p style="margin-bottom: 0; margin-top: 8px;">Do you like my website?</p>
-                    <input type="radio" id="likeWebsiteTrue" name="likeWebsite">
-                    <label for="likeWebsiteTrue">Yes!</label>
-                    <input type="radio" id="likeWebsiteFalse" name="likeWebsite">
-                    <label for="likeWebsiteFalse">No🙁</label><br>
+                        <p style="margin-bottom: 0; margin-top: 8px;">Do you like my website?</p>
+                        <input type="radio" id="likeWebsiteTrue" name="likeWebsite">
+                        <label for="likeWebsiteTrue">Yes!</label>
+                        <input type="radio" id="likeWebsiteFalse" name="likeWebsite">
+                        <label for="likeWebsiteFalse">No🙁</label><br>
+                    </div>
 
                     <br><input type="submit">
                 </form>
             </div>
             <script src="/contact/reveal-email.js"></script>
             <script src="/contact/form-submit-handler.js"></script>
+            <script src="/contact/bugs.js"></script>
 
             <!--LOAD FOOTER-->
             <div id="footer"></div>

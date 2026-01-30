@@ -36,15 +36,15 @@
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-left: 144px;
-    margin-right: 72px;
+    margin-left: 10vw;
+    margin-right: 5vw;
 }
     .featuredProjectsHeading h1 {
         font-size: 6vw;
         color: #FBEFCC;
         margin-top: 0px;
         margin-bottom: 0px;
-        margin-left: 32px;
+        margin-left: 2vw;
     }
 
 .moreProjects {
@@ -53,14 +53,14 @@
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-left: 144px;
-    margin-right: 72px;
+    margin-left: 10vw;
+    margin-right: 5vw;
 }
     .moreProjects h3 {
         font-size: 2vw;
         margin-top: 0px;
         margin-bottom: 0px;
-        margin-left: 32px;
+        margin-left: 2vw;
     }
         .moreProjects h3 a {
             color: white;

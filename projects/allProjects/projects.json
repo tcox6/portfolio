@@ -38,7 +38,7 @@
         {
             "Title": "Chess Emulator with MiniMax Algorithm",
             "Blurb": [
-                "This began as my final project for KIT101 (Programming Fundamentals). The project was written in Java and implemented a GUI using the swing graphics library. An AI bot was implemented using the MiniMax algorithm to calculate optimal moves."
+                "This began as my final project for KIT101 (Programming Fundamentals). I wrote the emulator in Java and implemented a GUI using the swing graphics library. A key part of the project was the AI 'bot' that used the MiniMax algorithm AI bot was implemented using the MiniMax algorithm to calculate pseudo-optimal moves. To speed-up the algorithm, I implemented in alpha-beta pruning and multithreading."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/chess/assets/ChessThumbnail.mp4",
@@ -109,7 +109,7 @@
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/weekendWrap/assets/thumbnail.jpg",
             "Link": "/projects/allProjects/weekendWrap",
-            "Featured": false
+            "Featured": true
         }
     ]
 }

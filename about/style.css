@@ -14,7 +14,7 @@
     }
 
     .resultsList {
-        width: 50%;
+        width: 60%;
     }
 
         .resultsList li {
@@ -22,7 +22,7 @@
             justify-content: space-between;
         }
 
-            .resutlsList span .mark {
+            .resultsList span .mark {
                 min-width: 3ch;
                 text-align: right;
             }

@@ -57,3 +57,7 @@
         user-select: none;
         cursor: pointer;
     }
+
+h1 {
+    text-align: center;
+}
