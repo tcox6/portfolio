@@ -19,75 +19,78 @@ fetch('/projects/allProjects/projects.json')
             // get the current project
             let currentProject = projects.Projects[projectsOrder[i]];
 
-            if (featuredFlag && currentProject.Featured || !featuredFlag) {
-                // create the parent container for the project
-                const projectDiv = document.createElement("div");
-                projectDiv.className = "project";
+            // skip if hidden flag set to true
+            if (!currentProject.Hidden) {
+                if (featuredFlag && currentProject.Featured || !featuredFlag) {
+                    // create the parent container for the project
+                    const projectDiv = document.createElement("div");
+                    projectDiv.className = "project";
 
-                // create the image/video thumbnail
-                const projectImageDiv = document.createElement("div");
-                projectImageDiv.className = "projectImage";
-                // add either an image or video element to the div
-                if (currentProject.ThumbnailType == "Static Image") {
-                    // create image element
-                    const projectImage = document.createElement("img");
-                    projectImage.src = currentProject.ThumbnailLink;
+                    // create the image/video thumbnail
+                    const projectImageDiv = document.createElement("div");
+                    projectImageDiv.className = "projectImage";
+                    // add either an image or video element to the div
+                    if (currentProject.ThumbnailType == "Static Image") {
+                        // create image element
+                        const projectImage = document.createElement("img");
+                        projectImage.src = currentProject.ThumbnailLink;
 
-                    // add to the parent div
-                    projectImageDiv.appendChild(projectImage);
-                } else if (currentProject.ThumbnailType == "Video") {
-                    // create video element
-                    const projectVideo = document.createElement("video");
-                    projectVideo.id = "vid";
-                    projectVideo.autoplay = true
-                    projectVideo.muted = true
-                    projectVideo.loop = true
+                        // add to the parent div
+                        projectImageDiv.appendChild(projectImage);
+                    } else if (currentProject.ThumbnailType == "Video") {
+                        // create video element
+                        const projectVideo = document.createElement("video");
+                        projectVideo.id = "vid";
+                        projectVideo.autoplay = true
+                        projectVideo.muted = true
+                        projectVideo.loop = true
 
-                    // create video source element
-                    const videoSource = document.createElement("source");
-                    videoSource.src = currentProject.ThumbnailLink;
-                    videoSource.type = "video/mp4";
-                    projectVideo.appendChild(videoSource);
+                        // create video source element
+                        const videoSource = document.createElement("source");
+                        videoSource.src = currentProject.ThumbnailLink;
+                        videoSource.type = "video/mp4";
+                        projectVideo.appendChild(videoSource);
 
-                    // add to the parent div
-                    projectImageDiv.appendChild(projectVideo);
+                        // add to the parent div
+                        projectImageDiv.appendChild(projectVideo);
+                    }
+
+                    // create the project blurb
+                    const projectBlurbDiv = document.createElement("div");
+                    projectBlurbDiv.className = "projectBlurb";
+                    // blurb header
+                    const blurbHeader = document.createElement("h2");
+                    blurbHeader.textContent = currentProject.Title;
+                    projectBlurbDiv.appendChild(blurbHeader);
+                    // blurb paragraphs
+                    const paragraphs = [];
+                    for (let p = 0; p < currentProject.Blurb.length; p++) {
+                        paragraphs[p] = document.createElement("p");
+                        paragraphs[p].textContent = currentProject.Blurb[p];
+                        projectBlurbDiv.appendChild(paragraphs[p]);
+                    }
+                    // link
+                    const blurbLinkText = document.createElement("strong");
+                    const blurbLink = document.createElement("a");
+                    blurbLink.href = currentProject.Link;
+                    blurbLinkText.textContent = "Learn more...";
+                    projectBlurbDiv.appendChild(blurbLink);
+                    blurbLink.appendChild(blurbLinkText);
+
+                    // add all elements to their parent container
+                    if (projectCount % 2 == 0) {
+                        // blurb to the left when i is even
+                        projectDiv.appendChild(projectBlurbDiv);
+                        projectDiv.appendChild(projectImageDiv);
+                    } else {
+                        // image to the left when i is odd
+                        projectDiv.appendChild(projectImageDiv);
+                        projectDiv.appendChild(projectBlurbDiv);
+                    }
+                    document.getElementById("projectsContainer").appendChild(projectDiv);
+
+                    projectCount++;
                 }
-
-                // create the project blurb
-                const projectBlurbDiv = document.createElement("div");
-                projectBlurbDiv.className = "projectBlurb";
-                // blurb header
-                const blurbHeader = document.createElement("h2");
-                blurbHeader.textContent = currentProject.Title;
-                projectBlurbDiv.appendChild(blurbHeader);
-                // blurb paragraphs
-                const paragraphs = [];
-                for (let p = 0; p < currentProject.Blurb.length; p++) {
-                    paragraphs[p] = document.createElement("p");
-                    paragraphs[p].textContent = currentProject.Blurb[p];
-                    projectBlurbDiv.appendChild(paragraphs[p]);
-                }
-                // link
-                const blurbLinkText = document.createElement("strong");
-                const blurbLink = document.createElement("a");
-                blurbLink.href = currentProject.Link;
-                blurbLinkText.textContent = "Learn more...";
-                projectBlurbDiv.appendChild(blurbLink);
-                blurbLink.appendChild(blurbLinkText);
-
-                // add all elements to their parent container
-                if (projectCount % 2 == 0) {
-                    // blurb to the left when i is even
-                    projectDiv.appendChild(projectBlurbDiv);
-                    projectDiv.appendChild(projectImageDiv);
-                } else {
-                    // image to the left when i is odd
-                    projectDiv.appendChild(projectImageDiv);
-                    projectDiv.appendChild(projectBlurbDiv);
-                }
-                document.getElementById("projectsContainer").appendChild(projectDiv);
-
-                projectCount++;
             }
         }
     })

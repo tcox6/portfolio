@@ -8,20 +8,22 @@
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/ecoacoustics/assets/EcoacousticsThumbail.jpg",
             "Link": "/projects/allProjects/ecoacoustics/",
-            "Featured": true
+            "Featured": true,
+            "Hidden": false
         },
 
         {
             "Title": "Novel Reinforcement Learning Algorithm",
             "Blurb": [
-                "Undertaken as part of UTAS KAA308, this project focussed on implementing a novel reinforcement algorithm (invented by my supervisor for the project). The project focussed on the DMP protocol of the Morris watermaze experiment and the new algorithm aimed to facilitate goal-independent learning with environment obstacles using a model-free approach.",
+                "Undertaken as part of UTAS KAA308, this project focussed on implementing a novel reinforcement algorithm (primarily invented by my supervisor). The project focussed on the DMP protocol of the Morris watermaze experiment and the new algorithm aimed to facilitate goal-independent learning with environment obstacles using a model-free approach.",
 
                 "Note that the screen recording to the right shows the progression of an existing algorithm in the environment developed for the project."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/generalisedCoordinateLearning/assets/GeneralisedCoordinateLearningThumbnail.mp4",
             "Link": "/projects/allProjects/generalisedCoordinateLearning/",
-            "Featured": true
+            "Featured": true,
+            "Hidden": false
         },
 
         {
@@ -32,7 +34,8 @@
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/vehicleRL/assets/VehicleRLThumbnail.mp4",
             "Link": "/projects/allProjects/vehicleRL/",
-            "Featured": true
+            "Featured": true,
+            "Hidden": false
         },
 
         {
@@ -43,7 +46,8 @@
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/chess/assets/ChessThumbnail.mp4",
             "Link": "/projects/allProjects/chess/",
-            "Featured": true
+            "Featured": true,
+            "Hidden": false
         },
 
         {
@@ -54,7 +58,8 @@
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/RCMotorbike/assets/RCBikeThumbnail.jpg",
             "Link": "/projects/allProjects/RCMotorbike/",
-            "Featured": false
+            "Featured": false,
+            "Hidden": false
         },
 
         {
@@ -65,7 +70,8 @@
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/createt/assets/createtThumbnail.mp4",
             "Link": "/projects/allProjects/createt/",
-            "Featured": false
+            "Featured": false,
+            "Hidden": false
         },
 
         {
@@ -76,7 +82,8 @@
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.jpg",
             "Link": "/projects/allProjects/NaviMate/",
-            "Featured": false
+            "Featured": false,
+            "Hidden": false
         },
 
         {
@@ -87,7 +94,8 @@
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/flappyBird/assets/FlappyBirdThumbnail.mp4",
             "Link": "/projects/allProjects/flappyBird/",
-            "Featured": false
+            "Featured": false,
+            "Hidden": true
         },
 
         {
@@ -98,7 +106,8 @@
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/MinionsProceduralAnimation/assets/MinionsProceduralAnimationThumbnail.mp4",
             "Link": "/projects/allProjects/MinionsProceduralAnimation/",
-            "Featured": false
+            "Featured": false,
+            "Hidden": false
         },
 
         {
@@ -109,7 +118,8 @@
             "ThumbnailType": "Static Image",
             "ThumbnailLink": "/projects/allProjects/weekendWrap/assets/thumbnail.jpg",
             "Link": "/projects/allProjects/weekendWrap",
-            "Featured": true
+            "Featured": true,
+            "Hidden": false
         }
     ]
 }
