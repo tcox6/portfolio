@@ -19,11 +19,11 @@
 
                 <p>This was a quick, yet involved project that I completed over the Easter mid-semester break in 2024. The goal was to build an environment editor and train agents to navigate through a customisable road network. I setup the project with the intention of making it a multi-agent learning environment (MARL), but haven't finished implementing this yet.</p>
 
-                <p>I built the environment editor from the ground-up, which featured a drag-and-drop interface for placing road segments into a grid. I defined the road boundaries as parametric linear lines, and used these borders to facilitate collision-detection and sensor ray measurements for the agents. The borders for road segments with curves were created as polygons, comprised of many linear segments. Road segments included straight sections, 90-degree curves, four-way intersections (cross intersections), and T-intersections.</p>
+                <p>I built the environment editor from the ground-up, which featured a drag-and-drop interface for placing road segments into a grid. I defined the road boundaries as parametric linear lines, and used these borders to facilitate collision-detection and sensor ray measurements for the agents. (The vehicle's sensor rays were also implemented as parametric linear lines, and thus the collision logic is relatively elementary.) The borders for road segments with curves were created as polygons, comprised of many linear segments. Road segments included straight sections, 90-degree curves, four-way intersections (cross intersections), and T-intersections.</p>
 
                 <p>I used the DDPG algorithm to train the agents to navigate the road network, using sensor-ray inputs to measure the distance from the agent to the road borders. The DDPG algorithm is an actor-critic algorithm designed for continuous action spaces. It's an off-policy algorithm, meaning that it learns from a replay buffer, and uses target networks and soft updates to improve stability. Ultimately, I found that the DDPG algorithm with sensor-ray inputs was effective at solving the single-agent environment, though would sometimes fail when navigating cross-intersections.</p>
 
-                <video width="60%" controls style="margin-left: 20%;">
+                <video controls style="margin-left: 25%; width: 50%;">
                     <source src="./assets/VehicleRLThumbnail.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
