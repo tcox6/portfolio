@@ -33,7 +33,7 @@
 
                 <h2>Embedded Form</h2>
 
-                <form action="" class="contactForm" id="contactForm">
+                <form action="https://formspree.io/f/xnjbqwpq" method="POST" class="contactForm" id="contactForm">
                     <div class="labelFieldPair">
                         <span class="label">
                             <label for="firstName">First name:*</label>
@@ -60,30 +60,37 @@
                     </div>
 
                     <br><label for="messageField" id="messageLabel">Message:*</label><br>
-                    <textarea id="messageField" rows="10" cols="100" required>Hi Tim, I'd like to offer you a job with an annual salary of $1,000,000.</textarea>
+                    <textarea id="messageField" rows="10" cols="100" required name="message" placeholder="Hi Tim, I'd like to offer you a job with an annual salary of $1,000,000."></textarea>
 
                     <div id="sillyOptions">
-                        <br><input type="checkbox" id="sellMyData">
+                        <br><input type="checkbox" id="sellMyData" name="sellMyData">
                         <label for="sellMyData">Sell my data</label><br>
 
-                        <input type="checkbox" id="subscribe">
+                        <input type="checkbox" id="subscribe" name="subscribe">
                         <label for="subscribe">Subscribe for news and special offers</label><br>
 
-                        <input type="checkbox" id="privacyPolicy">
+                        <input type="checkbox" id="privacyPolicy" name="privacyPolicy">
                         <label for="privacyPolicy">I consent to the <a href="/privacyPolicy/" target="_blank">privacy policy</a></label><br>
 
-                        <input type="checkbox" id="untick" title="Bad things will happen if this box is ticked.">
+                        <input type="checkbox" id="untick" title="Bad things will happen if this box is ticked." name="untickThisBox">
                         <label for="untick" title="Bad things will happen if this box is ticked.">IMPORTANT!: Untick this box</label>
 
                         <p style="margin-bottom: 0; margin-top: 8px;">Do you like my website?</p>
-                        <input type="radio" id="likeWebsiteTrue" name="likeWebsite">
+                        <input type="radio" id="likeWebsiteTrue" name="likeWebsiteYes">
                         <label for="likeWebsiteTrue">Yes!</label>
-                        <input type="radio" id="likeWebsiteFalse" name="likeWebsite">
+                        <input type="radio" id="likeWebsiteFalse" name="likeWebsiteNo">
                         <label for="likeWebsiteFalse">No🙁</label><br>
                     </div>
 
                     <br><input type="submit">
                 </form>
+
+                <br>
+                <br>
+                <hr color="e0876a">
+                <p>* I use <a href="https://formspree.io/">Formspree</a> to handle the backend of this form. All data will be subject to their privacy policy.</p>
+
+                <p>** Please note that submissions of the above form are subject to third-party filtering policies. If you submit the form and don't hear from me within a few days, please reach-out to me directly via my email address (above).</p>
             </div>
             <script src="/contact/reveal-email.js"></script>
             <script src="/contact/form-submit-handler.js"></script>

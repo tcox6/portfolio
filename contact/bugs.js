@@ -17,5 +17,8 @@ if (params.has("bugs")) {
 
     formTextArea.innerHTML = "";
     formSillyOptions.innerHTML = "";
-    messageLabel.innerHTML = "Please describe the bug. It may help to provide your browser version and system specs.";
+    messageLabel.innerHTML = "Please describe the bug.";
+
+    // also change the placeholder text
+    formTextArea.placeholder = "Please describe the bug here. It amy help to provide your browser version and system specs.";
 }

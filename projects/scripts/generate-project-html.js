@@ -55,6 +55,11 @@ fetch('/projects/allProjects/projects.json')
                         projectImageDiv.appendChild(projectVideo);
                     }
 
+                    // add an event listener to projectImageDiv to redirect to new URL if clicked
+                    projectImageDiv.addEventListener('click', (event) => {
+                        window.location.href = currentProject.Link;
+                    });
+
                     // create the project blurb
                     const projectBlurbDiv = document.createElement("div");
                     projectBlurbDiv.className = "projectBlurb";
