@@ -34,8 +34,10 @@ function checkPageResize() {
     var currentWidth = Math.max(mainContent.scrollWidth, mainContent.offsetWidth);
     var currentHeight = Math.max(mainContent.scrollHeight, mainContent.offsetHeight);
 
-    if (currentWidth != prevPageWidth || currentHeight != prevPageHeight) {
-        if (!resizedAtLastCheck) {
+    let heightDifference = Math.abs(currentHeight - canvas.offsetHeight);
+
+    if (currentWidth != prevPageWidth || currentHeight != prevPageHeight || heightDifference > 0.4 * currentHeight) {
+        if (!resizedAtLastCheck || heightDifference > 0.4 * currentHeight) {
             currentlyResizingCanvas = true;
             resizeCanvas();
             prevPageWidth = currentWidth;
