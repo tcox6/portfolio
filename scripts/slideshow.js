@@ -4,20 +4,27 @@ function slideshow(images, descriptions, imageID, descriptionID, backID, forward
     let slideshowBack = document.getElementById(backID);
     let slideshowForward = document.getElementById(forwardID);
 
+    // preload all images
+    let preloadedImages = [];
+    for (let j = 0; j < images.length; j++) {
+        preloadedImages[j] = new Image();
+        preloadedImages[j].src = images[j];
+    }
+
     // current slide index
     let i = 0;
 
     // set initial slide and description
-    i = changeSlide(0, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, images, descriptions);
+    i = changeSlide(0, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, preloadedImages, descriptions);
 
     // event listener for the back button
     slideshowBack.addEventListener('click', () => {
-        i = changeSlide(-1, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, images, descriptions);
+        i = changeSlide(-1, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, preloadedImages, descriptions);
     });
 
     // event listener for the forward button
     slideshowForward.addEventListener('click', () => {
-        i = changeSlide(1, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, images, descriptions);
+        i = changeSlide(1, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, preloadedImages, descriptions);
     });
 }
 
@@ -26,11 +33,11 @@ function slideshow(images, descriptions, imageID, descriptionID, backID, forward
  * 
  * @param {Number} inc Direction to change slide in (-1 or 1) 
  */
-function changeSlide(inc, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, images, descriptions) {
+function changeSlide(inc, i, slideshowImage, slideshowDescription, slideshowBack, slideshowForward, preloadedImages, descriptions) {
     i += inc;
 
     // prevent index out of bounds error
-    i = Math.min(i, images.length - 1);
+    i = Math.min(i, preloadedImages.length - 1);
     i = Math.max(i, 0);
 
     // hide back or forwards button, if necessary
@@ -40,14 +47,14 @@ function changeSlide(inc, i, slideshowImage, slideshowDescription, slideshowBack
         slideshowBack.style.visibility = "visible";
     }
 
-    if (i == images.length - 1) {
+    if (i == preloadedImages.length - 1) {
         slideshowForward.style.visibility = "hidden";
     } else {
         slideshowForward.style.visibility = "visible";
     }
 
     // change slideshow image and description
-    slideshowImage.src = images[i];
+    slideshowImage.src = preloadedImages[i].src;
     slideshowDescription.innerText = descriptions[i];
 
     return i;

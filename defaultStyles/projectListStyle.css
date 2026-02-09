@@ -11,20 +11,21 @@
     }
         .project .projectImage {
             display: inline-block;
-            max-width: 40%;
+            width: 40%;
             padding: 4vw;
+            aspect-ratio: 1 / 1;
         }
 
-        .project .projectImage:hover {
+        /* .project .projectImage:hover {
             cursor: pointer;
-        }
-            .project .projectImage video {
+        } */
+            .project .projectImage iframe {
                 width: 100%;
                 border-radius: 16px;
                 padding: 0px;
                 margin: 0px;
             }
-
+            
             .project .projectImage img {
                 border-radius: 16px;
                 width: 100%;
@@ -41,7 +42,7 @@
                 animation-duration: 0.5s;
                 animation-fill-mode: forwards;
             }
-            .project .projectImage video:hover {
+            .project .projectImage iframe:hover {
                 animation-name: projectImageHoverAnimation;
                 animation-duration: 0.5s;
                 animation-fill-mode: forwards;

@@ -20,7 +20,7 @@
                 "Note that the screen recording to the right shows the progression of an existing algorithm in the environment developed for the project."
             ],
             "ThumbnailType": "Video",
-            "ThumbnailLink": "/projects/allProjects/generalisedCoordinateLearning/assets/GeneralisedCoordinateLearningThumbnail.mp4",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/a2e16d262f263e1c9cdf536060caa972/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fa2e16d262f263e1c9cdf536060caa972%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true",
             "Link": "/projects/allProjects/generalisedCoordinateLearning/",
             "Featured": true,
             "Hidden": false
@@ -32,7 +32,7 @@
                 "Most custom reinforcement learning environments are implemented using a physics or game engine. However, I prefer to implement my environments 'from scratch', and that's what I've done here. The project features an environment editor allowing custom road networks to be constructed from straight and curved segments, as well as T-intersections and cross-intersections. The agent learns using the DDPG algorithm (an off-policy actor-critic algorithm designed for continuous action spaces). I am working on converting this into a multi-agent learning environment (MARL)."
             ],
             "ThumbnailType": "Video",
-            "ThumbnailLink": "/projects/allProjects/vehicleRL/assets/VehicleRLThumbnail.mp4",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff5426635fdd53c08386942b762463af/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff5426635fdd53c08386942b762463af%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true",
             "Link": "/projects/allProjects/vehicleRL/",
             "Featured": true,
             "Hidden": false
@@ -44,7 +44,7 @@
                 "This began as my final project for KIT101 (Programming Fundamentals). I wrote the emulator in Java and implemented a GUI using the swing graphics library. A key part of the project was the AI 'bot' that used the MiniMax algorithm AI bot was implemented using the MiniMax algorithm to calculate pseudo-optimal moves. To speed-up the algorithm, I implemented in alpha-beta pruning and multithreading."
             ],
             "ThumbnailType": "Video",
-            "ThumbnailLink": "/projects/allProjects/chess/assets/ChessThumbnail.mp4",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/2b2b7f88f69ddde5feabfc6869d1ea9b/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2F2b2b7f88f69ddde5feabfc6869d1ea9b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true",
             "Link": "/projects/allProjects/chess/",
             "Featured": true,
             "Hidden": false
@@ -68,7 +68,7 @@
                 "3D printing has been a hobby of mine for the past few years. I publish my designs under the online alter ego 'createt', and have amassed over 150,000 views, over 10,000 downloads, thousands of likes, and hundreds of sales. I specialise in making unique novelty items, especially those with mechanical components."
             ],
             "ThumbnailType": "Video",
-            "ThumbnailLink": "/projects/allProjects/createt/assets/createtThumbnail.mp4",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/65d74d7326ef6b473477056acccba31b/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2F65d74d7326ef6b473477056acccba31b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true",
             "Link": "/projects/allProjects/createt/",
             "Featured": false,
             "Hidden": false
@@ -104,7 +104,7 @@
                 "This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming); one of my favourite units at UTAS. Everything is in the animation is generated procedurally in code. This includes meshes, all animations, mesh deformations (skinning), and textures. The animation was selected for exhibition in the UTAS School of ICT Connect & Collaborate Expo."
             ],
             "ThumbnailType": "Video",
-            "ThumbnailLink": "/projects/allProjects/MinionsProceduralAnimation/assets/MinionsProceduralAnimationThumbnail.mp4",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff1a784b4f6bc5b24fe0e8ae42d2d736/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff1a784b4f6bc5b24fe0e8ae42d2d736%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true",
             "Link": "/projects/allProjects/MinionsProceduralAnimation/",
             "Featured": false,
             "Hidden": false

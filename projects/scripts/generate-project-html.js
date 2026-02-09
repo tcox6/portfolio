@@ -39,26 +39,19 @@ fetch('/projects/allProjects/projects.json')
                         projectImageDiv.appendChild(projectImage);
                     } else if (currentProject.ThumbnailType == "Video") {
                         // create video element
-                        const projectVideo = document.createElement("video");
-                        projectVideo.id = "vid";
-                        projectVideo.autoplay = true
-                        projectVideo.muted = true
-                        projectVideo.loop = true
-
-                        // create video source element
-                        const videoSource = document.createElement("source");
-                        videoSource.src = currentProject.ThumbnailLink;
-                        videoSource.type = "video/mp4";
-                        projectVideo.appendChild(videoSource);
+                        const projectVideo = document.createElement("iframe");
+                        projectVideo.src = currentProject.ThumbnailLink;
+                        projectVideo.style = "border: none; position: relative; top: 0; left: 0; height: 100%; width: 100%;";
+                        projectVideo.className = "videoThumbnail";
 
                         // add to the parent div
                         projectImageDiv.appendChild(projectVideo);
                     }
 
                     // add an event listener to projectImageDiv to redirect to new URL if clicked
-                    projectImageDiv.addEventListener('click', (event) => {
-                        window.location.href = currentProject.Link;
-                    });
+                    // projectImageDiv.addEventListener('click', (event) => {
+                    //     window.location.href = currentProject.Link;
+                    // });
 
                     // create the project blurb
                     const projectBlurbDiv = document.createElement("div");
@@ -79,6 +72,7 @@ fetch('/projects/allProjects/projects.json')
                     const blurbLink = document.createElement("a");
                     blurbLink.href = currentProject.Link;
                     blurbLinkText.textContent = "Learn more...";
+                    blurbLink.style.fontSize = "24px"
                     projectBlurbDiv.appendChild(blurbLink);
                     blurbLink.appendChild(blurbLinkText);
 
