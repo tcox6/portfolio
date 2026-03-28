@@ -31,31 +31,25 @@ let resizedAtLastCheck = false;
  * Checks whether the page has been resized, and resizes the canvas if necessary.
  */
 function checkPageResize() {
-    var currentWidth = Math.max(mainContent.scrollWidth, mainContent.offsetWidth);
-    var currentHeight = Math.max(mainContent.scrollHeight, mainContent.offsetHeight);
+    let currentWidth = Math.round(Math.max(mainContent.scrollWidth, mainContent.offsetWidth));
+    let currentHeight = Math.round(Math.max(mainContent.scrollHeight, mainContent.offsetHeight));
 
-    let heightDifference = Math.abs(currentHeight - canvas.offsetHeight);
-
-    if (currentWidth != prevPageWidth || currentHeight != prevPageHeight || heightDifference > 0.4 * currentHeight) {
-        if (!resizedAtLastCheck || heightDifference > 0.4 * currentHeight) {
-            currentlyResizingCanvas = true;
-            resizeCanvas();
-            prevPageWidth = currentWidth;
-            prevPageHeight = currentHeight;
-            currentlyResizingCanvas = false;
-        }
-        resizedAtLastCheck = true;
-    } else {
-        resizedAtLastCheck = false;
+    if (currentWidth != prevPageWidth || currentHeight != prevPageHeight) {
+        currentlyResizingCanvas = true;
+        resizeCanvas();
+        currentlyResizingCanvas = false;
     }
+    prevPageWidth = currentWidth;
+    prevPageHeight = currentHeight;
 }
 
 /**
  * Handles canvas resize events (which occur when the page is resized).
  */
 function resizeCanvas() {
+    canvas.style.display = "none";
     let newCanvasWidth = window.innerWidth;
-    let newCanvasHeight = document.documentElement.scrollHeight + 0; // +0 replaces previous +100 which is not necessary with opaque footer
+    let newCanvasHeight = document.documentElement.scrollHeight;
 
     canvas.width = newCanvasWidth;
     canvas.height = newCanvasHeight;
@@ -68,6 +62,7 @@ function resizeCanvas() {
     } else {
         resizeBoard(NUM_COLUMNS, NUM_ROWS);
     }
+    canvas.style.display = "block";
 }
 
 /**
