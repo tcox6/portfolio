@@ -14,58 +14,94 @@
     animation-name: headingFlyIn;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    display: flex;
 }
     .blurb {
-        display: inline-block;
-        width: 75%;
-        margin-left: 5vw;
+        margin-left: 24px;
+        display: flex;
+        align-items: center;
     }
 
         .blurb p {
-            font-size: 2vw;
+            margin-left: 24px;
+            font-size: 36px;
             color: white;
         }
 
-    .spannerIcon {
-        display: inline-block;
-        height: 100%;
+    .spannerIconDesktop {
+        width: 128px;
+        margin-left: 48px;
+        margin-top: 48px;
+        margin-bottom: 48px;
     }
-        .spannerIcon img {
-            height: 8vw;
-            margin-left: 25%;
-            margin-top: 25%;
-            margin-bottom: 25%;
-        }
+
+    .spannerIconMobile {
+        display: none;
+    }
 
 @keyframes projectsHeadingFlyIn {
     from {margin-left: 100vw}
-    to {margin-left: 10vw}
+    to {margin-left: 240px}
 }
 
 .allProjectsHeading {
-    font-size: 6vw;
     color: #FBEFCC;;
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-left: 10vw;
-    margin-right: 5vw;
     margin-top: 6vw;
-
-    animation-name: projectsHeadingFlyIn;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
 }
     .allProjectsHeading h1 {
-        font-size: 6vw;
+        font-size: 96px;
         color: #FBEFCC;
         margin-top: 0px;
         margin-bottom: 0px;
-        margin-left: 2vw;
+        margin-left: 24px;
     }
 
 .projectsContainer {
     animation-name: projectsHeadingFlyIn;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    margin-left: 240px;
+    margin-right: 120px;
+    max-width: 1800px;
+}
+
+@media(max-width: 1200px) {
+    @keyframes projectsHeadingFlyIn {
+        from {margin-left: 100vw}
+        to {margin-left: 32px}
+    }
+
+    .allProjectsHeading h1 {
+        font-size: 48px;
+    }
+    
+    .heading {
+        display:block;
+        margin-top: 24px;
+    }
+
+    .heading .blurb {
+        margin: 0px;
+    }
+
+    .heading .blurb p {
+        font-size: 24px;
+    }
+
+    .spannerIconMobile {
+        display: block;
+        width: 48px;
+        margin-left: 12px;
+        margin-right: 36px;
+        margin-top: 12px;
+        margin-bottom: 12px; 
+        float: left;
+    }
+
+    .spannerIconDesktop {
+        display: none;
+    }
 }

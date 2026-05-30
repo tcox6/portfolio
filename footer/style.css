@@ -13,3 +13,8 @@
 
     font-size: 16px;
 }
+
+footer hr {
+    margin-left: 0px;
+    width: 24px;
+}

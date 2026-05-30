@@ -1,18 +1,39 @@
 .projectsContainer {
     margin: 0px;
     padding: 0px;
-    margin-left: 10vw;
+    margin-left: 240px;
+    margin-right: 120px;
+    max-width: 1800px;
 }
     .project {
         padding: 0x;
         margin: 0px;
+        display: grid;
         background-color: rgba(255, 255, 255, 0.8);
-        margin-right: 5vw;
+
+        hr {
+            width: 90%;
+            grid-column: span 2;
+        }
+    }
+    .project:nth-child(even) {
+        grid-template-columns: 30% 70%;
+    }
+    .project:nth-child(odd) {
+        grid-template-columns: 70% 30%;
+
+        .projectImage {
+            margin-left: auto; 
+            margin-right: 0;
+        }
     }
         .project .projectImage {
             display: inline-block;
-            width: 40%;
-            padding: 4vw;
+            width: 80%;
+            height: 80%;
+            padding: 48px;
+            max-height: 512px;
+            max-width: 512px;
             aspect-ratio: 1 / 1;
         }
 
@@ -22,14 +43,13 @@
             .project .projectImage iframe {
                 width: 100%;
                 border-radius: 16px;
-                padding: 0px;
                 margin: 0px;
+                padding: 0px;
             }
             
             .project .projectImage img {
                 border-radius: 16px;
                 width: 100%;
-                padding: 0px;
                 margin: 0px;
             }
 
@@ -49,12 +69,9 @@
             }
 
         .project .projectBlurb {
-            display: inline-block;
+            width: calc(100% - 154px);
             vertical-align: top;
-            width: 40%;
-            padding: 1vw;
-            margin: 3vw;
-            margin-top: 6vw;
+            padding: 64px;
         }
 
         .project h2 {
@@ -66,3 +83,56 @@
         /* .project p {
             
         } */
+
+@media(max-width: 1200px) {
+    .projectsContainer {
+        margin: 0px;
+        padding: 0px;
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+        .project {
+            display:block;
+            grid-template-columns: 1fr;
+            padding-bottom: 36px;
+        }
+        .project:nth-child(even) {
+            display: flex !important;
+            flex-direction: column-reverse;
+        }
+            .project .projectImage {
+                width: 80%;
+                height: auto;
+                display: flex !important;
+                justify-content: center !important;
+                padding: 0px !important;
+                margin: auto !important;
+                img {
+                    padding: 0px;
+                    margin: 0px;
+                }
+
+                iframe {
+                    padding: 0px;
+                }
+            }
+
+            .project .projectBlurb {
+                width: 80%;
+                padding: 16px 16px 10% 10%;
+
+                h2 {
+                    font-size: 24px;
+                    text-align: center;
+                }
+
+                p {
+                    text-align: justify;
+                }
+
+                strong {
+                    font-size: 18px;
+                }
+            }
+}

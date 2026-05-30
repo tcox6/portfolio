@@ -5,14 +5,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family:'Courier New', Courier, monospace;
+    font-family:ProximaNova, Arial;
+    letter-spacing: 3px;
 }
     .homePageLink {
         text-decoration: none;
     }
         .headerTitle {
             color: white;
-            font-size: 4vw;
+            font-size: 72px;
             margin-top: 6px;
             margin-bottom: 6px;
             margin-left: 12px;
@@ -27,7 +28,8 @@ header {
 
         nav a {
             color: white;
-            font-size: 2vw;
+            font-size: 36px;
+            letter-spacing: 3px;
             text-decoration: none;
             margin-left: 96px;
 
@@ -46,3 +48,21 @@ header {
         background-color: #fbef;
         visibility: hidden;
     }
+
+@media(max-width: 1200px) {
+    header {
+        padding: 5px;
+    }
+    
+    .headerTitle {
+        font-size: 24px;
+    }
+
+    nav {
+        margin-right: 12px;
+    }
+    nav a {
+        font-size: 12px;
+        margin-left: 12px;
+    }
+}

@@ -1,5 +1,5 @@
 .firstViewPort {
-    height: 100%;
+    min-height: 100%;
 }
 
 .introduction {
@@ -11,7 +11,7 @@
     padding-right: 32px;
 }
     .introduction h1 {
-        font-size: 8vw;
+        font-size: 164px;
         margin-top:12px;
         color: #FBEFCC;
         margin-left: 96px;
@@ -20,27 +20,24 @@
     }
 
     .introduction .introductionBlurbTop {
-        font-size: 2vw;
+        font-size: 36px;
         color: white;
         margin-bottom: 0px;
     }
 
     .introduction .introductionBlurbBottom {
-        font-size: 2vw;
+        font-size: 36px;
         color: white;
     }
 
 .featuredProjectsHeading {
-    font-size: 6vw;
     color: #FBEFCC;;
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-left: 10vw;
-    margin-right: 5vw;
 }
     .featuredProjectsHeading h1 {
-        font-size: 6vw;
+        font-size: 72px;
         color: #FBEFCC;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -48,23 +45,73 @@
     }
 
 .moreProjects {
-    font-size: 6vw;
-    color: white;;
+    color: white;
     background-color: rgba(34, 34, 34, 0.9);
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-left: 10vw;
-    margin-right: 5vw;
+    margin-bottom: 96px;
 }
     .moreProjects h3 {
-        font-size: 2vw;
+        font-size: 36px;
         margin-top: 0px;
         margin-bottom: 0px;
-        margin-left: 2vw;
+        margin-left: 24px;
     }
         .moreProjects h3 a {
             color: white;
         }
-.bottomPadding {
-    height: 6vh;
+
+@media(max-width: 1800px) { 
+    .introduction h1 {
+        font-size: 124px;
+    }
+
+    .introduction .introductionBlurbTop {
+        font-size: 28px;
+    }
+
+    .introduction .introductionBlurbBottom {
+        font-size: 28px;
+    }
+
+    .featuredProjectsHeading {
+        margin-top: 32px;
+    }
+
+    .featuredProjectsHeading h1 {
+        font-size: 48px;
+    }
+
+    .moreProjects h3 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 1200px) { 
+    .introduction {
+        margin-top: 8vh;
+    }
+        .introduction h1 {
+            font-size: 82px;
+        }
+
+        .introduction .introductionBlurbTop {
+            font-size: 22px;
+        }
+
+        .introduction .introductionBlurbBottom {
+            font-size: 22px;
+        }
+
+    .featuredProjectsHeading {
+        margin-top: 128px;
+    }
+
+    .featuredProjectsHeading h1 {
+        font-size: 36px;
+    }
+
+    .moreProjects h3 {
+        font-size: 16px;
+    }
 }

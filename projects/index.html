@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="/defaultStyles/style.css">
         <link rel="stylesheet" href="/defaultStyles/projectListStyle.css">
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+        <script src="/projects/scripts/set-featured-flag-false.js" defer></script>
+        <script src="/projects/scripts/generate-project-html.js" defer></script>
+        <script src="/footer/load-footer.js" defer></script>
     </head>
     <body>
         <div class="mainContent" id="mainContent">
@@ -16,26 +19,23 @@
             <script src="/header/load-header.js"></script>
 
             <div class="heading">
-                <div class="spannerIcon">
-                    <img src="/projects/assets/wrench.svg" alt="">
-                </div>
+                <img src="/projects/assets/wrench.svg" alt="" class="spannerIconDesktop">
                 <div class="blurb">
-                    <p>Welcome to a compilation of my projects. The projects featured here are a mix of personal projects, as well as some of the more interesting assignments that I completed during my BICT coursework. Projects are listed in a pseudo-random order.</p>
+                    <p><img src="/projects/assets/wrench.svg" alt="" class="spannerIconMobile">Welcome to a compilation of my projects. The projects featured here are a mix of personal projects, as well as some of the more interesting assignments that I completed during my BICT coursework. Projects are listed in a pseudo-random order.</p>
                 </div>
             </div>
 
-            <div class="allProjectsHeading">
-                <h1>Projects</h1>
+            <div class="projectsContainer" id="projectsContainer">
+                <div class="allProjectsHeading">
+                    <h1>Projects</h1>
+                </div>
+                <div class="allProjects" id="allProjects"></div>
             </div>
-            <div class="projectsContainer" id="projectsContainer"></div>
-            <script src="/projects/scripts/set-featured-flag-false.js"></script>
-            <script src="/projects/scripts/generate-project-html.js"></script>
 
             <div style="height: 36px;"></div>
 
-            <!--LOAD FOOTER-->
+            <!--FOOTER-->
             <div id="footer"></div>
-            <script src="/footer/load-footer.js"></script>
         </div>
 
         <!--LOAD GAME OF LIFE BACKGROUND-->

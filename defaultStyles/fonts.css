@@ -4,3 +4,22 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: Inter;
+  src: url(/defaultStyles/fonts/Inter.ttf);
+}
+
+@font-face {
+  font-family: 'ProximaNova';
+  src: url('/defaultStyles/fonts/proxima-nova-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProximaNova';
+  src: url('/defaultStyles/fonts/proxima-nova-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}

@@ -12,7 +12,7 @@ function addBannerIfNecessary() {
     }
 }
 
-// check if banner is necessary
-addBannerIfNecessary();
+// // check if banner is necessary
+// addBannerIfNecessary();
 
-window.addEventListener('resize', addBannerIfNecessary);
+// window.addEventListener('resize', addBannerIfNecessary);
