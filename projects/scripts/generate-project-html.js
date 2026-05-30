@@ -86,9 +86,9 @@ fetch('/projects/allProjects/projects.json')
                         projectDiv.appendChild(projectImageDiv);
                         projectDiv.appendChild(projectBlurbDiv);
                     }
-                    // const hr = document.createElement("hr");
-                    // projectDiv.appendChild(hr);
+                    const hr = document.createElement("hr");
                     document.getElementById("allProjects").appendChild(projectDiv);
+                    document.getElementById("allProjects").appendChild(hr);
 
                     projectCount++;
                 }

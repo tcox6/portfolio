@@ -4,22 +4,26 @@
     margin-left: 240px;
     margin-right: 120px;
     max-width: 1800px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
+
+    .allProjects hr {
+        width: 50%;
+        display: none;
+        border: 0;
+        background-color: #e0876a;
+        color: #e0876a;
+        border-top: 1px solid #e0876a;
+    }
     .project {
         padding: 0x;
         margin: 0px;
         display: grid;
-        background-color: rgba(255, 255, 255, 0.8);
-
-        hr {
-            width: 90%;
-            grid-column: span 2;
-        }
     }
-    .project:nth-child(even) {
+    .project:nth-child(even  of div) {
         grid-template-columns: 30% 70%;
     }
-    .project:nth-child(odd) {
+    .project:nth-child(odd of div) {
         grid-template-columns: 70% 30%;
 
         .projectImage {
@@ -92,12 +96,22 @@
         margin-right: 32px;
     }
 
+    .allProjects hr {
+        display: block;
+    }
+
+    /*Do not display the final hr element as it does not separate anything.*/
+    .allProjects hr:last-child {
+        display: none;
+    }
+
         .project {
             display:block;
             grid-template-columns: 1fr;
             padding-bottom: 36px;
         }
-        .project:nth-child(even) {
+        /*Need to reverse order to account for the alternating layout in desktop mode.*/
+        .project:nth-child(even of div) {
             display: flex !important;
             flex-direction: column-reverse;
         }
