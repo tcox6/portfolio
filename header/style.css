@@ -13,7 +13,7 @@ header {
     }
         .headerTitle {
             color: white;
-            font-size: 72px;
+            font-size: 54px;
             margin-top: 6px;
             margin-bottom: 6px;
             margin-left: 12px;
@@ -23,15 +23,15 @@ header {
 
     nav {
         text-align: left;
-        margin-right: 36px;
+        margin-right: 20px;
     }
 
         nav a {
             color: white;
-            font-size: 36px;
+            font-size: 28px;
             letter-spacing: 3px;
             text-decoration: none;
-            margin-left: 96px;
+            margin-left: 36px;
 
             -webkit-user-select: none;
             -ms-user-select: none;

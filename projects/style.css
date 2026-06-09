@@ -24,8 +24,9 @@
 
         .blurb p {
             margin-left: 24px;
-            font-size: 36px;
+            font-size: 30px;
             color: white;
+            padding-bottom: 24px;
         }
 
     .spannerIconDesktop {
@@ -52,7 +53,7 @@
     margin-top: 6vw;
 }
     .allProjectsHeading h1 {
-        font-size: 96px;
+        font-size: 72px;
         color: #FBEFCC;
         margin-top: 0px;
         margin-bottom: 0px;
