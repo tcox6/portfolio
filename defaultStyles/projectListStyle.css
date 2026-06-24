@@ -45,7 +45,9 @@
             cursor: pointer;
         } */
             .project .projectImage iframe {
+                /*Note that this is actually wrapped in a parent div with display: flex (done in JS).*/
                 width: 100%;
+                aspect-ratio: 1;
                 border-radius: 16px;
                 margin: 0px;
                 padding: 0px;
@@ -76,6 +78,20 @@
             width: calc(100% - 154px);
             vertical-align: top;
             padding: 64px;
+        }
+
+        .project .projectBlurb .tagContainer {
+            margin-bottom: 24px;
+        }
+
+        .project .projectBlurb .tagContainer span {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 4px;
+            margin-right: 4px;
+            /*Background colour is set in generate-project-html.js script.*/
         }
 
         .project h2 {

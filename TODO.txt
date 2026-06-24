@@ -1,0 +1,8 @@
+Projects to add:
+ - KIT300 capstone project
+ - Tank Trouble RL
+ - pycast
+ - Mesh Renderer
+ - Snowman RL
+
+Consider creating some tutorials - could be fun.

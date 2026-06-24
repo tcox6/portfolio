@@ -1,3 +1,14 @@
+// Define specific colours for some of the tags
+const SPECIFIC_TAG_COLOURS = {
+    "Machine Learning": "#FFB3BA",
+    "Reinforcement Learning": "#FFFFBA",
+    "Python": "#BAFFC9",
+    "Research": "#BAE1FF",
+    "TensorFlow": "#FFDFBA"
+};
+// Define a universe of colours that can be used for other tags
+const OTHER_COLOURS = ["#8D9DF5", "#D4EAA9", "#FCACB9", "#32BEB1"];
+
 // get JSON and generate HTML
 fetch('/projects/allProjects/projects.json')
     .then(response => {
@@ -21,6 +32,7 @@ fetch('/projects/allProjects/projects.json')
 
             // skip if hidden flag set to true
             if (!currentProject.Hidden) {
+                // Don't show non-featured projects on home page
                 if (featuredFlag && currentProject.Featured || !featuredFlag) {
                     // create the parent container for the project
                     const projectDiv = document.createElement("div");
@@ -38,14 +50,19 @@ fetch('/projects/allProjects/projects.json')
                         // add to the parent div
                         projectImageDiv.appendChild(projectImage);
                     } else if (currentProject.ThumbnailType == "Video") {
-                        // create video element
+                        // create video element (iframe pointing to Cloudfare Stream endpoint)
+                        // Need to wrap this in a parent container that can be set to display: flex
+                        // to prevent weird width != height styling issues.
+                        const projectVideoParent = document.createElement("div");
+                        projectVideoParent.style.display = "flex";
                         const projectVideo = document.createElement("iframe");
                         projectVideo.src = currentProject.ThumbnailLink;
                         projectVideo.style = "border: none; position: relative; top: 0; left: 0; height: 100%; width: 100%;";
                         projectVideo.className = "videoThumbnail";
 
                         // add to the parent div
-                        projectImageDiv.appendChild(projectVideo);
+                        projectVideoParent.appendChild(projectVideo);
+                        projectImageDiv.appendChild(projectVideoParent);
                     }
 
                     // add an event listener to projectImageDiv to redirect to new URL if clicked
@@ -56,6 +73,12 @@ fetch('/projects/allProjects/projects.json')
                     // create the project blurb
                     const projectBlurbDiv = document.createElement("div");
                     projectBlurbDiv.className = "projectBlurb";
+                    // Date
+                    const blurbDate = document.createElement("span");
+                    const blurbDateItalics = document.createElement("i");
+                    blurbDateItalics.textContent = currentProject.Year;
+                    blurbDate.appendChild(blurbDateItalics);
+                    projectBlurbDiv.appendChild(blurbDate);
                     // blurb header
                     const blurbHeader = document.createElement("h2");
                     blurbHeader.textContent = currentProject.Title;
@@ -67,12 +90,28 @@ fetch('/projects/allProjects/projects.json')
                         paragraphs[p].textContent = currentProject.Blurb[p];
                         projectBlurbDiv.appendChild(paragraphs[p]);
                     }
+                    // Tags
+                    const tagContainer = document.createElement("div");
+                    tagContainer.classList.add("tagContainer");
+                    projectBlurbDiv.appendChild(tagContainer);
+                    const tags = [];
+                    for (let t = 0; t < currentProject.Tags.length; t++) {
+                        tags[t] = document.createElement("span");
+                        tags[t].textContent = currentProject.Tags[t];
+                        // Set background colour of span
+                        if (currentProject.Tags[t] in SPECIFIC_TAG_COLOURS) {
+                            tags[t].style.backgroundColor = SPECIFIC_TAG_COLOURS[currentProject.Tags[t]];
+                        } else {
+                            tags[t].style.backgroundColor = OTHER_COLOURS[Math.floor(Math.random() * OTHER_COLOURS.length)]
+                        }
+                        tagContainer.appendChild(tags[t]);
+                    }
                     // link
                     const blurbLinkText = document.createElement("strong");
                     const blurbLink = document.createElement("a");
                     blurbLink.href = currentProject.Link;
                     blurbLinkText.textContent = "Learn more...";
-                    blurbLink.style.fontSize = "24px"
+                    blurbLink.style.fontSize = "20px";
                     projectBlurbDiv.appendChild(blurbLink);
                     blurbLink.appendChild(blurbLinkText);
 

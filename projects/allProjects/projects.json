@@ -9,7 +9,9 @@
             "ThumbnailLink": "/projects/allProjects/ecoacoustics/assets/EcoacousticsThumbail.jpg",
             "Link": "/projects/allProjects/ecoacoustics/",
             "Featured": true,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["Machine Learning", "Research", "Python", "TensorFlow"],
+            "Year": "2024~25"
         },
 
         {
@@ -23,7 +25,9 @@
             "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/a2e16d262f263e1c9cdf536060caa972/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fa2e16d262f263e1c9cdf536060caa972%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
             "Link": "/projects/allProjects/generalisedCoordinateLearning/",
             "Featured": true,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["Reinforcement Learning", "Research", "Python", "TensorFlow"],
+            "Year": "2025"
         },
 
         {
@@ -35,7 +39,9 @@
             "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff5426635fdd53c08386942b762463af/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff5426635fdd53c08386942b762463af%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
             "Link": "/projects/allProjects/vehicleRL/",
             "Featured": true,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["Reinforcement Learning", "Python", "TensorFlow"],
+            "Year": "2025"
         },
 
         {
@@ -47,7 +53,9 @@
             "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/2b2b7f88f69ddde5feabfc6869d1ea9b/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2F2b2b7f88f69ddde5feabfc6869d1ea9b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
             "Link": "/projects/allProjects/chess/",
             "Featured": true,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["Java", "Artificial Intelligence", "Swing GUI"],
+            "Year": "2023~25"
         },
 
         {
@@ -59,19 +67,23 @@
             "ThumbnailLink": "/projects/allProjects/RCMotorbike/assets/RCBikeThumbnail.jpg",
             "Link": "/projects/allProjects/RCMotorbike/",
             "Featured": false,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["CAD Design", "3D Printing"],
+            "Year": "2024"
         },
 
         {
             "Title": "createt Designs",
             "Blurb": [
-                "3D printing has been a hobby of mine for the past few years. I publish my designs under the online alter ego 'createt', and have amassed over 150,000 views, over 10,000 downloads, thousands of likes, and hundreds of sales. I specialise in making unique novelty items, especially those with mechanical components."
+                "3D printing has been a hobby of mine for the past few years. I publish my designs under the online alter ego 'createt', and have amassed over 150,000 views, over 10,000 downloads, and thousands of 'likes'. I specialise in making unique novelty items, especially those with mechanical components."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/65d74d7326ef6b473477056acccba31b/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2F65d74d7326ef6b473477056acccba31b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
             "Link": "/projects/allProjects/createt/",
             "Featured": false,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["CAD Design", "3D Printing"],
+            "Year": "2022~26"
         },
 
         {
@@ -83,19 +95,23 @@
             "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.jpg",
             "Link": "/projects/allProjects/NaviMate/",
             "Featured": false,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["JavaScript", "Chrome Extension"],
+            "Year": "2023"
         },
 
         {
             "Title": "FlappyBird in Java",
             "Blurb": [
-                "The main component of this project was a tutorial on the Java swing graphics API, and the game itself was used as motivation for the tutorial."
+                "The main component of this project was a tutorial on the Java swing graphics API, and the game itself was used as motivation for the tutorial. This was completed as part of my KIT101 portfolio at UTAS."
             ],
             "ThumbnailType": "Video",
             "ThumbnailLink": "/projects/allProjects/flappyBird/assets/FlappyBirdThumbnail.mp4",
             "Link": "/projects/allProjects/flappyBird/",
             "Featured": false,
-            "Hidden": true
+            "Hidden": true,
+            "Tags": ["Java", "swing GUI"],
+            "Year": "2023"
         },
 
         {
@@ -107,7 +123,9 @@
             "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff1a784b4f6bc5b24fe0e8ae42d2d736/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff1a784b4f6bc5b24fe0e8ae42d2d736%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
             "Link": "/projects/allProjects/MinionsProceduralAnimation/",
             "Featured": false,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["DSA", "Procedural 3D Graphics", "C#"],
+            "Year": "2025"
         },
 
         {
@@ -119,7 +137,94 @@
             "ThumbnailLink": "/projects/allProjects/weekendWrap/assets/thumbnail.jpg",
             "Link": "/projects/allProjects/weekendWrap",
             "Featured": true,
-            "Hidden": false
+            "Hidden": false,
+            "Tags": ["Automation", "Python"],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "UTAS Capstone Project: Livestock Herding Simulation Environment",
+            "Blurb": [
+                "This was my UTAS capstone project, developed to support reinforcement learning research within the UTAS School of ICT.",
+                "The project aimed to produce a modular and highly-configurable livestock herding simulation environment, thus providing a cost-effective strategy for training RL policies in a realistic virtual environment, prior to their fine-tuning and deployment in the real-world. The simulation environment was designed to be highly configurable, supporting configurable species, environment parameters (e.g., size, terrain, and obstacles), and behavioural parameters."
+            ],
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "/projects/allProjects/kit300/assets/kit300postercropped.jpg",
+            "Link": "/projects/allProjects/kit300/",
+            "Features": false,
+            "Hidden": true,
+            "Tags": ["Reinforcement Learning", "Python", "Isaac Lab"],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "CSIRO",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": [],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "Tank Trouble RL",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": [],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "pycast",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": [],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "JS Mesh Renderer",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": ["JavaScript", "Computer Graphics"],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "Snowman RL",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": ["JavaScript", "Computer Graphics"],
+            "Year": "2025"
         }
     ]
 }
