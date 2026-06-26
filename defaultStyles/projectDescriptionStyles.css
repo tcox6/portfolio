@@ -38,6 +38,11 @@ h1 {
     max-height: 50vh;
   }
 
+  .singleImageContainer .singleImageTall {
+    max-width: 60%;
+    max-height: 90vh;
+  }
+
 @media(max-width: 1200px) {
     .background {
         max-width: 954px;

@@ -1,8 +1,11 @@
 Projects to add:
- - KIT300 capstone project
  - Tank Trouble RL
  - pycast
  - Mesh Renderer
  - Snowman RL
 
 Consider creating some tutorials - could be fun.
+
+Add on-screen prompts to scroll down or click 'learn more', etc.
+
+Add alert icon to the projects link in the header if a new project has been released since user last visited. Use cookies to do this, and consider adding a simple cookie banner.

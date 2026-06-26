@@ -38,7 +38,7 @@
             "ThumbnailType": "Video",
             "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff5426635fdd53c08386942b762463af/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff5426635fdd53c08386942b762463af%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
             "Link": "/projects/allProjects/vehicleRL/",
-            "Featured": true,
+            "Featured": false,
             "Hidden": false,
             "Tags": ["Reinforcement Learning", "Python", "TensorFlow"],
             "Year": "2025"
@@ -152,7 +152,7 @@
             "ThumbnailLink": "/projects/allProjects/kit300/assets/kit300postercropped.jpg",
             "Link": "/projects/allProjects/kit300/",
             "Features": false,
-            "Hidden": true,
+            "Hidden": false,
             "Tags": ["Reinforcement Learning", "Python", "Isaac Lab"],
             "Year": "2026"
         },
