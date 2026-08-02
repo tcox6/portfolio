@@ -3,6 +3,7 @@ Projects to add:
  - pycast
  - Mesh Renderer
  - Snowman RL
+ - Questacon Hex Maze Solver
 
 Consider creating some tutorials - could be fun.
 

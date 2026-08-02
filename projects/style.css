@@ -69,6 +69,13 @@
     max-width: 1800px;
 }
 
+.projectsMsg {
+    background-color: #F55C7A;
+
+    h3 {
+        margin-left: 24px;
+    }
+}
 @media(max-width: 1200px) {
     @keyframes projectsHeadingFlyIn {
         from {margin-left: 100vw}
