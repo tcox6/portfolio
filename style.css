@@ -1,3 +1,18 @@
+.floatingStuff {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.bubble {
+    position: absolute;
+    padding: 6px;
+    border-radius: 8px;
+    
+}
+
 .firstViewPort {
     min-height: 100%;
 }
