@@ -17,12 +17,12 @@ fetch('/projects/allProjects/projects.json')
     .then(data => {
         const projects = data;
 
-        // generate a random order for the projects
+        // generate a random order for the projects (disabled)
         let projectsOrder = [];
         for (let i = 0; i < projects.Projects.length; i++) {
             projectsOrder[i] = i;
         }
-        projectsOrder.sort(() => Math.random() - 0.5);
+        // projectsOrder.sort(() => Math.random() - 0.5);
 
         // generate the html for all projects
         let projectCount = 0; // number of projects processed

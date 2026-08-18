@@ -4,6 +4,7 @@ Projects to add:
  - Mesh Renderer
  - Snowman RL
  - Questacon Hex Maze Solver
+ - Image to Line Converter
 
 Consider creating some tutorials - could be fun.
 

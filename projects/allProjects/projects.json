@@ -1,21 +1,50 @@
 {
     "Projects": [
         {
-            "Title": "Machine Learning for Bioacoustic Classification",
+            "Title": "UTAS Capstone Project: Livestock Herding Simulation Environment",
             "Blurb": [
-                "This was completed as part of the UTAS Dean's Summer Research Program. The main objective of the project was to investigate the efficacy of the binary relevance technique for multi-label classification, and assess the adequacy of the initial training data that had been acquired for the project. The project involved training machine learning models (CNNs) on acoustic recordings, and Python scripts were developed to process JSON label files, as well as automate the extraction of individual call segments from long WAV files."
+                "This was my UTAS capstone project, developed to support reinforcement learning research within the UTAS School of ICT.",
+                "The project aimed to produce a modular and highly-configurable livestock herding simulation environment, thus providing a cost-effective strategy for training RL policies in a realistic virtual environment, prior to their fine-tuning and deployment in the real-world. The simulation environment was designed to be highly configurable, supporting configurable species, environment parameters (e.g., size, terrain, and obstacles), and behavioural parameters."
             ],
             "ThumbnailType": "Static Image",
-            "ThumbnailLink": "/projects/allProjects/ecoacoustics/assets/EcoacousticsThumbail.jpg",
-            "Link": "/projects/allProjects/ecoacoustics/",
-            "Featured": true,
+            "ThumbnailLink": "/projects/allProjects/kit300/assets/kit300postercropped.jpg",
+            "Link": "/projects/allProjects/kit300/",
+            "Features": false,
             "Hidden": false,
-            "Tags": ["Machine Learning", "Research", "Python", "TensorFlow"],
-            "Year": "2024~25"
+            "Tags": ["Reinforcement Learning", "Python", "Isaac Lab"],
+            "Year": "2026"
         },
 
         {
-            "Title": "Novel Reinforcement Learning Algorithm",
+            "Title": "Automated Graphical Cricket Summaries",
+            "Blurb": [
+                "I volunteer to compile my cricket club's weekly 'weekend wrap'; a graphical summary of each game played over the weekend. The 'wrap' consists of key details from each game including the top three bowlers and batters, team scores, and opposition team. Ordinarily, its compilation would involve manually sifting through scorecards and copying stats into a Canva design. My idea was to automate this process using a Python script to automatically pull and extract the stats from a webpage, and copy them into a PowerPoint file. The final script drastically reduced the requisite time to complete the wraps."
+            ],
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "/projects/allProjects/weekendWrap/assets/thumbnail.jpg",
+            "Link": "/projects/allProjects/weekendWrap",
+            "Featured": true,
+            "Hidden": false,
+            "Tags": ["Automation", "Python"],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "Procedural 3D Animation",
+            "Blurb": [
+                "This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming); one of my favourite units at UTAS. Everything is in the animation is generated procedurally in code. This includes meshes, all animations, mesh deformations (skinning), and textures. The animation was selected for exhibition in the UTAS School of ICT Connect & Collaborate Expo."
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff1a784b4f6bc5b24fe0e8ae42d2d736/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff1a784b4f6bc5b24fe0e8ae42d2d736%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
+            "Link": "/projects/allProjects/MinionsProceduralAnimation/",
+            "Featured": false,
+            "Hidden": false,
+            "Tags": ["DSA", "Procedural 3D Graphics", "C#"],
+            "Year": "2025"
+        },
+
+        {
+            "Title": "UTAS Research Project: Reinforcement Learning",
             "Blurb": [
                 "Undertaken as part of UTAS KAA308, this project focussed on implementing a novel reinforcement algorithm (primarily invented by my supervisor). The project focussed on the DMP protocol of the Morris watermaze experiment and the new algorithm aimed to facilitate goal-independent learning with environment obstacles using a model-free approach.",
 
@@ -45,17 +74,17 @@
         },
 
         {
-            "Title": "Chess Emulator with MiniMax Algorithm",
+            "Title": "UTAS Research Project: Machine Learning for Bioacoustic Classification",
             "Blurb": [
-                "This began as my final project for KIT101 (Programming Fundamentals). I wrote the emulator in Java and implemented a GUI using the swing graphics library. A key part of the project was the AI 'bot' that used the MiniMax algorithm AI bot was implemented using the MiniMax algorithm to calculate pseudo-optimal moves. To speed-up the algorithm, I implemented in alpha-beta pruning and multithreading."
+                "This was completed as part of the UTAS Dean's Summer Research Program. The main objective of the project was to investigate the efficacy of the binary relevance technique for multi-label classification, and assess the adequacy of the initial training data that had been acquired for the project. The project involved training machine learning models (CNNs) on acoustic recordings, and Python scripts were developed to process JSON label files, as well as automate the extraction of individual call segments from long WAV files."
             ],
-            "ThumbnailType": "Video",
-            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/2b2b7f88f69ddde5feabfc6869d1ea9b/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2F2b2b7f88f69ddde5feabfc6869d1ea9b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
-            "Link": "/projects/allProjects/chess/",
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "/projects/allProjects/ecoacoustics/assets/EcoacousticsThumbail.jpg",
+            "Link": "/projects/allProjects/ecoacoustics/",
             "Featured": true,
             "Hidden": false,
-            "Tags": ["Java", "Artificial Intelligence", "Swing GUI"],
-            "Year": "2023~25"
+            "Tags": ["Machine Learning", "Research", "Python", "TensorFlow"],
+            "Year": "2024~25"
         },
 
         {
@@ -83,21 +112,21 @@
             "Featured": false,
             "Hidden": false,
             "Tags": ["CAD Design", "3D Printing"],
-            "Year": "2022~26"
+            "Year": "2023~26"
         },
 
         {
-            "Title": "NaviMate - Browser Extension",
+            "Title": "Chess Emulator with MiniMax Algorithm",
             "Blurb": [
-                "NaviMate is a browser extension that automatically bookmarks users' last scroll position on webpages, and allows users to add their own bookmarks. Features include an app-style GUI created using vanilla HTML+CSS+JS, options to stop bookmarking specific pages or sites, a settings page, and an embedded feedback-collection form."
+                "This began as my final project for KIT101 (Programming Fundamentals). I wrote the emulator in Java and implemented a GUI using the swing graphics library. A key part of the project was the AI 'bot' that used the MiniMax algorithm AI bot was implemented using the MiniMax algorithm to calculate pseudo-optimal moves. To speed-up the algorithm, I implemented in alpha-beta pruning and multithreading."
             ],
-            "ThumbnailType": "Static Image",
-            "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.jpg",
-            "Link": "/projects/allProjects/NaviMate/",
-            "Featured": false,
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/2b2b7f88f69ddde5feabfc6869d1ea9b/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2F2b2b7f88f69ddde5feabfc6869d1ea9b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
+            "Link": "/projects/allProjects/chess/",
+            "Featured": true,
             "Hidden": false,
-            "Tags": ["JavaScript", "Chrome Extension"],
-            "Year": "2023"
+            "Tags": ["Java", "Artificial Intelligence", "Swing GUI"],
+            "Year": "2023~25"
         },
 
         {
@@ -115,46 +144,17 @@
         },
 
         {
-            "Title": "Procedural 3D Animation",
+            "Title": "NaviMate - Browser Extension",
             "Blurb": [
-                "This was my final assignment for KIT307 (Computer Graphics and Animation: Principles and Programming); one of my favourite units at UTAS. Everything is in the animation is generated procedurally in code. This includes meshes, all animations, mesh deformations (skinning), and textures. The animation was selected for exhibition in the UTAS School of ICT Connect & Collaborate Expo."
+                "NaviMate is a browser extension that automatically bookmarks users' last scroll position on webpages, and allows users to add their own bookmarks. Features include an app-style GUI created using vanilla HTML+CSS+JS, options to stop bookmarking specific pages or sites, a settings page, and an embedded feedback-collection form."
             ],
-            "ThumbnailType": "Video",
-            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/ff1a784b4f6bc5b24fe0e8ae42d2d736/iframe?loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fff1a784b4f6bc5b24fe0e8ae42d2d736%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent",
-            "Link": "/projects/allProjects/MinionsProceduralAnimation/",
+            "ThumbnailType": "Static Image",
+            "ThumbnailLink": "/projects/allProjects/NaviMate/assets/NaviMateThumbnail.jpg",
+            "Link": "/projects/allProjects/NaviMate/",
             "Featured": false,
             "Hidden": false,
-            "Tags": ["DSA", "Procedural 3D Graphics", "C#"],
-            "Year": "2025"
-        },
-
-        {
-            "Title": "Automated Graphical Cricket Summaries",
-            "Blurb": [
-                "I volunteer to compile my cricket club's weekly 'weekend wrap'; a graphical summary of each game played over the weekend. The 'wrap' consists of key details from each game including the top three bowlers and batters, team scores, and opposition team. Ordinarily, its compilation would involve manually sifting through scorecards and copying stats into a Canva design. My idea was to automate this process using a Python script to automatically pull and extract the stats from a webpage, and copy them into a PowerPoint file. The final script drastically reduced the requisite time to complete the wraps."
-            ],
-            "ThumbnailType": "Static Image",
-            "ThumbnailLink": "/projects/allProjects/weekendWrap/assets/thumbnail.jpg",
-            "Link": "/projects/allProjects/weekendWrap",
-            "Featured": true,
-            "Hidden": false,
-            "Tags": ["Automation", "Python"],
-            "Year": "2026"
-        },
-
-        {
-            "Title": "UTAS Capstone Project: Livestock Herding Simulation Environment",
-            "Blurb": [
-                "This was my UTAS capstone project, developed to support reinforcement learning research within the UTAS School of ICT.",
-                "The project aimed to produce a modular and highly-configurable livestock herding simulation environment, thus providing a cost-effective strategy for training RL policies in a realistic virtual environment, prior to their fine-tuning and deployment in the real-world. The simulation environment was designed to be highly configurable, supporting configurable species, environment parameters (e.g., size, terrain, and obstacles), and behavioural parameters."
-            ],
-            "ThumbnailType": "Static Image",
-            "ThumbnailLink": "/projects/allProjects/kit300/assets/kit300postercropped.jpg",
-            "Link": "/projects/allProjects/kit300/",
-            "Features": false,
-            "Hidden": false,
-            "Tags": ["Reinforcement Learning", "Python", "Isaac Lab"],
-            "Year": "2026"
+            "Tags": ["JavaScript", "Chrome Extension"],
+            "Year": "2023"
         },
 
         {
@@ -224,6 +224,20 @@
             "Featured": false,
             "Hidden": true,
             "Tags": ["JavaScript", "Computer Graphics"],
+            "Year": "2025"
+        },
+
+        {
+            "Title": "Image to Lines",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": ["Machine Learning", "Computer Graphics"],
             "Year": "2025"
         }
     ]

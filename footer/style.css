@@ -18,3 +18,19 @@ footer hr {
     margin-left: 0px;
     width: 24px;
 }
+
+.footerContents {
+    width: 60%;
+}
+
+@media(max-width: 1200px) {
+    .footerContents {
+        width: 100%;
+    }
+}
+
+@media(max-width: 1800px) {
+    .footerContents {
+        width: 80%;
+    }
+}
