@@ -10,6 +10,9 @@
     position: absolute;
     padding: 6px;
     border-radius: 8px;
+    font-size: 24px;
+    max-width: 164px;
+    text-align: center;
 }
 
 .firstViewPort {
@@ -23,6 +26,7 @@
     width: 80vw;
     padding: 16px;
     padding-right: 32px;
+    padding-left: 32px;
 }
     .introduction h1 {
         font-size: 164px;
