@@ -1,23 +1,104 @@
 {
     "Skills": [
-        "AI",
-        "ML",
-        "Statistical ML",
-        "Planning Algorithms",
-        "RL",
-        "GPA 7/7",
-        "CSIRO Studentship",
-        "Python",
-        "PyTorch",
-        "UTAS Research Projects",
-        "Statistics",
-        "R",
-        "Operations Research",
-        "Cython",
-        "C",
-        "Java",
-        "Bachelor of ICT",
-        "Bachelor of Philosophy",
-        "DSA"
+        {
+            "text": "Artificial Intelligence", 
+            "colour": "#FCACB9", 
+            "emphasise": true
+        },
+        {
+            "text": "Machine Learning", 
+            "colour": "#FCACB9", 
+            "emphasise": true
+        },
+        {
+            "text": "Statistical ML", 
+            "colour": "#FCACB9", 
+            "emphasise": true
+        },
+        {
+            "text": "Planning Algorithms", 
+            "colour": "#FCACB9", 
+            "emphasise": true
+        },
+        {
+            "text": "Reinforcement Learning", 
+            "colour": "#FCACB9", 
+            "emphasise": true
+        },
+        {
+            "text": "Statistics", 
+            "colour": "#32BEB1", 
+            "emphasise": true
+        },
+        {
+            "text": "Operations Research", 
+            "colour": "#32BEB1", 
+            "emphasise": true
+        },
+        {
+            "text": "DSA", 
+            "colour": "#32BEB1", 
+            "emphasise": true
+        },
+        {
+            "text": "CAD", 
+            "colour": "#32BEB1", 
+            "emphasise": false
+        },
+        {
+            "text": "GPA 7/7", 
+            "colour": "#D4EAA9", 
+            "emphasise": true
+        },
+        {
+            "text": "UTAS Research Projects", 
+            "colour": "#D4EAA9", 
+            "emphasise": true
+        },
+        {
+            "text": "CSIRO <p style='font-size: 16px; margin: 0px;'>Student Research Programmer</p>", 
+            "colour": "#D4EAA9", 
+            "emphasise": true
+        },
+        {
+            "text": "Bachelor of ICT", 
+            "colour": "#D4EAA9", 
+            "emphasise": false
+        },
+        {
+            "text": "Bachelor of Philosophy", 
+            "colour": "#D4EAA9", 
+            "emphasise": false
+        },
+        {
+            "text": "Python", 
+            "colour": "#8D9DF5", 
+            "emphasise": false
+        },
+        {
+            "text": "PyTorch", 
+            "colour": "#8D9DF5", 
+            "emphasise": false
+        },
+        {
+            "text": "R <p style='font-size: 16px; margin: 0px;'>(Statistical Language)</p>", 
+            "colour": "#8D9DF5", 
+            "emphasise": false
+        },
+        {
+            "text": "Cython", 
+            "colour": "#8D9DF5", 
+            "emphasise": false
+        },
+        {
+            "text": "C <p style='font-size: 16px; margin: 0px;'>(Programming Language)</p>", 
+            "colour": "#8D9DF5", 
+            "emphasise": false
+        },
+        {
+            "text": "Java", 
+            "colour": "#8D9DF5", 
+            "emphasise": false
+        }
     ]
 }

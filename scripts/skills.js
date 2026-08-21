@@ -1,9 +1,6 @@
-COLOURS = [
-    "#8D9DF5",
-    "#D4EAA9",
-    "#FCACB9",
-    "#32BEB1"
-];
+/**
+ * This is a mess - poor planning on my part :)
+ */
 
 // Container for the bubbles
 const bubbleContainer = document.getElementById("floatingStuff");
@@ -15,8 +12,13 @@ const introContainer = document.getElementsByClassName("introduction")[0];
 // Populated by makeBubblesPath
 let bubblesPath;
 
-// Don't want two consecutive colours that are the same
-let prev_colour = "";
+let bubbleData;
+let order;
+let intervals = [];
+let bubbleDivs = [];
+
+// Update period
+INC_PERIOD = 12;
 
 /**
  * Constructs a path around the border of the 'introduction' div that the bubbles
@@ -85,12 +87,12 @@ function makeBubblesPath() {
         }
     }
     // Now need to merge the sublists in bubblesPathIntermediate :(
-    let bubblesPath = [];
+    let bubblesPathFinal = [];
     for (let i = 0; i < 8; i++) {
-        bubblesPath.push(...bubblesPathIntermediate[i]);
+        bubblesPathFinal.push(...bubblesPathIntermediate[i]);
     }
 
-    return bubblesPath;
+    return bubblesPathFinal;
 }
 // Construct initial path
 bubblesPath = makeBubblesPath();
@@ -101,29 +103,44 @@ fetch('/skills.json')
         return response.json();
     })
     .then(data => {
-        const bubbles = data;
+        bubbleData = data;
 
         // Random index order
-        let order = [];
-        for (let i = 0; i < bubbles.Skills.length; i++) {
+        order = [];
+        for (let i = 0; i < bubbleData.Skills.length; i++) {
             order[i] = i;
         }
         order.sort(() => Math.random() - 0.5);
 
         // Spawn bubbles
         let spawn_idx = 0;  // The path node to spawn at
-        for (let i = 0; i < bubbles.Skills.length; i++) {
-            makeBubble(bubbles.Skills[order[i]], spawn_idx);
+        for (let i = 0; i < bubbleData.Skills.length; i++) {
+            makeBubble(bubbleData.Skills[order[i]].text, 
+                spawn_idx, 
+                bubblesPath, 
+                bubbleData.Skills[order[i]].colour,
+                bubbleData.Skills[order[i]].emphasise
+            );
             // TODO: will introduce minor rounding errors
-            spawn_idx += Math.round(bubblesPath.length / bubbles.Skills.length);
+            spawn_idx += Math.round(bubblesPath.length / bubbleData.Skills.length);
         }
+
+        window.addEventListener('resize', (event) => {
+            resizeContainer();
+        });
+        // Also need to recreate when introduction container resized
+        //https://stackoverflow.com/a/49475832
+        new ResizeObserver(() => {resizeContainer();}).observe(introContainer);
     })
 
 
-function makeBubble(text, spawn_idx) {
+function makeBubble(text, spawn_idx, bubblesPath, colour, emphasise) {
     const bubble = document.createElement("span");
     bubble.innerHTML = text;
     bubble.classList.add("bubble");
+    if (emphasise) {
+        bubble.classList.add("emphasise");
+    }
 
     bubble.style.visibility = "hidden";
     bubbleContainer.appendChild(bubble);
@@ -133,6 +150,7 @@ function makeBubble(text, spawn_idx) {
     let y = bubblesPath[bubbleIdx].y;
     bubble.style.left = `${x - bubble.offsetWidth / 2}px`;
     bubble.style.top = `${y - bubble.offsetHeight / 2}px`;
+    bubble.bubbleIdx = bubbleIdx;
 
     let rotateDegrees = Math.atan2(
         bubblesPath[(bubbleIdx + 1)%bubblesPath.length].y - bubblesPath[bubbleIdx].y,
@@ -140,33 +158,59 @@ function makeBubble(text, spawn_idx) {
     ) * 180 / Math.PI + 180;
     bubble.style.transform = `rotate(${rotateDegrees}deg)`;
 
-    // Set random background colour
-    valid = false;
-    let colour = COLOURS[Math.floor(Math.random() * COLOURS.length)];
-    while (!valid) {
-        colour = COLOURS[Math.floor(Math.random() * COLOURS.length)];
-        valid = colour != prev_colour;
-    }
-    prev_colour = colour;
+    // Set background colour
     bubble.style.backgroundColor = colour;
 
-    bubble.style.visibility = "visible";
+    bubbleDivs.push(bubble);
 
     // Update position every 0.1 seconds
-    setInterval(() => {
-        bubbleIdx = (1 + bubbleIdx) % bubblesPath.length;
+    intervals.push(setInterval(() => {
+        bubbleIdx = (bubbleIdx + 1) % bubblesPath.length;
+        bubble.bubbleIdx = bubbleIdx;
         x = bubblesPath[bubbleIdx].x;
         y= bubblesPath[bubbleIdx].y;
         bubble.style.left = `${x - bubble.offsetWidth / 2}px`;
         bubble.style.top = `${y - bubble.offsetHeight / 2}px`;
 
-        
         let rotateDegrees = Math.atan2(
             bubblesPath[(bubbleIdx + 1)%bubblesPath.length].y - bubblesPath[bubbleIdx].y,
             bubblesPath[(bubbleIdx + 1)%bubblesPath.length].x - bubblesPath[bubbleIdx].x,
         ) * 180 / Math.PI + 180;
         bubble.style.transform = `rotate(${rotateDegrees}deg)`;
-    }, 10);
+    }, INC_PERIOD));
+}
+
+function resizeContainer() {
+    // Clear intervals
+    for (let i = 0; i < bubbleDivs.length; i++) {
+        clearInterval(intervals[i]);
+    }
+    intervals = [];
+
+    // Remove existing bubbles
+    spawn_offsets = [];
+    for (let i = 0; i < bubbleDivs.length; i++) {
+        spawn_offsets.push(bubbleDivs[i].bubbleIdx);
+        bubbleDivs[i].remove();
+    }
+    bubbleDivs = [];
+
+    prevLen = bubblesPath.length;
+    bubblesPath = makeBubblesPath();
+
+    // Spawn bubbles
+    for (let i = 0; i < bubbleData.Skills.length; i++) {
+        if (prevLen != 0) {
+            spawn_offsets[i] = Math.round(spawn_offsets[i] * (bubblesPath.length / prevLen));
+            spawn_offsets[i] = spawn_offsets[i] % bubblesPath.length;
+        }
+        makeBubble(bubbleData.Skills[order[i]].text, 
+            spawn_offsets[i], 
+            bubblesPath, 
+            bubbleData.Skills[order[i]].colour,
+            bubbleData.Skills[order[i]].emphasise
+        );
+    }
 }
 
 // Debugging
@@ -185,10 +229,3 @@ function makeBubble(text, spawn_idx) {
     //     bubbleContainer.appendChild(bubble);
     // }
 // }
-window.addEventListener('resize', (event) => {
-    // TODO: adjust position indices
-    bubblesPath = makeBubblesPath();
-});
-// Also need to recreate when introduction container resized
-//https://stackoverflow.com/a/49475832
-new ResizeObserver(() => {bubblesPath = makeBubblesPath();}).observe(introContainer);
