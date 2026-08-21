@@ -20,6 +20,8 @@ let bubbleDivs = [];
 // Update period
 INC_PERIOD = 12;
 
+let mobileMode = false;
+
 /**
  * Constructs a path around the border of the 'introduction' div that the bubbles
     move around. Path consists of a sequence of (x,y) points and features rounded
@@ -53,7 +55,7 @@ function makeBubblesPath() {
         for (let j = 0; j < N; j++) {
             bubblesPathIntermediate[2*i].push({
                 x: CENTERS[i].x + r * Math.cos(theta),
-                y: CENTERS[i].y - r * Math.sin(theta),
+                y: CENTERS[i].y - r * Math.sin(theta) + window.scrollY
             });
             theta += delta;
         }
@@ -76,7 +78,7 @@ function makeBubblesPath() {
             if (j >= 1) {
                 bubblesPathIntermediate[2*i+1].push({
                     x: new_p.x,
-                    y: new_p.y
+                    y: new_p.y + window.scrollY
                 });
             }
             // Increment point along line
@@ -94,44 +96,63 @@ function makeBubblesPath() {
 
     return bubblesPathFinal;
 }
-// Construct initial path
-bubblesPath = makeBubblesPath();
 
-// Get JSON and make the 'bubbles'
-fetch('/skills.json')
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        bubbleData = data;
+function init() {
+    mobileMode = window.innerWidth < 1800;
+    // Construct initial path
+    bubblesPath = makeBubblesPath();
 
-        // Random index order
-        order = [];
-        for (let i = 0; i < bubbleData.Skills.length; i++) {
-            order[i] = i;
-        }
-        order.sort(() => Math.random() - 0.5);
+    // Get JSON and make the 'bubbles'
+    fetch('/skills.json')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            bubbleData = data;
+            
+            // Prune to fit desired length
+            remove_idx = [];
+            if (mobileMode) {
+                for (let i = 0; i < bubbleData.Skills.length; i++) {
+                    if (!bubbleData.Skills[i].emphasise) {
+                        remove_idx.push(i);
+                    }
+                }
+            }
+            for (let i = 0; i < remove_idx.length; i++) {
+                bubbleData.Skills.splice(remove_idx[i] - i, 1);
+            }
 
-        // Spawn bubbles
-        let spawn_idx = 0;  // The path node to spawn at
-        for (let i = 0; i < bubbleData.Skills.length; i++) {
-            makeBubble(bubbleData.Skills[order[i]].text, 
-                spawn_idx, 
-                bubblesPath, 
-                bubbleData.Skills[order[i]].colour,
-                bubbleData.Skills[order[i]].emphasise
-            );
-            // TODO: will introduce minor rounding errors
-            spawn_idx += Math.round(bubblesPath.length / bubbleData.Skills.length);
-        }
+            // Random index order
+            order = [];
+            for (let i = 0; i < bubbleData.Skills.length; i++) {
+                order[i] = i;
+            }
+            order.sort(() => Math.random() - 0.5);
 
-        window.addEventListener('resize', (event) => {
-            resizeContainer();
-        });
-        // Also need to recreate when introduction container resized
-        //https://stackoverflow.com/a/49475832
-        new ResizeObserver(() => {resizeContainer();}).observe(introContainer);
-    })
+            // Spawn bubbles
+            let spawn_idx = 0;  // The path node to spawn at
+            for (let i = 0; i < bubbleData.Skills.length; i++) {
+                makeBubble(bubbleData.Skills[order[i]].text, 
+                    spawn_idx, 
+                    bubblesPath, 
+                    bubbleData.Skills[order[i]].colour,
+                    bubbleData.Skills[order[i]].emphasise
+                );
+                // TODO: will introduce minor rounding errors
+                // would be better to use an approach similar to DDA
+                spawn_idx += Math.round(bubblesPath.length / bubbleData.Skills.length);
+            }
+
+            window.addEventListener('resize', (event) => {
+                resizeContainer();
+            });
+            // Also need to recreate when introduction container resized
+            //https://stackoverflow.com/a/49475832
+            new ResizeObserver(() => {resizeContainer();}).observe(introContainer);
+    });
+}
+init();
 
 
 function makeBubble(text, spawn_idx, bubblesPath, colour, emphasise) {
@@ -161,6 +182,8 @@ function makeBubble(text, spawn_idx, bubblesPath, colour, emphasise) {
     // Set background colour
     bubble.style.backgroundColor = colour;
 
+    bubble.style.visibility = "visible";
+
     bubbleDivs.push(bubble);
 
     // Update position every 0.1 seconds
@@ -181,6 +204,11 @@ function makeBubble(text, spawn_idx, bubblesPath, colour, emphasise) {
 }
 
 function resizeContainer() {
+    // Handle the case where the async init has not finished
+    if (bubbleData.Skills.length != bubbleDivs.length) {
+        return;
+    }
+
     // Clear intervals
     for (let i = 0; i < bubbleDivs.length; i++) {
         clearInterval(intervals[i]);
@@ -195,21 +223,29 @@ function resizeContainer() {
     }
     bubbleDivs = [];
 
-    prevLen = bubblesPath.length;
-    bubblesPath = makeBubblesPath();
+    // Check if need to restart everything
+    if (window.innerWidth <= 1800 && !mobileMode || window.innerWidth > 1800 && mobileMode) {
+        init();
+    } else {
+        prevLen = bubblesPath.length;
+        bubblesPath = makeBubblesPath();
 
-    // Spawn bubbles
-    for (let i = 0; i < bubbleData.Skills.length; i++) {
-        if (prevLen != 0) {
-            spawn_offsets[i] = Math.round(spawn_offsets[i] * (bubblesPath.length / prevLen));
-            spawn_offsets[i] = spawn_offsets[i] % bubblesPath.length;
+        // Spawn bubbles
+        for (let i = 0; i < bubbleData.Skills.length; i++) {
+            if (prevLen != 0 && bubblesPath.length > 0) {
+                // console.log(spawn_offsets[i]);
+                // console.log(bubblesPath.length);
+                // console.log("");
+                spawn_offsets[i] = Math.round(spawn_offsets[i] * (bubblesPath.length / prevLen));
+                spawn_offsets[i] = spawn_offsets[i] % bubblesPath.length;
+                makeBubble(bubbleData.Skills[order[i]].text, 
+                    spawn_offsets[i], 
+                    bubblesPath, 
+                    bubbleData.Skills[order[i]].colour,
+                    bubbleData.Skills[order[i]].emphasise
+                );
+            }
         }
-        makeBubble(bubbleData.Skills[order[i]].text, 
-            spawn_offsets[i], 
-            bubblesPath, 
-            bubbleData.Skills[order[i]].colour,
-            bubbleData.Skills[order[i]].emphasise
-        );
     }
 }
 
