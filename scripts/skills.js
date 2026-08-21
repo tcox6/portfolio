@@ -98,6 +98,10 @@ function makeBubblesPath() {
 }
 
 function init() {
+    // Disable on really samll devices
+    if (window.innerWidth < 500) {
+        return;
+    }
     mobileMode = window.innerWidth < 1800;
     // Construct initial path
     bubblesPath = makeBubblesPath();
@@ -233,9 +237,6 @@ function resizeContainer() {
         // Spawn bubbles
         for (let i = 0; i < bubbleData.Skills.length; i++) {
             if (prevLen != 0 && bubblesPath.length > 0) {
-                // console.log(spawn_offsets[i]);
-                // console.log(bubblesPath.length);
-                // console.log("");
                 spawn_offsets[i] = Math.round(spawn_offsets[i] * (bubblesPath.length / prevLen));
                 spawn_offsets[i] = spawn_offsets[i] % bubblesPath.length;
                 makeBubble(bubbleData.Skills[order[i]].text, 
