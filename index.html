@@ -9,17 +9,28 @@
     <link rel="stylesheet" href="/defaultStyles/projectListStyle.css">
     <link rel="stylesheet" href="/defaultStyles/fonts.css">
     <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
     <script src="projects/scripts/set-featured-flag-true.js" defer></script>
     <script src="projects/scripts/generate-project-html.js" defer></script>
     <script src="/footer/load-footer.js" defer></script>
     <script src="scripts/game-of-life.js" defer></script>
     <script src="/scripts/skills.js" defer></script>
+    <script src="/scripts/lllmNotice.js" defer></script>
   </head>
   <body>
     <div class="mainContent" id="mainContent">
         <div id="floatingStuff">
 
         </div>
+
+        <div class="llmNotice">
+            <div class="llmNoticeBanner" id="llmNoticeBanner">
+                <span class="fa-stack fa-2x" style="font-size: 200%;" title="Generative AI use is not permitted"> <i class="fas fa-robot fa-stack-1x"></i> <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i> </span>
+                <p>I do not rely on generative AI for this website or my projects. Unless otherwise stated, all work is my own. Read more <a href="/llm/">here</a>.</p>
+                <i class="fa-solid fa-xmark llmExit" id="llmExit"></i>
+            </div>
+        </div>
+
         <div class="firstViewPort">
             <!--LOAD HEADER-->
             <div id="header"></div>
