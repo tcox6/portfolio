@@ -1,0 +1,19 @@
+.dotPoint {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+
+    p {
+        margin: 0px;
+        max-width: 800px;
+    }
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #e0876a;
+    margin: 1em 0;
+    padding: 0;
+}

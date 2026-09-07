@@ -1,6 +1,34 @@
 {
     "Projects": [
         {
+            "Title": "Questacon Puzzle Solver",
+            "Blurb": [
+                "Solves the Questacon hex puzzle (i.e., 'snakes') using heuristic-based brute-force search. The aim of the solver was to show that there are no solutions for some of Questacon's starting setups (due to missing pieces)."
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/d428ba578319f8ab95ed03dbda2b0c39/iframe?poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fd428ba578319f8ab95ed03dbda2b0c39%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent&loop=true&autoplay=true",
+            "Link":"/projects/allProjects/hexPuzzle",
+            "Featured": false,
+            "Hidden": false,
+            "Tags": ["Python", "Algorithms"],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "pycast",
+            "Blurb": [
+                "TODO"
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "TODO",
+            "Link":"TODO",
+            "Featured": false,
+            "Hidden": true,
+            "Tags": [],
+            "Year": "2026"
+        },
+
+        {
             "Title": "UTAS Capstone Project: Livestock Herding Simulation Environment",
             "Blurb": [
                 "This was my UTAS capstone project, developed to support reinforcement learning research within the UTAS School of ICT.",
@@ -12,6 +40,20 @@
             "Features": false,
             "Hidden": false,
             "Tags": ["Reinforcement Learning", "Python", "Isaac Lab"],
+            "Year": "2026"
+        },
+
+        {
+            "Title": "JS Mesh Renderer",
+            "Blurb": [
+                "With the help of some newfound background knowledge from <a href='/projects/allProjects/MinionsProceduralAnimation/'>KIT307</a>, I decided to get my hands dirty and implement a mesh renderer from scratch in order to better-understand the underlying theory. My mesh render is implemented in JavaScript and does not require any external libraries."
+            ],
+            "ThumbnailType": "Video",
+            "ThumbnailLink": "https://customer-ain7slg8si2sx3xd.cloudflarestream.com/dd3cdbf2b4bbe0d430592ef846227bdf/iframe?poster=https%3A%2F%2Fcustomer-ain7slg8si2sx3xd.cloudflarestream.com%2Fdd3cdbf2b4bbe0d430592ef846227bdf%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false&muted=true&letterboxColor=transparent&loop=true&autoplay=true",
+            "Link":"/projects/allProjects/meshRenderer",
+            "Featured": false,
+            "Hidden": false,
+            "Tags": ["JavaScript", "Computer Graphics"],
             "Year": "2026"
         },
 
@@ -84,7 +126,7 @@
             "Featured": true,
             "Hidden": false,
             "Tags": ["Machine Learning", "Research", "Python", "TensorFlow"],
-            "Year": "2024~25"
+            "Year": "2024-25"
         },
 
         {
@@ -112,7 +154,7 @@
             "Featured": false,
             "Hidden": false,
             "Tags": ["CAD Design", "3D Printing"],
-            "Year": "2023~26"
+            "Year": "2023-26"
         },
 
         {
@@ -126,7 +168,7 @@
             "Featured": true,
             "Hidden": false,
             "Tags": ["Java", "Artificial Intelligence", "Swing GUI"],
-            "Year": "2023~25"
+            "Year": "2023-25"
         },
 
         {
@@ -186,34 +228,6 @@
         },
 
         {
-            "Title": "pycast",
-            "Blurb": [
-                "TODO"
-            ],
-            "ThumbnailType": "Video",
-            "ThumbnailLink": "TODO",
-            "Link":"TODO",
-            "Featured": false,
-            "Hidden": true,
-            "Tags": [],
-            "Year": "2026"
-        },
-
-        {
-            "Title": "JS Mesh Renderer",
-            "Blurb": [
-                "TODO"
-            ],
-            "ThumbnailType": "Video",
-            "ThumbnailLink": "TODO",
-            "Link":"TODO",
-            "Featured": false,
-            "Hidden": true,
-            "Tags": ["JavaScript", "Computer Graphics"],
-            "Year": "2026"
-        },
-
-        {
             "Title": "Snowman RL",
             "Blurb": [
                 "TODO"
@@ -224,20 +238,6 @@
             "Featured": false,
             "Hidden": true,
             "Tags": ["JavaScript", "Computer Graphics"],
-            "Year": "2025"
-        },
-
-        {
-            "Title": "Image to Lines",
-            "Blurb": [
-                "TODO"
-            ],
-            "ThumbnailType": "Video",
-            "ThumbnailLink": "TODO",
-            "Link":"TODO",
-            "Featured": false,
-            "Hidden": true,
-            "Tags": ["Machine Learning", "Computer Graphics"],
             "Year": "2025"
         }
     ]

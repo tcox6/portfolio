@@ -78,6 +78,11 @@
             width: calc(100% - 154px);
             vertical-align: top;
             padding: 64px;
+
+            p {
+                font-size: 18px;
+                line-height: 1.5;
+            }
         }
 
         .project .projectBlurb .tagContainer {

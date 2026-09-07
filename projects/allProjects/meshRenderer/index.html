@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>JS Mesh Renderer - Tim's Portfolio</title>
+		<link rel="stylesheet" href="/defaultStyles/style.css">
+		<link rel="stylesheet" href="/defaultStyles/projectDescriptionStyles.css">
+		<link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+        <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!--mathjax-->
+        <script src="./renderMesh.js" defer></script>
+	</head>
+	<body>
+		<div class="mainContent" id="mainContent">
+			<!--LOAD HEADER-->
+			<div id="header"></div>
+			<script src="/header/load-header.js"></script>
+
+			<div class="backgroundContainer">
+				<div class="background" id="background">
+					<h1>JS Mesh Renderer</h1>
+
+					<h2>Background</h2>
+
+                    <p>One of my favourite pastimes is implementing things from first principles (or at least thinking about doing so), and mesh rendering had been calling-out to me for a while in this regard. After all, mesh rendering encompasses both 2D and 3D graphics,  and comes served with the teeniest sprinkling of maths (just enough to keep me sharp with the basics). As far as projects derived from first principles go, what better combination? This project involved working with homogeneous transformation matrices, implementing (inefficient) matrix multiplication, 2D line and shape drawing algorithms (borrowed from my <a href="/projects/allProjects/MinionsProceduralAnimation/">KIT307</a> work), and multi-dimensional depth interpolation. (As you may be able to tell from the artefacts in the demonstration below, this interpolation may have a residual bug, but I can't find it for the life of me!)</p>
+
+					<h2>How it Works!</h2>
+
+                    <p>The renderer projects 3D points onto a 2D plane using an orthogonal projection matrix (functions for matrix multiplication were implemented). A custom triangle-drawing algorithm is implemented to write data to a 2D buffer with interpolated depth data for each pixel (depth indicates which pixels should be drawn on top of one-another). Simplistic flat shading is implemented by calculating the normal to each plane and computing the cosine similarity between this vector and the light source vector. Shared vertex shading is not implemented.</p>
+
+                    <p>This runs entirely on the CPU. An improvement would be to utilise OpenGL to utilise the GPU, though this would require everything to be rewritten in shader language (and I believe that this would abstract-away a lot of the fundamental principles of mesh rendering, which would be counter-productive to my original goals).</p>
+
+                    <p>To avoid parsing STL files in JS, I developed a Python script to convert ASCII STL files into JSON.</p>
+
+                    <p>Note that the mesh may take a few seconds to render (depending on network speed and hardware capabilities).</p>
+
+                    <canvas id="meshCanvas"></canvas>
+
+                    <p>See my <a href="/projects/allProjects/MinionsProceduralAnimation/">KIT307</a> portfolio for similar projects.</p>
+                </div>
+			</div>
+
+			<!--LOAD FOOTER-->
+			<div id="footer"></div>
+			<script src="/footer/load-footer.js"></script>
+		</div>
+
+		<!--LOAD GAME OF LIFE BACKGROUND-->
+		<canvas id="gameOfLifeCanvas"></canvas>
+		<script src="/scripts/game-of-life.js"></script>
+	</body>
+</html>

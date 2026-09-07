@@ -4,7 +4,7 @@
 }
 
 .background {
-    max-width: min(1800px, 80%);
+    max-width: min(1400px, 80%);
     padding: 24px;
     margin-bottom: 24px;
     margin-top: 12px;
@@ -13,6 +13,7 @@
 
 p {
     font-size: 18px;
+    line-height: 1.5;
     margin: 0px;
     margin-bottom: 18px;
 }

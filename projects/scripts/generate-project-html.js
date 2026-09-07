@@ -87,7 +87,7 @@ fetch('/projects/allProjects/projects.json')
                     const paragraphs = [];
                     for (let p = 0; p < currentProject.Blurb.length; p++) {
                         paragraphs[p] = document.createElement("p");
-                        paragraphs[p].textContent = currentProject.Blurb[p];
+                        paragraphs[p].innerHTML = currentProject.Blurb[p];
                         projectBlurbDiv.appendChild(paragraphs[p]);
                     }
                     // Tags
