@@ -69,10 +69,23 @@ h1 {
     text-align: center;
 }
 
+@media (max-width: 1000px) {
+    .day-ratings {
+        margin: 0 auto;
+
+        .day-rating {
+            label {
+                font-size: small;
+            }
+        }
+    }
+}
+
 .day-rating label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: large;
 }
 
 .day-rating select {
