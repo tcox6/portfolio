@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    text-align: center;
+}
+
+.instructions {
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+
+.timetable {
+    background: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timetable h2 {
+    margin-top: 0;
+}
+
+/* Timetable image */
+.timetable-image {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto 15px auto;
+}
+
+
+/*
+ * Day rating row
+ *
+ * This is deliberately kept separate from the image so that
+ * the alignment can easily be adjusted.
+ */
+.day-ratings {
+    display: grid;
+
+    /* Five columns corresponding to Monday-Friday */
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 10px;
+    /*
+     * Adjust these values to align the dropdowns with
+     * the day columns in your timetable images.
+     */
+    padding-left: 0;
+    padding-right: 0;
+
+    max-width: 900px;
+    margin: 0 auto;
+    margin-left: 8%;
+    margin-right: 3%;
+}
+
+.day-rating {
+    text-align: center;
+}
+
+.day-rating label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.day-rating select {
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+}
+
+
+/* Overall timetable rating */
+
+.holistic-rating {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.holistic-rating label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.holistic-rating select {
+    padding: 7px;
+    font-size: 14px;
+}
+
+
+/* Submit button */
+
+button[type="submit"] {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/*
+ * Days with no scheduled classes
+ */
+
+.day-rating.unavailable {
+    opacity: 0.5;
+}
+
+.day-rating.unavailable select {
+    background-color: #e0e0e0;
+    color: #777;
+    cursor: not-allowed;
+}

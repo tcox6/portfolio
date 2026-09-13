@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Optimisation Project - Student Survey</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="./form-submit-handler.js" defer></script>
+</head>
+
+<body>
+
+    <h1>Timetable Optimisation Project - Student Survey</h1>
+
+    <div class="instructions">
+        <p>This survey aims to inform the evaluation metrics that I use for a timetabling optimisation project. I plan to aggregate the answers from this form and feed them to a fuzzy expert system, which will form the basis for my objective function. In this instance, you (student) are an 'expert', but there's no need to take it too seriously :)</p>
+
+        <p>For each of the following timetables, rate each individual day as 'Good' 'Neutral', or 'Bad', and provide a rating for the overall timetable.</p>
+
+        <p>Each timetable has the same classes.</p>
+    </div>
+
+    <form action="https://formspree.io/f/xkjnlgrq" method="POST" id="timetable-form">
+        <div id="timetables"></div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
