@@ -156,8 +156,10 @@ function init() {
             new ResizeObserver(() => {resizeContainer();}).observe(introContainer);
     });
 }
-init();
 
+window.addEventListener("load", (e) => {
+    init(); 
+});
 
 function makeBubble(text, spawn_idx, bubblesPath, colour, emphasise) {
     const bubble = document.createElement("span");

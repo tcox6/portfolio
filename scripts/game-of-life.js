@@ -239,6 +239,9 @@ function renderBoard() {
 }
 
 window.addEventListener('load', function() {
+    prevPageWidth = Math.round(Math.max(mainContent.scrollWidth, mainContent.offsetWidth));
+    prevPageHeight = Math.round(Math.max(mainContent.scrollHeight, mainContent.offsetHeight));
+
     // initialise the canvas
     resizeCanvas();
 
