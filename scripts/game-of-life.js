@@ -239,16 +239,18 @@ function renderBoard() {
 }
 
 window.addEventListener('load', function() {
-    prevPageWidth = Math.round(Math.max(mainContent.scrollWidth, mainContent.offsetWidth));
-    prevPageHeight = Math.round(Math.max(mainContent.scrollHeight, mainContent.offsetHeight));
+    setTimeout(() => {
+        prevPageWidth = Math.round(Math.max(mainContent.scrollWidth, mainContent.offsetWidth));
+        prevPageHeight = Math.round(Math.max(mainContent.scrollHeight, mainContent.offsetHeight));
 
-    // initialise the canvas
-    resizeCanvas();
+        // initialise the canvas
+        resizeCanvas();
 
-    setInterval(renderBoard, 1000 / FPS);
+        setInterval(renderBoard, 1000 / FPS);
 
-    // periodically check whether the page has been resized
-    setInterval(checkPageResize, 1000);
+        // periodically check whether the page has been resized
+        setInterval(checkPageResize, 1000);
+    }, 200);  // This appears to help with the flashing.
 });
 
 // declare a global variable that allows any script to refresh the canvas
