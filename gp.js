@@ -40,19 +40,30 @@ function rbf(X,Y,lengthscale) {
 }
 
 class GP {
-    constructor(lengthscale, priorMean) {
+    // Assumes constant prior mean of 0
+    constructor(lengthscale) {
         this.lengthscale = lengthscale;
-        this.priorMean = priorMean;
     }
 
     condition(x, y) {
-        this.x = x;
-        this.y = y;
+        this.x = x.slice();
+        this.y = y.slice();
     }
 
     predict(Xq) {
-        //TODO
+        const B = rbf(Xq, this.x.slice(), this.lengthscale);
+        const C = rbf(this.x.slice(), this.x.slice(), this.lengthscale);
+        
+        // Only need mean
+        return lo.mul(
+            B,
+            lo.inv(C),
+            this.x
+        );
     }
 }
 
-console.log(rbf([1,2,3], [1,2,3], 1));
+let gp = new GP(1);
+gp.condition([1, 2, 5], [1, 3, 2]);
+mu = gp.predict([1.1, 2, 4.5]);
+console.log(mu);
