@@ -11,18 +11,21 @@ function make0(width, height) {
     let b_outer = height / 2;
 
     let points = [];
+    let distortionExtents = [];
 
-    // Outer boundary (+y and -y)
+    // Outer boundary (+y and -y) [+y downwards]
     for (let x = 0; x <= width; x++) {
         y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
         points.push([x, height - y_outer]);
+        distortionExtents.push(0.3);
     }
     for (let x = width; x >= 0; x--) {
         y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
         points.push([x, y_outer]);
+        distortionExtents.push(1);
     }
 
-    // Inner boundary (+y and -y)
+    // Inner boundary (-y and +y) [+y downwards]
     for (let x = 0; x <= width; x++) {
         // Compute the scaled x value for inner part
         x0_inner = (width / 2) - a_inner;
@@ -31,6 +34,7 @@ function make0(width, height) {
         
         y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
         points.push([x_inner, y_inner]);
+        distortionExtents.push(0.3);
     }
     for (let x = width; x >= 0; x--) {
         // Compute the scaled x value for inner part
@@ -40,9 +44,14 @@ function make0(width, height) {
         
         y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
         points.push([x_inner, height - y_inner]);
+        distortionExtents.push(0.3);
     }
 
-    return points;
+    // Link back to start for melting effect to work properly.
+    points.push([0, height/2]);
+    distortionExtents.push(1);
+
+    return [points, distortionExtents];
 }
 
 function make1(width, height) {
@@ -95,33 +104,41 @@ function translatePoints(points) {
     return pointsString;
 }
 
-let points = make0(50,100);
+let pointsTuple = make0(50,100);
+let points = pointsTuple[0];
+let distortionExtents = pointsTuple[1];
 
 let gp = new GP(5);
 let xVals = [];
 let yVals = [];
 for (let x = 0; x <= 50; x+=10) {
     xVals.push(x);
-    yVals.push(Math.random());
+    yVals.push(Math.random() * 20);
 }
 
 gp.condition(xVals, yVals);
 
 xQ = [];
-for (let x = 0; x <= 50; x++) {xQ.push(x);}
+totalOffsets = [];
+for (let x = 0; x <= 50; x++) {
+    xQ.push(x);
+    totalOffsets.push(0);
+}
 
-let mu = gp.predict(xQ);
+let offsets = gp.predict(xQ);
 
 setInterval(() => {
-    for (let i = 0; i < mu.length; i++) {
-        mu[i][0] *= 1.0001;
-    }
-
     // Adjust points
     for (let i = 0; i < points.length; i++) {
-        points[i][1] += mu[Math.round(points[i][0])][0];
+        points[i][1] += offsets[Math.round(points[i][0])][0] * distortionExtents[i] * 0.05;
     }
 
     digit.setAttribute("points", translatePoints(points));
     // digit.setAttribute("points", translatePoints(make1(40, 100)));
-}, 100);
+}, 1000/30);
+
+// TODO: define vector of meltExtents for each point so that
+// not all points are heavily affected. For example, the meltExtent
+// of the inner bottom points of the zero may have low melt effects.
+
+// TODO: set a good random seed
