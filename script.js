@@ -3,14 +3,14 @@ const digit = document.getElementById("digit");
 function make0(width, height) {
     // Zero is symmetric, so don't need to bother with proper y-coordinates
     // Parameters for ellipse equation
-    h = width / 2;
-    k = height / 2;
-    a_inner = (width / 2) * 0.4;
-    a_outer = width / 2;
-    b_inner = (height / 2) * 0.7;
-    b_outer = height / 2;
+    let h = width / 2;
+    let k = height / 2;
+    let a_inner = (width / 2) * 0.4;
+    let a_outer = width / 2;
+    let b_inner = (height / 2) * 0.7;
+    let b_outer = height / 2;
 
-    points = [];
+    let points = [];
 
     // Outer boundary (+y and -y)
     for (let x = 0; x <= width; x++) {
@@ -47,11 +47,11 @@ function make0(width, height) {
 
 function make1(width, height) {
     // Constants
-    STEM_WIDTH = 0.45;
-    DIAGONAL_OFFSET = 0.15;
-    DIAGONAL_HEIGHT = (STEM_WIDTH * width) / height;
+    const STEM_WIDTH = 0.45;
+    const DIAGONAL_OFFSET = 0.15;
+    const DIAGONAL_HEIGHT = (STEM_WIDTH * width) / height;
 
-    points = [];
+    let points = [];
 
     // Bottom
     for (let x = Math.floor(width * (1 - STEM_WIDTH)); x < width; x++) {
@@ -64,9 +64,9 @@ function make1(width, height) {
     }
 
     // Top of the diagonal bit
-    y0 = 0;
-    y1 = DIAGONAL_OFFSET * height;
-    nX = Math.floor(width * (1 - STEM_WIDTH));
+    let y0 = 0;
+    let y1 = DIAGONAL_OFFSET * height;
+    let nX = Math.floor(width * (1 - STEM_WIDTH));
     for (let x = Math.floor(width * (1 - STEM_WIDTH)); x >= 0; x--) {
         y = y0 + ((nX - x) / nX) * (y1 - y0);
         points.push([x, y]);
@@ -84,6 +84,8 @@ function make1(width, height) {
     return points;
 }
 
+// TODO: other digits
+
 function translatePoints(points) {
     pointsString = "";
     for (let i = 0; i < points.length; i++) {
@@ -93,5 +95,33 @@ function translatePoints(points) {
     return pointsString;
 }
 
-digit.setAttribute("points", translatePoints(make0(50, 100)));
-// digit.setAttribute("points", translatePoints(make1(40, 100)));
+let points = make0(50,100);
+
+let gp = new GP(5);
+let xVals = [];
+let yVals = [];
+for (let x = 0; x <= 50; x+=10) {
+    xVals.push(x);
+    yVals.push(Math.random());
+}
+
+gp.condition(xVals, yVals);
+
+xQ = [];
+for (let x = 0; x <= 50; x++) {xQ.push(x);}
+
+let mu = gp.predict(xQ);
+
+setInterval(() => {
+    for (let i = 0; i < mu.length; i++) {
+        mu[i][0] *= 1.0001;
+    }
+
+    // Adjust points
+    for (let i = 0; i < points.length; i++) {
+        points[i][1] += mu[Math.round(points[i][0])][0];
+    }
+
+    digit.setAttribute("points", translatePoints(points));
+    // digit.setAttribute("points", translatePoints(make1(40, 100)));
+}, 100);
