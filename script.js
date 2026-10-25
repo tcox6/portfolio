@@ -1,4 +1,5 @@
 const digit = document.getElementById("digit");
+const digit2 = document.getElementById("digit2");
 
 function make0(width, height) {
     // Zero is symmetric, so don't need to bother with proper y-coordinates
@@ -104,36 +105,51 @@ function translatePoints(points) {
     return pointsString;
 }
 
+// Generate polygon points
 let pointsTuple = make0(50,100);
 let points = pointsTuple[0];
 let distortionExtents = pointsTuple[1];
 
-let gp = new GP(5);
+pointsTuple = make0(50,100);
+let points2 = pointsTuple[0];
+
+// Create GP and condition
+let gp = new GP(10);
 let xVals = [];
 let yVals = [];
 for (let x = 0; x <= 50; x+=10) {
     xVals.push(x);
-    yVals.push(Math.random() * 20);
+    yVals.push(Math.random() * 40 + 5);
 }
-
 gp.condition(xVals, yVals);
 
+let gp2 = new GP(5);
+for (let i = 0; i < yVals.length; i++) {
+    yVals[i] -= 5;
+}
+gp2.condition(xVals, yVals);
+
+// Get offsets predicted by GP
 xQ = [];
-totalOffsets = [];
 for (let x = 0; x <= 50; x++) {
     xQ.push(x);
-    totalOffsets.push(0);
 }
+let offsets = gp.predict(xQ.slice());
+let offsets2 = gp2.predict(xQ.slice());
 
-let offsets = gp.predict(xQ);
-
+originalPoints = [];
+for (let i = 0; i < points.length; i++) {
+    originalPoints[i] = points[i].slice();
+}
 setInterval(() => {
     // Adjust points
     for (let i = 0; i < points.length; i++) {
-        points[i][1] += offsets[Math.round(points[i][0])][0] * distortionExtents[i] * 0.05;
+        points[i][1] +=  offsets[Math.round(points[i][0])][0] * distortionExtents[i] * 0.01;
+        points2[i][1] += offsets2[Math.round(points2[i][0])][0] * distortionExtents[i] * 0.01;
     }
 
     digit.setAttribute("points", translatePoints(points));
+    digit2.setAttribute("points", translatePoints(points2));
     // digit.setAttribute("points", translatePoints(make1(40, 100)));
 }, 1000/30);
 
