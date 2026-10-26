@@ -18,7 +18,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Make points for each digit
-let digString = [0,0,0];  // TODO: remove hardcoded values
+let digString = [1,0,0];  // TODO: remove hardcoded values
 let digitPolyPoints = [];
 let distortionExtents = [];
 for (let i = 0; i < digits.length; i++) {
@@ -82,9 +82,5 @@ setInterval(() => {
         }
     }
 }, 1000/30);
-
-// TODO: define vector of meltExtents for each point so that
-// not all points are heavily affected. For example, the meltExtent
-// of the inner bottom points of the zero may have low melt effects.
 
 // TODO: set a good random seed

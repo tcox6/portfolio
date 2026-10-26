@@ -63,19 +63,22 @@ function make0(width, height) {
 function make1(width, height) {
     // Constants
     const STEM_WIDTH = 0.45;
-    const DIAGONAL_OFFSET = 0.15;
-    const DIAGONAL_HEIGHT = (STEM_WIDTH * width) / height;
+    const DIAGONAL_OFFSET = 0.12;
+    const DIAGONAL_HEIGHT = 0.8 * (STEM_WIDTH * width) / height;
 
     let points = [];
+    let distortionExtents = [];
 
     // Bottom
     for (let x = Math.floor(width * (1 - STEM_WIDTH)); x < width; x++) {
         points.push([x, height - 1]);
+        distortionExtents.push(1);
     }
 
     // Top
     for (let x = width - 1; x >= Math.floor(width * (1 - STEM_WIDTH)); x--) {
         points.push([x, 0]);
+        distortionExtents.push(0.2);
     }
 
     // Top of the diagonal bit
@@ -85,6 +88,7 @@ function make1(width, height) {
     for (let x = Math.floor(width * (1 - STEM_WIDTH)); x >= 0; x--) {
         y = y0 + ((nX - x) / nX) * (y1 - y0);
         points.push([x, y]);
+        distortionExtents.push(0.2);
     }
 
     // Bottom of diagonal bit
@@ -94,9 +98,10 @@ function make1(width, height) {
     for (let x = 0; x <= Math.floor(width * (1 - STEM_WIDTH)); x++) {
         y = y0 + (x / nX) * (y1 - y0);
         points.push([x, y]);
+        distortionExtents.push(0.5);
     }
 
-    return points;
+    return [points, distortionExtents];
 }
 
 // TODO: other digits
