@@ -1,5 +1,10 @@
-const digit = document.getElementById("digit");
-const digit2 = document.getElementById("digit2");
+function makex(digit, width, height) {
+    if (digit == 0) {
+        return make0(width, height);
+    } else if (digit == 1) {
+        return make1(width, height);
+    } // TODO
+}
 
 function make0(width, height) {
     // Zero is symmetric, so don't need to bother with proper y-coordinates
@@ -104,57 +109,3 @@ function translatePoints(points) {
 
     return pointsString;
 }
-
-// Generate polygon points
-let pointsTuple = make0(50,100);
-let points = pointsTuple[0];
-let distortionExtents = pointsTuple[1];
-
-pointsTuple = make0(50,100);
-let points2 = pointsTuple[0];
-
-// Create GP and condition
-let gp = new GP(10);
-let xVals = [];
-let yVals = [];
-for (let x = 0; x <= 50; x+=10) {
-    xVals.push(x);
-    yVals.push(Math.random() * 40 + 5);
-}
-gp.condition(xVals, yVals);
-
-let gp2 = new GP(5);
-for (let i = 0; i < yVals.length; i++) {
-    yVals[i] -= 5;
-}
-gp2.condition(xVals, yVals);
-
-// Get offsets predicted by GP
-xQ = [];
-for (let x = 0; x <= 50; x++) {
-    xQ.push(x);
-}
-let offsets = gp.predict(xQ.slice());
-let offsets2 = gp2.predict(xQ.slice());
-
-originalPoints = [];
-for (let i = 0; i < points.length; i++) {
-    originalPoints[i] = points[i].slice();
-}
-setInterval(() => {
-    // Adjust points
-    for (let i = 0; i < points.length; i++) {
-        points[i][1] +=  offsets[Math.round(points[i][0])][0] * distortionExtents[i] * 0.01;
-        points2[i][1] += offsets2[Math.round(points2[i][0])][0] * distortionExtents[i] * 0.01;
-    }
-
-    digit.setAttribute("points", translatePoints(points));
-    digit2.setAttribute("points", translatePoints(points2));
-    // digit.setAttribute("points", translatePoints(make1(40, 100)));
-}, 1000/30);
-
-// TODO: define vector of meltExtents for each point so that
-// not all points are heavily affected. For example, the meltExtent
-// of the inner bottom points of the zero may have low melt effects.
-
-// TODO: set a good random seed

@@ -58,12 +58,7 @@ class GP {
         return lo.mul(
             B,
             lo.inv(C),
-            this.x
+            this.y
         );
     }
 }
-
-let gp = new GP(1);
-gp.condition([1, 2, 5], [1, 3, 2]);
-mu = gp.predict([1.1, 2, 4.5]);
-console.log(mu);

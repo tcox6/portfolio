@@ -4,14 +4,33 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Test</title>
-        <script src="gaussianprocess.js"></script>
-        <script src="./script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/loshu/wasm/dist/loshuwasm.js"></script>
+        <script src="loshu.js"></script>
+        <script src="gp.js"></script>
+        <script src="./meltDigits.js"></script>
+        <script src="meltAnimations.js" defer></script>
     </head>
     <body>
-        <svg height="210" width="500" xmlns="http://www.w3.org/2000/svg">
-            <polygon id="digit" 
-            style="fill:black;stroke:none;" />
-        </svg>
+        <div style="display: flex;">
+            <svg height="200" width="60" xmlns="http://www.w3.org/2000/svg">
+                <polygon id="digit0Background"
+                style="fill:orange;stroke:none; z-index: 1;" />
+                <polygon id="digit0Foreground"
+                style="fill:red;stroke:none; z-index: 2;" />
+            </svg>
+            <svg height="210" width="60" xmlns="http://www.w3.org/2000/svg">
+                <polygon id="digit1Background"
+                style="fill:orange;stroke:none; z-index: 1;" />
+                <polygon id="digit1Foreground"
+                style="fill:red;stroke:none; z-index: 2;" />
+            </svg>
+            <svg height="210" width="60" xmlns="http://www.w3.org/2000/svg">
+                <polygon id="digit2Background"
+                style="fill:orange;stroke:none; z-index: 1;" />
+                <polygon id="digit2Foreground"
+                style="fill:red;stroke:none; z-index: 2;" />
+            </svg>
+        </div>
 
     </body>
 </html>
