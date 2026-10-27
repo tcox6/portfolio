@@ -18,7 +18,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Make points for each digit
-let digString = [1,0,0];  // TODO: remove hardcoded values
+let digString = [2,0,0];  // TODO: remove hardcoded values
 let digitPolyPoints = [];
 let distortionExtents = [];
 for (let i = 0; i < digits.length; i++) {
@@ -75,7 +75,7 @@ setInterval(() => {
     for (let i = 0; i < digitPolyPoints.length; i++) {
         for (let j = 0; j < digitPolyPoints[i].length; j++) {
             for (let k = 0; k < digitPolyPoints[i][j].length; k++) {
-                let currentOffset = offsets[i][j][Math.round(digitPolyPoints[i][j][k][0])][0]
+                let currentOffset = offsets[i][j][Math.round(digitPolyPoints[i][j][k][0])][0];
                 digitPolyPoints[i][j][k][1] += currentOffset * distortionExtents[i][j][k] * 0.01;
             }
             digits[i][j].setAttribute("points", translatePoints(digitPolyPoints[i][j]));

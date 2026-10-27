@@ -3,7 +3,9 @@ function makex(digit, width, height) {
         return make0(width, height);
     } else if (digit == 1) {
         return make1(width, height);
-    } // TODO
+    } else if (digit == 2) {
+        return make2(width, height);
+    }
 }
 
 function make0(width, height) {
@@ -98,6 +100,85 @@ function make1(width, height) {
     for (let x = 0; x <= Math.floor(width * (1 - STEM_WIDTH)); x++) {
         y = y0 + (x / nX) * (y1 - y0);
         points.push([x, y]);
+        distortionExtents.push(0.5);
+    }
+
+    return [points, distortionExtents];
+}
+
+function make2(width, height) {
+    // Constants
+    LINE_WIDTH = 0.1 * height;
+    DIAGONAL_TOP_END_X = 0.7 * width;
+    DIAGONAL_TOP_END_Y = 0.4 * height;
+    CIRCLE_X = 0.5 * width;
+    CIRCLE_Y = 0.25 * height;
+
+    let points = [];
+    let distortionExtents = [];
+
+    // Bottom bit
+    for (let x = 0; x <= width; x++) {
+        points.push([x, height]);
+        distortionExtents.push(1);
+    }
+    
+    // Top of bottom bit
+    // Calculate the start
+    let diagonalAngle = Math.atan(((height - LINE_WIDTH) - DIAGONAL_TOP_END_Y) / (DIAGONAL_TOP_END_X));
+    let startX = LINE_WIDTH / Math.sin(diagonalAngle);
+    for (let x = width; x >= startX; x--) {
+        points.push([x, height - LINE_WIDTH]);
+        distortionExtents.push(0.2);
+    }
+
+    // Diagonal bit (bottom)
+    // Calculate the end position
+    let diagonalBottomX = DIAGONAL_TOP_END_X + Math.cos(Math.PI / 2 - diagonalAngle);
+    let diagonalBottomY = DIAGONAL_TOP_END_Y + Math.sin(Math.PI / 2 - diagonalAngle);
+    for (let x = startX; x <= diagonalBottomX; x++) {
+        let xExtent = ((x - startX) / (diagonalBottomX - startX));
+        let yInterp = (height - LINE_WIDTH) + xExtent * (height - LINE_WIDTH - diagonalBottomY);
+        points.push([x, yInterp]);
+        distortionExtents.push(0.5);
+    }
+
+    // Outer circle bit
+    // Ideally, we require one point per pixel in the x-axis.
+    // However, stepping over theta is a lot easier. Just need to use adequately small step size.
+    let diagonalAngleCircle = Math.atan2(CIRCLE_Y - DIAGONAL_TOP_END_Y, DIAGONAL_TOP_END_X - CIRCLE_X);
+    let radiusOuter = Math.sqrt(Math.pow(CIRCLE_X - diagonalBottomX, 2) + Math.pow(CIRCLE_Y - diagonalBottomY, 2));
+    for (let theta = diagonalAngleCircle; theta <= Math.PI; theta+=0.001) {  // Tune theta increment
+        points.push([
+            CIRCLE_X + radiusOuter * Math.cos(theta),
+            CIRCLE_Y - radiusOuter * Math.sin(theta)
+        ]);
+        distortionExtents.push(0.2);
+    }
+
+    // Bottom circle joining bit
+    let joinX = points[points.length - 1][0];
+    let joinY = points[points.length - 1][1];
+    for (let x = joinX; x <= joinX + LINE_WIDTH; x++) {
+        points.push([x, joinY]);
+        distortionExtents.push(0.7);
+    }
+
+    // Inner circle bit
+    let radiusInner = Math.sqrt(Math.pow(CIRCLE_X - DIAGONAL_TOP_END_X, 2) + Math.pow(CIRCLE_Y - DIAGONAL_TOP_END_Y, 2));
+    for (let theta = Math.PI; theta >= diagonalAngleCircle; theta-=0.001) {  // Tune theta increment
+        points.push([
+            CIRCLE_X + radiusInner * Math.cos(theta),
+            CIRCLE_Y - radiusInner * Math.sin(theta)
+        ]);
+        distortionExtents.push(0.6);
+    }
+
+    // Diagonal bit (top)
+    for (let x = DIAGONAL_TOP_END_X; x >= 0; x--) {
+        let xExtent = (x / DIAGONAL_TOP_END_X);
+        let yInterp = DIAGONAL_TOP_END_Y + xExtent * (DIAGONAL_TOP_END_Y - (height - LINE_WIDTH));
+        points.push([x, yInterp]);
         distortionExtents.push(0.5);
     }
 
