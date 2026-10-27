@@ -134,11 +134,11 @@ function make2(width, height) {
 
     // Diagonal bit (bottom)
     // Calculate the end position
-    let diagonalBottomX = DIAGONAL_TOP_END_X + Math.cos(Math.PI / 2 - diagonalAngle);
-    let diagonalBottomY = DIAGONAL_TOP_END_Y + Math.sin(Math.PI / 2 - diagonalAngle);
+    let diagonalBottomX = DIAGONAL_TOP_END_X + LINE_WIDTH * Math.cos(Math.PI / 2 - diagonalAngle);
+    let diagonalBottomY = DIAGONAL_TOP_END_Y + LINE_WIDTH * Math.sin(Math.PI / 2 - diagonalAngle);
     for (let x = startX; x <= diagonalBottomX; x++) {
         let xExtent = ((x - startX) / (diagonalBottomX - startX));
-        let yInterp = (height - LINE_WIDTH) + xExtent * (height - LINE_WIDTH - diagonalBottomY);
+        let yInterp = (height - LINE_WIDTH) + xExtent * (diagonalBottomY - (height - LINE_WIDTH));
         points.push([x, yInterp]);
         distortionExtents.push(0.5);
     }
@@ -177,7 +177,8 @@ function make2(width, height) {
     // Diagonal bit (top)
     for (let x = DIAGONAL_TOP_END_X; x >= 0; x--) {
         let xExtent = (x / DIAGONAL_TOP_END_X);
-        let yInterp = DIAGONAL_TOP_END_Y + xExtent * (DIAGONAL_TOP_END_Y - (height - LINE_WIDTH));
+        let yInterp = (height - LINE_WIDTH) + xExtent * (DIAGONAL_TOP_END_Y - (height - LINE_WIDTH));
+        console.log(xExtent);
         points.push([x, yInterp]);
         distortionExtents.push(0.5);
     }
