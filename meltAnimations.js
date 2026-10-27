@@ -7,6 +7,7 @@ CONDITION_EXTENT = 40;            // px
 
 // List of digits; each element is a length-2 list for the digit's background and foreground, respectively.
 let digits = [];
+let svgs = [];
 for (let i = 0; i < 3; i++) {
     let currentDigit = [];
     // Check if digit exists and add its background and foreground to collection if so
@@ -15,23 +16,26 @@ for (let i = 0; i < 3; i++) {
         currentDigit.push(document.getElementById(`digit${i}Foreground`));
         digits.push(currentDigit);
     }
+    svgs.push(document.getElementById(`svg${i}`));
 }
 
 // Make points for each digit
-let digString = [2,0,0];  // TODO: remove hardcoded values
+let digString = [2,1,0];  // TODO: remove hardcoded values
 let digitPolyPoints = [];
 let distortionExtents = [];
 for (let i = 0; i < digits.length; i++) {
     digitPolyPoints.push([
         // Background and foreground
-        makex(digString[i], 50, 100)[0],  // TODO: remove hard-coded values
-        makex(digString[i], 50, 100)[0]
+        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[0],  // TODO: remove hard-coded values
+        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[0]
     ]);
     distortionExtents.push([
         // Background and foreground
-        makex(digString[i], 50, 100)[1],  // TODO: remove hard-coded values
-        makex(digString[i], 50, 100)[1]
+        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[1],  // TODO: remove hard-coded values
+        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[1]
     ]);
+
+    svgs[i].setAttribute("width", TEXT_WIDTH[digString[i]] + 10);
 }
 
 // Create GPs
@@ -75,7 +79,11 @@ setInterval(() => {
     for (let i = 0; i < digitPolyPoints.length; i++) {
         for (let j = 0; j < digitPolyPoints[i].length; j++) {
             for (let k = 0; k < digitPolyPoints[i][j].length; k++) {
-                let currentOffset = offsets[i][j][Math.round(digitPolyPoints[i][j][k][0])][0];
+                let xpxVal = Math.round(digitPolyPoints[i][j][k][0]);
+                xpxVal = Math.min(xpxVal, TEXT_WIDTH[i]);
+                xpxVal = Math.max(xpxVal, 0);
+
+                let currentOffset = offsets[i][j][xpxVal][0];
                 digitPolyPoints[i][j][k][1] += currentOffset * distortionExtents[i][j][k] * 0.01;
             }
             digits[i][j].setAttribute("points", translatePoints(digitPolyPoints[i][j]));

@@ -1,3 +1,9 @@
+const TEXT_WIDTH = [
+    50,  // 0
+    40,  // 1
+    65
+]
+
 function makex(digit, width, height) {
     if (digit == 0) {
         return make0(width, height);
@@ -189,6 +195,11 @@ function make2(width, height) {
     }
 
     return [points, distortionExtents];
+}
+
+function make3(width, height) {
+    // Constants
+    LINE_WIDTH = 0.15 * height;
 }
 
 // TODO: other digits
