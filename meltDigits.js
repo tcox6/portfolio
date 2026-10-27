@@ -108,11 +108,17 @@ function make1(width, height) {
 
 function make2(width, height) {
     // Constants
-    LINE_WIDTH = 0.1 * height;
-    DIAGONAL_TOP_END_X = 0.7 * width;
-    DIAGONAL_TOP_END_Y = 0.4 * height;
+    LINE_WIDTH = 0.15 * height;
+
+    // Circle at top of the svg element
     CIRCLE_X = 0.5 * width;
-    CIRCLE_Y = 0.25 * height;
+    CIRCLE_Y = 0.5 * width;
+    CIRCLE_OUTER_R = width / 2;
+
+    DIAGONAL_CIRCLE_ANGLE = -0.8;  // Radians
+
+    DIAGONAL_TOP_END_X = CIRCLE_X + (CIRCLE_OUTER_R - LINE_WIDTH) * Math.cos(DIAGONAL_CIRCLE_ANGLE)
+    DIAGONAL_TOP_END_Y = CIRCLE_Y - (CIRCLE_OUTER_R - LINE_WIDTH) * Math.sin(DIAGONAL_CIRCLE_ANGLE)
 
     let points = [];
     let distortionExtents = [];
@@ -120,7 +126,7 @@ function make2(width, height) {
     // Bottom bit
     for (let x = 0; x <= width; x++) {
         points.push([x, height]);
-        distortionExtents.push(1);
+        distortionExtents.push(0.8);
     }
     
     // Top of bottom bit
@@ -140,18 +146,18 @@ function make2(width, height) {
         let xExtent = ((x - startX) / (diagonalBottomX - startX));
         let yInterp = (height - LINE_WIDTH) + xExtent * (diagonalBottomY - (height - LINE_WIDTH));
         points.push([x, yInterp]);
-        distortionExtents.push(0.5);
+        distortionExtents.push(0.2);
     }
 
     // Outer circle bit
     // Ideally, we require one point per pixel in the x-axis.
     // However, stepping over theta is a lot easier. Just need to use adequately small step size.
-    let diagonalAngleCircle = Math.atan2(CIRCLE_Y - DIAGONAL_TOP_END_Y, DIAGONAL_TOP_END_X - CIRCLE_X);
-    let radiusOuter = Math.sqrt(Math.pow(CIRCLE_X - diagonalBottomX, 2) + Math.pow(CIRCLE_Y - diagonalBottomY, 2));
-    for (let theta = diagonalAngleCircle; theta <= Math.PI; theta+=0.001) {  // Tune theta increment
+    // let diagonalAngleCircle = Math.atan2(CIRCLE_Y - DIAGONAL_TOP_END_Y, DIAGONAL_TOP_END_X - CIRCLE_X);
+    // let radiusOuter = Math.sqrt(Math.pow(CIRCLE_X - diagonalBottomX, 2) + Math.pow(CIRCLE_Y - diagonalBottomY, 2));
+    for (let theta = DIAGONAL_CIRCLE_ANGLE; theta <= Math.PI; theta+=0.001) {  // Tune theta increment
         points.push([
-            CIRCLE_X + radiusOuter * Math.cos(theta),
-            CIRCLE_Y - radiusOuter * Math.sin(theta)
+            CIRCLE_X + CIRCLE_OUTER_R * Math.cos(theta),
+            CIRCLE_Y - CIRCLE_OUTER_R * Math.sin(theta)
         ]);
         distortionExtents.push(0.2);
     }
@@ -165,8 +171,8 @@ function make2(width, height) {
     }
 
     // Inner circle bit
-    let radiusInner = Math.sqrt(Math.pow(CIRCLE_X - DIAGONAL_TOP_END_X, 2) + Math.pow(CIRCLE_Y - DIAGONAL_TOP_END_Y, 2));
-    for (let theta = Math.PI; theta >= diagonalAngleCircle; theta-=0.001) {  // Tune theta increment
+    let radiusInner = CIRCLE_OUTER_R - LINE_WIDTH;
+    for (let theta = Math.PI; theta >= DIAGONAL_CIRCLE_ANGLE; theta-=0.001) {  // Tune theta increment
         points.push([
             CIRCLE_X + radiusInner * Math.cos(theta),
             CIRCLE_Y - radiusInner * Math.sin(theta)
@@ -178,9 +184,8 @@ function make2(width, height) {
     for (let x = DIAGONAL_TOP_END_X; x >= 0; x--) {
         let xExtent = (x / DIAGONAL_TOP_END_X);
         let yInterp = (height - LINE_WIDTH) + xExtent * (DIAGONAL_TOP_END_Y - (height - LINE_WIDTH));
-        console.log(xExtent);
         points.push([x, yInterp]);
-        distortionExtents.push(0.5);
+        distortionExtents.push(0.6);
     }
 
     return [points, distortionExtents];
