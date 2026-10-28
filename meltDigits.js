@@ -2,8 +2,9 @@
 const TEXT_WIDTH = [
     50,  // 0
     40,  // 1
-    65,
-    50
+    65,  // 2
+    50,  // ...
+    65
 ]
 
 function makex(digit, width, height) {
@@ -15,6 +16,8 @@ function makex(digit, width, height) {
         return make2(width, height);
     } else if (digit == 3) {
         return make3(width, height);
+    } else if (digit == 4) {
+        return make4(width, height);
     }
 }
 
@@ -46,21 +49,21 @@ function make0(width, height) {
     // Inner boundary (-y and +y) [+y downwards]
     for (let x = 0; x <= width; x++) {
         // Compute the scaled x value for inner part
-        x0_inner = (width / 2) - a_inner;
-        x1_inner = (width / 2) + a_inner;
-        x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
+        let x0_inner = (width / 2) - a_inner;
+        let x1_inner = (width / 2) + a_inner;
+        let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
         
-        y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+        let y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
         points.push([x_inner, y_inner]);
         distortionExtents.push(0.3);
     }
     for (let x = width; x >= 0; x--) {
         // Compute the scaled x value for inner part
-        x0_inner = (width / 2) - a_inner;
-        x1_inner = (width / 2) + a_inner;
-        x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
+        let x0_inner = (width / 2) - a_inner;
+        let x1_inner = (width / 2) + a_inner;
+        let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
         
-        y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+        let y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
         points.push([x_inner, height - y_inner]);
         distortionExtents.push(0.3);
     }
@@ -230,9 +233,13 @@ function make3(width, height) {
     // Outer bottom
     for (let theta = Math.PI/2; theta >= -Math.PI; theta-=0.001) {
         let x = CIRCLE_CENTER_X + R_BOTTOM * Math.cos(theta);
-        let y = (BOTTOM_Y) - R_BOTTOM * Math.sin(theta);
+        let y = BOTTOM_Y - R_BOTTOM * Math.sin(theta);
         points.push([x, y]);
-        distortionExtents.push(1);
+        if (y < BOTTOM_Y) {
+            distortionExtents.push(0.4);
+        } else {
+            distortionExtents.push(1);
+        }
     }
 
     // Bottom joiner
@@ -260,13 +267,85 @@ function make3(width, height) {
     // Top joiner
     for (let x = LINE_WIDTH; x >= width / 2 - R_TOP; x--) {
         points.push([x, R_TOP]);
-        distortionExtents.push(0.7);
+        distortionExtents.push(0.4);
     }
 
     // Now scale all points so that the digit fills the full container height
     for (let i = 0; i < points.length; i++) {
         points[i][1] *= SCALE;
     }
+
+    return [points, distortionExtents];
+}
+
+function make4(width, height) {
+    // Constants
+    const LINE_WIDTH = 0.45;
+    const BOTTOM_OFFSET_Y = height * 0.2;
+    const LEFT_OFFSET_X = 0.2 * width;
+
+    let points = [];
+    let distortionExtents = [];
+
+    // Bottom stub bit
+    for (let x = width - LEFT_OFFSET_X - LINE_WIDTH; x <= width - LEFT_OFFSET_X; x++) {
+        points.push([x,height]);
+        distortionExtents.push(0.7);
+    }
+
+    // Bottom left tail bit
+    for (let x = width - LEFT_OFFSET_X; x <= width; x++) {
+        points.push([x,height - BOTTOM_OFFSET_Y]);
+        distortionExtents.push(0.7);
+    }
+
+    // Top left tail bit
+    for (let x = width; x >= width - LEFT_OFFSET_X; x--) {
+        points.push([x,height - BOTTOM_OFFSET_Y - LINE_WIDTH]);
+        distortionExtents.push(0.2);
+    }
+
+    // Top bit
+    for (let x = width - LEFT_OFFSET_X; x >= width - LEFT_OFFSET_X - LINE_WIDTH; x--) {
+        points.push([x, 0]);
+        distortionExtents.push(0.2);
+    }
+
+    // Diagonal top
+    for (let x = width - LEFT_OFFSET_X - LINE_WIDTH; x >= 0; x--) {
+        let xExtent = x / (width - LEFT_OFFSET_X - LINE_WIDTH); // xExtent=1 => top
+        let y = 0 + xExtent * (0 - (height - BOTTOM_OFFSET_Y - LINE_WIDTH));
+        points.push([x,y]);
+        distortionExtents.push(0.3);
+    }
+
+    // Bottom bit
+    for (let x = 0; x <= width - LEFT_OFFSET_X - LINE_WIDTH; x++) {
+        points.push([x, height - BOTTOM_OFFSET_Y]);
+        distortionExtents.push(0.8);
+    }
+
+    // Inner bottom
+    for (let x = width - LEFT_OFFSET_X - LINE_WIDTH; x >= LINE_WIDTH; x--) {
+        points.push([x, height - BOTTOM_OFFSET_Y - LINE_WIDTH]);
+        distortionExtents.push(0.2);
+    }
+
+    // Inner diagonal
+    let deltaX = (width - LEFT_OFFSET_X - LINE_WIDTH) - 0;
+    let deltaY = (height - BOTTOM_OFFSET_Y - LINE_WIDTH) - 0;
+    let diagonalAngle = Math.atan2(deltaY, deltaX);
+    let yTop = LINE_WIDTH / Math.tan(Math.PI / 2 - diagonalAngle);
+    for (let x = LINE_WIDTH; x <= width - LEFT_OFFSET_X - LINE_WIDTH; x++) {
+        let xExtent = (x - LINE_WIDTH) / ((width - LEFT_OFFSET_X - LINE_WIDTH) - LINE_WIDTH);  // xExtent=1 => top
+        let y = (height - BOTTOM_OFFSET_Y - LINE_WIDTH) + xExtent * (yTop - (height - BOTTOM_OFFSET_Y - LINE_WIDTH));
+        points.push([x,y]);
+        distortionExtents.push(0.5);
+    }
+
+    // Link back to start
+    points.push([width - LEFT_OFFSET_X - LINE_WIDTH, height - BOTTOM_OFFSET_Y - LINE_WIDTH]);
+    distortionExtents.push(0.2);
 
     return [points, distortionExtents];
 }
