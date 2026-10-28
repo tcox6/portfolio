@@ -1,7 +1,9 @@
+// TODO: convert these to ratios
 const TEXT_WIDTH = [
     50,  // 0
     40,  // 1
-    65
+    65,
+    50
 ]
 
 function makex(digit, width, height) {
@@ -11,6 +13,8 @@ function makex(digit, width, height) {
         return make1(width, height);
     } else if (digit == 2) {
         return make2(width, height);
+    } else if (digit == 3) {
+        return make3(width, height);
     }
 }
 
@@ -114,17 +118,18 @@ function make1(width, height) {
 
 function make2(width, height) {
     // Constants
-    LINE_WIDTH = 0.15 * height;
+    const LINE_WIDTH = 0.15 * height;
 
     // Circle at top of the svg element
-    CIRCLE_X = 0.5 * width;
-    CIRCLE_Y = 0.5 * width;
-    CIRCLE_OUTER_R = width / 2;
+    const CIRCLE_X = 0.5 * width;
+    const CIRCLE_Y = 0.5 * width;
+    const CIRCLE_OUTER_R = width / 2;
 
-    DIAGONAL_CIRCLE_ANGLE = -0.8;  // Radians
+    const DIAGONAL_CIRCLE_ANGLE = -0.8;  // Radians
 
-    DIAGONAL_TOP_END_X = CIRCLE_X + (CIRCLE_OUTER_R - LINE_WIDTH) * Math.cos(DIAGONAL_CIRCLE_ANGLE)
-    DIAGONAL_TOP_END_Y = CIRCLE_Y - (CIRCLE_OUTER_R - LINE_WIDTH) * Math.sin(DIAGONAL_CIRCLE_ANGLE)
+    // Calculate intersection between curved part and diagonal top
+    const DIAGONAL_TOP_END_X = CIRCLE_X + (CIRCLE_OUTER_R - LINE_WIDTH) * Math.cos(DIAGONAL_CIRCLE_ANGLE);
+    const DIAGONAL_TOP_END_Y = CIRCLE_Y - (CIRCLE_OUTER_R - LINE_WIDTH) * Math.sin(DIAGONAL_CIRCLE_ANGLE);
 
     let points = [];
     let distortionExtents = [];
@@ -199,7 +204,71 @@ function make2(width, height) {
 
 function make3(width, height) {
     // Constants
-    LINE_WIDTH = 0.15 * height;
+    const LINE_WIDTH = 0.15 * height;
+    const CIRCLE_CENTER_X = width / 2;
+    const R_TOP = 0.5 * width;     // Outer radius for top part
+    const R_BOTTOM = 0.5 * width;  // Outer radius for bottom part
+
+    // For scaling digit to full container height
+    const MAX_Y = 2*R_TOP + 2*R_BOTTOM - LINE_WIDTH;    
+    const SCALE = height / MAX_Y;
+
+    // Calculate center of the bottom circle
+    BOTTOM_Y = 2*R_TOP + R_BOTTOM - LINE_WIDTH / SCALE;
+
+    let points = [];
+    let distortionExtents = [];
+
+    // Outer top
+    for (let theta = Math.PI; theta >= -Math.PI/2; theta-=0.001) {
+        let x = CIRCLE_CENTER_X + R_TOP * Math.cos(theta);
+        let y = R_TOP - R_TOP * Math.sin(theta);
+        points.push([x, y]);
+        distortionExtents.push(0.4);
+    }
+
+    // Outer bottom
+    for (let theta = Math.PI/2; theta >= -Math.PI; theta-=0.001) {
+        let x = CIRCLE_CENTER_X + R_BOTTOM * Math.cos(theta);
+        let y = (BOTTOM_Y) - R_BOTTOM * Math.sin(theta);
+        points.push([x, y]);
+        distortionExtents.push(1);
+    }
+
+    // Bottom joiner
+    for (let x = width / 2 - R_BOTTOM; x <= LINE_WIDTH; x++) {
+        points.push([x, BOTTOM_Y]);
+        distortionExtents.push(0.2);
+    }
+
+    // Inner bottom
+    for (let theta = -Math.PI; theta <= Math.PI/2; theta+=0.001) {
+        let x = CIRCLE_CENTER_X + (R_BOTTOM - LINE_WIDTH) * Math.cos(theta);
+        let y = (BOTTOM_Y) - (R_BOTTOM - LINE_WIDTH) * Math.sin(theta);
+        points.push([x, y]);
+        distortionExtents.push(0.2);
+    }
+
+    // Inner top
+    for (let theta = -Math.PI/2; theta <= Math.PI; theta+=0.001) {
+        let x = CIRCLE_CENTER_X + (R_TOP - LINE_WIDTH) * Math.cos(theta);
+        let y = R_TOP - (R_TOP - LINE_WIDTH) * Math.sin(theta);
+        points.push([x, y]);
+        distortionExtents.push(0.7);
+    }
+
+    // Top joiner
+    for (let x = LINE_WIDTH; x >= width / 2 - R_TOP; x--) {
+        points.push([x, R_TOP]);
+        distortionExtents.push(0.7);
+    }
+
+    // Now scale all points so that the digit fills the full container height
+    for (let i = 0; i < points.length; i++) {
+        points[i][1] *= SCALE;
+    }
+
+    return [points, distortionExtents];
 }
 
 // TODO: other digits
