@@ -214,7 +214,7 @@ function make3(width, height) {
     const SCALE = height / MAX_Y;
 
     // Calculate center of the bottom circle
-    BOTTOM_Y = 2*R_TOP + R_BOTTOM - LINE_WIDTH / SCALE;
+    BOTTOM_Y = 2*R_TOP + R_BOTTOM - LINE_WIDTH;
 
     let points = [];
     let distortionExtents = [];
