@@ -4,6 +4,7 @@ const TEXT_WIDTH = [
     40,  // 1
     65,  // 2
     50,  // ...
+    65,
     65
 ]
 
@@ -18,6 +19,8 @@ function makex(digit, width, height) {
         return make3(width, height);
     } else if (digit == 4) {
         return make4(width, height);
+    } else if (digit == 5) {
+        return make5(width, height);
     }
 }
 
@@ -280,7 +283,7 @@ function make3(width, height) {
 
 function make4(width, height) {
     // Constants
-    const LINE_WIDTH = 0.45;
+    const LINE_WIDTH = 0.15 * height;
     const BOTTOM_OFFSET_Y = height * 0.2;
     const LEFT_OFFSET_X = 0.2 * width;
 
@@ -314,7 +317,7 @@ function make4(width, height) {
     // Diagonal top
     for (let x = width - LEFT_OFFSET_X - LINE_WIDTH; x >= 0; x--) {
         let xExtent = x / (width - LEFT_OFFSET_X - LINE_WIDTH); // xExtent=1 => top
-        let y = 0 + xExtent * (0 - (height - BOTTOM_OFFSET_Y - LINE_WIDTH));
+        let y = (height - BOTTOM_OFFSET_Y - LINE_WIDTH) + xExtent * (0 - (height - BOTTOM_OFFSET_Y - LINE_WIDTH));
         points.push([x,y]);
         distortionExtents.push(0.3);
     }
@@ -322,7 +325,7 @@ function make4(width, height) {
     // Bottom bit
     for (let x = 0; x <= width - LEFT_OFFSET_X - LINE_WIDTH; x++) {
         points.push([x, height - BOTTOM_OFFSET_Y]);
-        distortionExtents.push(0.8);
+        distortionExtents.push(0.6);
     }
 
     // Inner bottom
@@ -346,6 +349,75 @@ function make4(width, height) {
     // Link back to start
     points.push([width - LEFT_OFFSET_X - LINE_WIDTH, height - BOTTOM_OFFSET_Y - LINE_WIDTH]);
     distortionExtents.push(0.2);
+
+    return [points, distortionExtents];
+}
+
+function make5(width, height) {
+    // Constants
+    const LINE_WIDTH = 0.15 * height;
+    const CIRCLE_R = width / 2;  // Outer radius
+    const CIRCLE_X = width / 2;
+    const CIRCLE_Y = height - CIRCLE_R;
+    const CIRCLE_ANGLE_TOP = 150 * Math.PI / 180;
+    const CIRCLE_ANGLE_BOTTOM = -150 * Math.PI / 180;
+
+    let points = [];
+    let distortionExtents = [];
+
+    // Top bit
+    for (let x = 0; x < width; x++) {
+        points.push([x,0]);
+        distortionExtents.push(0.2);
+    }
+
+    // Underside of top bit
+    for (let x = width; x >= LINE_WIDTH; x--) {
+        points.push([x, LINE_WIDTH]);
+        distortionExtents.push(0.6);
+    }
+
+    // Outer circle
+    let startY = Math.sqrt(Math.pow(CIRCLE_R,2)-Math.pow(LINE_WIDTH-CIRCLE_X),2) + CIRCLE_Y;
+    let startAngle = Math.atan2(CIRCLE_Y - startY, LINE_WIDTH - CIRCLE_X);
+    for (let theta = startAngle; theta >= CIRCLE_ANGLE_BOTTOM; theta-=0.001) {
+        let x = CIRCLE_X + CIRCLE_R * Math.cos(theta);
+        let y = CIRCLE_Y - CIRCLE_R * Math.sin(theta);
+        points.push([x,y]);
+        if (y <= CIRCLE_Y) {
+            distortionExtents.push(0.2);
+        } else {
+            distortionExtents.push(0.7);
+        }
+    }
+
+    // Join bit bottom
+    let joinBottomY = CIRCLE_Y - CIRCLE_R * Math.sin(CIRCLE_ANGLE_BOTTOM);
+    for (let x = 0; x <= LINE_WIDTH; x++) {
+        points.push([x, joinBottomY]);
+        distortionExtents.push(0.2);
+    }
+    
+    // Inner circle
+    let endY = Math.sqrt(Math.pow(CIRCLE_R-LINE_WIDTH,2)-Math.pow(LINE_WIDTH-CIRCLE_X,2)) + CIRCLE_Y;
+    endAngle = Math.atan2(CIRCLE_Y - endY, LINE_WIDTH - CIRCLE_X);
+    for (let theta = CIRCLE_ANGLE_BOTTOM; theta <= endAngle; theta+=0.001) {
+        let x = CIRCLE_X + (CIRCLE_R - LINE_WIDTH)  * Math.cos(theta);
+        let y = CIRCLE_Y - (CIRCLE_R - LINE_WIDTH) * Math.sin(theta);
+        points.push([x,y]);
+        if (y > CIRCLE_Y) {
+            distortionExtents.push(0.2);
+        } else {
+            distortionExtents.push(0.7);
+        }
+    }
+
+    // Join bit top
+    let joinTopY = CIRCLE_Y - (CIRCLE_R - LINE_WIDTH) * Math.sin(endAngle);
+    for (let x = LINE_WIDTH; x >= 0; x--) {
+        points.push([x, joinTopY]);
+        distortionExtents.push(0.2);
+    }
 
     return [points, distortionExtents];
 }
