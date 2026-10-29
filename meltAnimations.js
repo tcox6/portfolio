@@ -20,7 +20,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Make points for each digit
-let digString = [2,1,0];  // TODO: remove hardcoded values
+let digString = [3,1,4];  // TODO: remove hardcoded values
 let digitPolyPoints = [];
 let distortionExtents = [];
 for (let i = 0; i < digits.length; i++) {
@@ -65,13 +65,13 @@ for (let i = 0; i < digits.length; i++) {
 
 
 // Calculate offsets
-let xQ = [];
-for (let x = 0; x <= 50; x++) { xQ.push(x); }
 let offsets = [];
 for (let i = 0; i < gps.length; i++) {
     offsets[i] = [];
     for (let j = 0; j < gps[i].length; j++) {
-        offsets[i][j] = gps[i][j].predict(xQ.slice());
+        let xQ = [];
+        for (let x = 0; x <= TEXT_WIDTH[digString[i]]; x++) { xQ.push(x); }
+        offsets[i][j] = gps[i][j].predict(xQ);
     }
 }
 
@@ -80,8 +80,9 @@ setInterval(() => {
         for (let j = 0; j < digitPolyPoints[i].length; j++) {
             for (let k = 0; k < digitPolyPoints[i][j].length; k++) {
                 let xpxVal = Math.round(digitPolyPoints[i][j][k][0]);
-                xpxVal = Math.min(xpxVal, TEXT_WIDTH[i]);
+                xpxVal = Math.min(xpxVal, TEXT_WIDTH[digString[i]]);
                 xpxVal = Math.max(xpxVal, 0);
+
 
                 let currentOffset = offsets[i][j][xpxVal][0];
                 digitPolyPoints[i][j][k][1] += currentOffset * distortionExtents[i][j][k] * 0.01;
