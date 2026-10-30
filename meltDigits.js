@@ -42,12 +42,12 @@ function make0(width, height) {
 
     // Outer boundary (+y and -y) [+y downwards]
     for (let x = 0; x <= width; x++) {
-        y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
+        let y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
         points.push([x, height - y_outer]);
         distortionExtents.push(0.3);
     }
     for (let x = width; x >= 0; x--) {
-        y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
+        let y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
         points.push([x, y_outer]);
         distortionExtents.push(1);
     }
@@ -430,11 +430,85 @@ function make5(width, height) {
 }
 
 function make6(width, height) {
-    // Constants
-    const LINE_WIDTH = 0.15 * height;
+    // Construct as an ellipse that merges into a smaller ellipse at the bottom
+    let h_upper = width / 2;
+    let k_upper = height / 2;
+    let a_inner_upper = (width / 2) * 0.4;
+    let a_outer_upper = width / 2;
+    let b_inner_upper = (height / 2) * 0.7;
+    let b_outer_upper = height / 2;
+
+    let h_lower = width / 2;
+    let k_lower = height - height / 3;
+    let a_inner_lower = (width / 2) * 0.4;
+    let a_outer_lower = width / 2;
+    let b_inner_lower = (height / 3) * 0.7;
+    let b_outer_lower = height / 3;
+
+    const TOP_BIT_CUTOFF = height / 3;
 
     let points = [];
     let distortionExtents = [];
+
+    // Calculate intersection between inner large ellipse and outer small ellipse
+    // This collapses to quadratic equation
+    let a = Math.pow(b_inner_upper, 2) / Math.pow(a_inner_upper, 2);
+    let b = Math.pow(b_outer_lower, 2) / Math.pow(a_outer_lower, 2);
+    let c = 2 * (a * h_upper - b * h_lower);
+    let d = b * Math.pow(h_lower, 2) - a * Math.pow(h_upper, 2) - (Math.pow(b_outer_lower, 2) - Math.pow(b_inner_upper, 2));
+    let xIntersectEllipses = (c + Math.sqrt(Math.pow(c,2)-4*(b-a)*d)) / (2 * (b - a));
+
+    // Calculate the x-position of the cutoff
+    let xIntersectCutoffInner = Math.sqrt(
+        Math.pow(a_inner_upper, 2) - (
+            Math.pow(a_inner_upper, 2) * Math.pow(height - TOP_BIT_CUTOFF - k_upper, 2)) 
+            / Math.pow(b_inner_upper, 2)
+    ) + h_upper;
+    let xIntersectCutoffOuter = Math.sqrt(
+        Math.pow(a_inner_upper, 2) - (
+            Math.pow(a_outer_upper, 2) * Math.pow(height - TOP_BIT_CUTOFF - k_upper, 2)
+        ) / Math.pow(b_outer_upper, 2)
+    ) + h_upper;
+
+    // Inner bit of the top ellipse
+    console.log(xIntersectEllipses)
+    console.log(xIntersectCutoffInner)
+    console.log(xIntersectCutoffOuter)
+    for (let x = xIntersectEllipses; x <= xIntersectCutoffInner; x++) {
+        let y = -Math.sqrt(Math.pow(b_inner_upper,2) - (Math.pow(b_inner_upper,2) * Math.pow(x - h_upper, 2)) / Math.pow(a_inner_upper,2)) + k_upper;
+        points.push([x, y]);
+        distortionExtents.push(0.3);
+    }
+
+
+
+    // for (let x = width; x >= 0; x--) {
+    //     let y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
+    //     points.push([x, y_outer]);
+    //     distortionExtents.push(1);
+    // }
+
+    // // Inner boundary (-y and +y) [+y downwards]
+    // for (let x = 0; x <= width; x++) {
+    //     // Compute the scaled x value for inner part
+    //     let x0_inner = (width / 2) - a_inner;
+    //     let x1_inner = (width / 2) + a_inner;
+    //     let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
+        
+    //     let y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+    //     points.push([x_inner, y_inner]);
+    //     distortionExtents.push(0.3);
+    // }
+    // for (let x = width; x >= 0; x--) {
+    //     // Compute the scaled x value for inner part
+    //     let x0_inner = (width / 2) - a_inner;
+    //     let x1_inner = (width / 2) + a_inner;
+    //     let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
+        
+    //     let y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+    //     points.push([x_inner, height - y_inner]);
+    //     distortionExtents.push(0.3);
+    // }
 
     // TODO
 
