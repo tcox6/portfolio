@@ -443,7 +443,7 @@ function make6(width, height) {
     let a_inner_lower = (width / 2) * 0.4;
     let a_outer_lower = width / 2;
     let b_inner_lower = (height / 3) * 0.7;
-    let b_outer_lower = height / 3;
+    let b_outer_lower = height / 6;
 
     const TOP_BIT_CUTOFF = height / 3;
 
@@ -452,11 +452,29 @@ function make6(width, height) {
 
     // Calculate intersection between inner large ellipse and outer small ellipse
     // This collapses to quadratic equation
-    let a = Math.pow(b_inner_upper, 2) / Math.pow(a_inner_upper, 2);
-    let b = Math.pow(b_outer_lower, 2) / Math.pow(a_outer_lower, 2);
-    let c = 2 * (a * h_upper - b * h_lower);
-    let d = b * Math.pow(h_lower, 2) - a * Math.pow(h_upper, 2) - (Math.pow(b_outer_lower, 2) - Math.pow(b_inner_upper, 2));
-    let xIntersectEllipses = (c + Math.sqrt(Math.pow(c,2)-4*(b-a)*d)) / (2 * (b - a));
+    let a_1 = a_inner_upper;
+    let b_1 = b_inner_upper;
+    let a_2 = a_outer_lower;
+    let b_2 = b_outer_lower;
+    let h_1 = h_upper;
+    let h_2 = h_lower;
+
+    console.log(a_1, b_1, h_1, k_upper)
+    console.log(a_2, b_2, h_2, k_lower)
+
+    let pow = Math.pow;
+    let a = -pow(a_2, 2) * pow(b_1, 2) + pow(a_1, 2) * pow(b_2, 2);
+    let b = 2 * (pow(a_2, 2) * pow(b_1, 2) * h_1 - pow(a_1, 2) * pow(b_2, 2) * h_2);
+    let c = -pow(a_2, 2) * pow(b_1, 2) * pow(h_1, 2) + pow(a_1, 2) * pow(b_2, 2) * pow(h_2, 2) - pow(a_2, 2) * (pow(b_1, 2) + pow(b_2, 2)); 
+    let xIntersectEllipses = (-b + Math.sqrt(pow(b, 2) - 4 * a * c)) / (2 * a);
+
+    console.log("")
+    console.log(a)
+    console.log(b)
+    console.log(c)
+    console.log("")
+
+    console.log(pow(b, 2) - 4 * a * c)
 
     // Calculate the x-position of the cutoff
     let xIntersectCutoffInner = Math.sqrt(
