@@ -430,105 +430,111 @@ function make5(width, height) {
 }
 
 function make6(width, height) {
-    // Construct as an ellipse that merges into a smaller ellipse at the bottom
-    let h_upper = width / 2;
-    let k_upper = height / 2;
-    let a_inner_upper = (width / 2) * 0.4;
-    let a_outer_upper = width / 2;
-    let b_inner_upper = (height / 2) * 0.7;
-    let b_outer_upper = height / 2;
+    // '6' is constructed using partial ellipses combined with circles for
+    // the top bit of the middle 'bridge'.
 
-    let h_lower = width / 2;
-    let k_lower = height - height / 3;
-    let a_inner_lower = (width / 2) * 0.4;
-    let a_outer_lower = width / 2;
-    let b_inner_lower = (height / 3) * 0.7;
-    let b_outer_lower = height / 6;
+    // Constants
+    const ELLIPSE_STOP_TOP_Y = 0.25 * height;
+    const ELLIPSE_STOP_BOTTOM_OUTER_Y = 0.6 * height;
+    const ELLIPSE_STOP_BOTTOM_INNER_Y = 0.65 * height;
+    const CIRCLE_CENTER_Y = 0.75 * height; // Shared by both circles
+    const OUTER_CIRCLE_CENTER_X = 0.53 * width;
+    const INNER_CIRCLE_CENTER_X = 0.5 * width;
 
-    const TOP_BIT_CUTOFF = height / 3;
+    let h = width / 2;
+    let k = height / 2;
+    let a_inner = (width / 2) * 0.4;
+    let a_outer = width / 2;
+    let b_inner = (height / 2) * 0.7;
+    let b_outer = height / 2;
 
     let points = [];
     let distortionExtents = [];
 
-    // Calculate intersection between inner large ellipse and outer small ellipse
-    // This collapses to quadratic equation
-    let a_1 = a_inner_upper;
-    let b_1 = b_inner_upper;
-    let a_2 = a_outer_lower;
-    let b_2 = b_outer_lower;
-    let h_1 = h_upper;
-    let h_2 = h_lower;
+    // Inner top boundary partial ellipse (-y, +ve y downwards)
+    for (let x = 0; x <= width; x++) {
+        // Compute the scaled x value for inner part
+        let x0_inner = (width / 2) - a_inner;
+        let x1_inner = (width / 2) + a_inner;
+        let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
+        
+        let y_inner = -Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+        if (!(x_inner > width / 2 && y_inner > ELLIPSE_STOP_TOP_Y)) {
+            points.push([x_inner, y_inner]);
+            distortionExtents.push(0.2);
+        }
+    }
 
-    console.log(a_1, b_1, h_1, k_upper)
-    console.log(a_2, b_2, h_2, k_lower)
+    // Outer top boundary partial ellipse
+    for (let x = width; x >= 0; x--) {
+        let y_outer = -Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
+        if (!(x > width / 2 && y_outer > ELLIPSE_STOP_TOP_Y)) {
+            points.push([x, y_outer]);
+            distortionExtents.push(0.1);
+        }
+    }
 
-    let pow = Math.pow;
-    let a = -pow(a_2, 2) * pow(b_1, 2) + pow(a_1, 2) * pow(b_2, 2);
-    let b = 2 * (pow(a_2, 2) * pow(b_1, 2) * h_1 - pow(a_1, 2) * pow(b_2, 2) * h_2);
-    let c = -pow(a_2, 2) * pow(b_1, 2) * pow(h_1, 2) + pow(a_1, 2) * pow(b_2, 2) * pow(h_2, 2) - pow(a_2, 2) * (pow(b_1, 2) + pow(b_2, 2)); 
-    let xIntersectEllipses = (-b + Math.sqrt(pow(b, 2) - 4 * a * c)) / (2 * a);
+    // Outer bottom boundary partial ellipse
+    for (let x = 0; x <= width; x++) {
+        let y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
+        if (!(x > width / 2 && y_outer < ELLIPSE_STOP_BOTTOM_OUTER_Y)) {
+            points.push([x, y_outer]);
+            distortionExtents.push(0.8);
+        }
+    }
 
-    console.log("")
-    console.log(a)
-    console.log(b)
-    console.log(c)
-    console.log("")
+    // Outer circle 'bridge'
+    // x-value of the point where the outer ellipse finishes will be points[-1].x
+    // Use this x-value to calculate the circle's radius
+    let xIntersectRight = points[points.length - 1][0];
+    let rOuter = Math.sqrt(Math.pow(xIntersectRight - OUTER_CIRCLE_CENTER_X, 2) + Math.pow(ELLIPSE_STOP_BOTTOM_OUTER_Y - CIRCLE_CENTER_Y, 2));
+    // Calculate intersection of circle with other side of the ellipse (inner ellipse)
+    // This is difficult to do analytically, so brute force is used
+    let minDistance = 1000; // Distance between y points
+    let xIntersectLeft = 0;
+    for (let x = 0; x < width / 2; x++) {
+        let yEllipse = -Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+        let yCircle = -Math.sqrt(Math.pow(rOuter, 2) - Math.pow(x - OUTER_CIRCLE_CENTER_X, 2)) + CIRCLE_CENTER_Y;
+        if (Math.abs(yEllipse - yCircle) < minDistance) {
+            xIntersectLeft = x;
+            minDistance = Math.abs(yEllipse - yCircle);
+        }
+    }
+    // Create points for outer part of the 'bridge'
+    for (let x = xIntersectRight; x >= xIntersectLeft; x--) {
+        let yBridge = -Math.sqrt(Math.pow(rOuter, 2) - Math.pow(x - OUTER_CIRCLE_CENTER_X, 2)) + CIRCLE_CENTER_Y;
+        points.push([x, yBridge]);
+        distortionExtents.push(0.2);
+    }
 
-    console.log(pow(b, 2) - 4 * a * c)
-
-    // Calculate the x-position of the cutoff
-    let xIntersectCutoffInner = Math.sqrt(
-        Math.pow(a_inner_upper, 2) - (
-            Math.pow(a_inner_upper, 2) * Math.pow(height - TOP_BIT_CUTOFF - k_upper, 2)) 
-            / Math.pow(b_inner_upper, 2)
-    ) + h_upper;
-    let xIntersectCutoffOuter = Math.sqrt(
-        Math.pow(a_inner_upper, 2) - (
-            Math.pow(a_outer_upper, 2) * Math.pow(height - TOP_BIT_CUTOFF - k_upper, 2)
-        ) / Math.pow(b_outer_upper, 2)
-    ) + h_upper;
-
-    // Inner bit of the top ellipse
-    console.log(xIntersectEllipses)
-    console.log(xIntersectCutoffInner)
-    console.log(xIntersectCutoffOuter)
-    for (let x = xIntersectEllipses; x <= xIntersectCutoffInner; x++) {
-        let y = -Math.sqrt(Math.pow(b_inner_upper,2) - (Math.pow(b_inner_upper,2) * Math.pow(x - h_upper, 2)) / Math.pow(a_inner_upper,2)) + k_upper;
-        points.push([x, y]);
+    // Inner circle 'bridge'
+    // Calculate radius 
+    let xInnerEllipseEnd = Math.sqrt(Math.pow(a_inner, 2) - Math.pow(a_inner, 2) * Math.pow(ELLIPSE_STOP_BOTTOM_INNER_Y - k, 2) / Math.pow(b_inner, 2)) + h;
+    let rInner = Math.sqrt(Math.pow(xInnerEllipseEnd - INNER_CIRCLE_CENTER_X, 2) + Math.pow(ELLIPSE_STOP_BOTTOM_INNER_Y - CIRCLE_CENTER_Y, 2));
+    // Get intersection between inner ellipse via brute force
+    minDistance = 100;
+    let xInnerEllipseStart = 0;
+    for (let x = 0; x < width / 2; x++) {
+        let yEllipse = -Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+        let yCircle = -Math.sqrt(Math.pow(rInner, 2) - Math.pow(x - INNER_CIRCLE_CENTER_X, 2)) + CIRCLE_CENTER_Y;
+        if (Math.abs(yEllipse - yCircle) < minDistance) {
+            xInnerEllipseStart = x;
+            minDistance = Math.abs(yEllipse - yCircle);
+        }
+    }
+    // Draw inner circle 'bridge'
+    for (let x = xInnerEllipseStart; x <= xInnerEllipseEnd; x++) {
+        let yBridge = -Math.sqrt(Math.pow(rInner, 2) - Math.pow(x - INNER_CIRCLE_CENTER_X, 2)) + CIRCLE_CENTER_Y;
+        points.push([x, yBridge]);
         distortionExtents.push(0.3);
     }
 
-
-
-    // for (let x = width; x >= 0; x--) {
-    //     let y_outer = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_outer,2))) * Math.pow(b_outer, 2)) + k;
-    //     points.push([x, y_outer]);
-    //     distortionExtents.push(1);
-    // }
-
-    // // Inner boundary (-y and +y) [+y downwards]
-    // for (let x = 0; x <= width; x++) {
-    //     // Compute the scaled x value for inner part
-    //     let x0_inner = (width / 2) - a_inner;
-    //     let x1_inner = (width / 2) + a_inner;
-    //     let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
-        
-    //     let y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
-    //     points.push([x_inner, y_inner]);
-    //     distortionExtents.push(0.3);
-    // }
-    // for (let x = width; x >= 0; x--) {
-    //     // Compute the scaled x value for inner part
-    //     let x0_inner = (width / 2) - a_inner;
-    //     let x1_inner = (width / 2) + a_inner;
-    //     let x_inner = x0_inner + (x / width) * (x1_inner - x0_inner);
-        
-    //     let y_inner = Math.sqrt((1 - (Math.pow((x_inner-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
-    //     points.push([x_inner, height - y_inner]);
-    //     distortionExtents.push(0.3);
-    // }
-
-    // TODO
+    // Inner ellipse bottom
+    for (let x = xInnerEllipseEnd; x >= xInnerEllipseStart; x--) {
+        let y_inner = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
+        points.push([x, y_inner]);
+        distortionExtents.push(0.2);
+    }
 
     return [points, distortionExtents];
 }
