@@ -6,7 +6,8 @@ const TEXT_WIDTH = [
     50,  // ...
     65,
     65,
-    50
+    55,
+    55
 ]
 
 function makex(digit, width, height) {
@@ -24,6 +25,8 @@ function makex(digit, width, height) {
         return make5(width, height);
     } else if (digit == 6) {
         return make6(width, height);
+    } else if (digit == 7) {
+        return make7(width, height);
     }
 }
 
@@ -533,6 +536,54 @@ function make6(width, height) {
     for (let x = xInnerEllipseEnd; x >= xInnerEllipseStart; x--) {
         let y_inner = Math.sqrt((1 - (Math.pow((x-h),2)/Math.pow(a_inner,2))) * Math.pow(b_inner, 2)) + k;
         points.push([x, y_inner]);
+        distortionExtents.push(0.2);
+    }
+
+    return [points, distortionExtents];
+}
+
+function make7(width, height) {
+    // Constants
+    const LINE_WIDTH = 0.15 * height;
+    const BOTTOM_OFFSET_RIGHT = 0.8 * width;
+
+    let points = [];
+    let distortionExtents = [];
+
+    // Bottom
+    let startX = Math.floor(width - BOTTOM_OFFSET_RIGHT - LINE_WIDTH);
+    for (let x = startX; x < startX + LINE_WIDTH; x++) {
+        points.push([x, height]);
+        distortionExtents.push(1);
+    }
+
+    // Underside of diagonal part
+    // Note: the width of the diagonal part is not calculated correctly
+    for (let x = startX + LINE_WIDTH; x <= width; x++) {
+        let extent = (x - (startX + LINE_WIDTH)) / (width - (startX + LINE_WIDTH));
+        let y = height + extent * (LINE_WIDTH - height)
+        points.push([x, y]);
+        distortionExtents.push(0.6);
+    }
+
+    // Top
+    for (let x = width; x >= 0; x--) {
+        points.push([x, 0]);
+        distortionExtents.push(0.2);
+    }
+
+    // Underside of top horizontal bit
+    for (let x = 0; x <= width - LINE_WIDTH; x++) {
+        points.push([x, LINE_WIDTH]);
+        distortionExtents.push(0.4);
+    }    
+
+    // Topside of diagonal part
+    for (let x = width - LINE_WIDTH; x >= startX; x--) {
+        // Extent is 0 at top and 1 at bottom
+        let extent = (x - (width - LINE_WIDTH)) / (startX - (width - LINE_WIDTH));
+        let y = LINE_WIDTH + extent * (height - LINE_WIDTH);
+        points.push([x, y]);
         distortionExtents.push(0.2);
     }
 
