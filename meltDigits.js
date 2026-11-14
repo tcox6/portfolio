@@ -683,51 +683,16 @@ function make8(width, height) {
 }
 
 function make9(width, height) {
-    // Constants
-    const LINE_WIDTH = 0.15 * height;
-    const CIRCLE_CENTER_X = width / 2;
-    const R_TOP = 0.5*width;
+    // Upside-down 6
 
-    let points = [];
-    let distortionExtents = [];
-
-    // Top outer circle
-    for (let theta = -Math.PI; theta <= Math.PI; theta+=0.001) {
-        let x = CIRCLE_CENTER_X + R_TOP * Math.cos(theta);
-        let y = R_TOP + R_TOP * Math.sin(theta);
-        points.push([x,y]);
-        if (theta >= -Math.PI && theta <= 0) {
-            distortionExtents.push(0.7);
-        } else {
-            distortionExtents.push(0.2);
-        }
+    let data = make6(width, height);
+    for (let i = 0; i < data[0].length; i++) {
+        data[0][i][0] = width - data[0][i][0];
+        data[0][i][1] = height - data[0][i][1];
+        data[1][i] = 1 - data[1][i];
     }
 
-    // Top inner circle
-    for (let theta = -Math.PI; theta <= Math.PI; theta+=0.001) {
-        let x = CIRCLE_CENTER_X + (R_TOP - LINE_WIDTH) * Math.cos(theta);
-        let y = R_TOP + (R_TOP - LINE_WIDTH) * Math.sin(theta);
-        points.push([x,y]);
-        if (theta >= -Math.PI && theta <= 0) {
-            distortionExtents.push(0.4);
-        } else {
-            distortionExtents.push(0.1);
-        }
-    }
-
-    // Bottom stem right - top point is implicit
-
-    // Bottom
-    for (let x = LINE_WIDTH; x >= 0; x--) {
-        points.push([x, height]);
-        distortionExtents.push(0.7);
-    }
-
-    // Link back to top
-    points.push([0, R_TOP]);
-    distortionExtents.push(0.7);
-
-    return [points, distortionExtents];
+    return data;
 }
 
 function translatePoints(points) {
