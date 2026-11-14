@@ -8,7 +8,8 @@ const TEXT_WIDTH = [
     65,
     55,
     55,
-    60
+    60,
+    55
 ]
 
 function makex(digit, width, height) {
@@ -22,6 +23,7 @@ function makex(digit, width, height) {
         make6,
         make7,
         make8,
+        make9
     ]
     // TODO: probably a better way to do this
     if (digit == 0) {
@@ -42,6 +44,8 @@ function makex(digit, width, height) {
         return make7(width, height);
     } else if (digit == 8) {
         return make8(width, height);
+    } else if (digit == 9) {
+        return make9(width, height);
     }
 }
 
@@ -678,7 +682,17 @@ function make8(width, height) {
     return [points, distortionExtents];
 }
 
-// TODO: other digits
+function make9(width, height) {
+    // Upside-down 6
+
+    let data = make6(width, height);
+    for (let i = 0; i < data[0].length; i++) {
+        data[0][i][1] = height - data[0][i][1];
+        data[1][i] = 1 - data[1][i];
+    }
+
+    return data;
+}
 
 function translatePoints(points) {
     pointsString = "";
