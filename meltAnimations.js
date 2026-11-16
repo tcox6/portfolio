@@ -1,9 +1,13 @@
 // Constant params
-BACKGROUND_GP_LENGTHSCALE = 10;
-FOREGROUND_GP_LENGTHSCALE = 5;
+DIGIT_HEIGHT = 100;
 
-BACKGROUND_CONDITION_OFFSET = 5;  // px
-CONDITION_EXTENT = 40;            // px
+BACKGROUND_GP_LENGTHSCALE = 10 * DIGIT_HEIGHT / 100;
+FOREGROUND_GP_LENGTHSCALE = 5 * DIGIT_HEIGHT / 100;
+
+BACKGROUND_CONDITION_OFFSET = 5 * DIGIT_HEIGHT / 100;  // px
+CONDITION_EXTENT = 40 * DIGIT_HEIGHT / 100;            // px
+
+NUM_CONDITION_POINTS = 6;
 
 // List of digits; each element is a length-2 list for the digit's background and foreground, respectively.
 let digits = [];
@@ -26,16 +30,17 @@ let distortionExtents = [];
 for (let i = 0; i < digits.length; i++) {
     digitPolyPoints.push([
         // Background and foreground
-        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[0],  // TODO: remove hard-coded values
-        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[0]
+        makex(digString[i], TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT, DIGIT_HEIGHT)[0],
+        makex(digString[i], TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT, DIGIT_HEIGHT)[0]
     ]);
     distortionExtents.push([
         // Background and foreground
-        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[1],  // TODO: remove hard-coded values
-        makex(digString[i], TEXT_WIDTH[digString[i]], 100)[1]
+        makex(digString[i], TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT, DIGIT_HEIGHT)[1],
+        makex(digString[i], TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT, DIGIT_HEIGHT)[1]
     ]);
 
-    svgs[i].setAttribute("width", TEXT_WIDTH[digString[i]] + 10);
+    svgs[i].setAttribute("width", TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT + 10);
+    svgs[i].setAttribute("height", DIGIT_HEIGHT + 100);
 }
 
 // Create GPs
@@ -48,7 +53,8 @@ for (let i = 0; i < digits.length; i++) {
     let xVals = [];
     let yValsBackground = [];
     let yValsForeground = [];
-    for (let x = 0; x <= 50; x+=10) {
+    for (let j = 0; j < NUM_CONDITION_POINTS; j++) {
+        let x = j * (TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT / (NUM_CONDITION_POINTS - 1));
         xVals.push(x);
         let r = Math.random();
         yValsBackground.push(r * CONDITION_EXTENT + BACKGROUND_CONDITION_OFFSET);
@@ -63,14 +69,13 @@ for (let i = 0; i < digits.length; i++) {
     ])
 }
 
-
 // Calculate offsets
 let offsets = [];
 for (let i = 0; i < gps.length; i++) {
     offsets[i] = [];
     for (let j = 0; j < gps[i].length; j++) {
         let xQ = [];
-        for (let x = 0; x <= TEXT_WIDTH[digString[i]]; x++) { xQ.push(x); }
+        for (let x = 0; x <= TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT; x++) { xQ.push(x); }
         offsets[i][j] = gps[i][j].predict(xQ);
     }
 }
@@ -80,9 +85,8 @@ setInterval(() => {
         for (let j = 0; j < digitPolyPoints[i].length; j++) {
             for (let k = 0; k < digitPolyPoints[i][j].length; k++) {
                 let xpxVal = Math.round(digitPolyPoints[i][j][k][0]);
-                xpxVal = Math.min(xpxVal, TEXT_WIDTH[digString[i]]);
+                xpxVal = Math.min(xpxVal, TEXT_WIDTH[digString[i]] * DIGIT_HEIGHT);
                 xpxVal = Math.max(xpxVal, 0);
-
 
                 let currentOffset = offsets[i][j][xpxVal][0];
                 digitPolyPoints[i][j][k][1] += currentOffset * distortionExtents[i][j][k] * 0.01;

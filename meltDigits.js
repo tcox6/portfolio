@@ -1,15 +1,15 @@
 // TODO: convert these to ratios
 const TEXT_WIDTH = [
-    50,  // 0
-    40,  // 1
-    65,  // 2
-    50,  // ...
-    65,
-    65,
-    55,
-    55,
-    60,
-    55
+    0.50,  // 0
+    0.40,  // 1
+    0.65,  // 2
+    0.50,  // ...
+    0.65,
+    0.65,
+    0.55,
+    0.55,
+    0.60,
+    0.55
 ]
 
 function makex(digit, width, height) {
@@ -24,29 +24,9 @@ function makex(digit, width, height) {
         make7,
         make8,
         make9
-    ]
-    // TODO: probably a better way to do this
-    if (digit == 0) {
-        return make0(width, height);
-    } else if (digit == 1) {
-        return make1(width, height);
-    } else if (digit == 2) {
-        return make2(width, height);
-    } else if (digit == 3) {
-        return make3(width, height);
-    } else if (digit == 4) {
-        return make4(width, height);
-    } else if (digit == 5) {
-        return make5(width, height);
-    } else if (digit == 6) {
-        return make6(width, height);
-    } else if (digit == 7) {
-        return make7(width, height);
-    } else if (digit == 8) {
-        return make8(width, height);
-    } else if (digit == 9) {
-        return make9(width, height);
-    }
+    ];
+
+    return digitFuncMap[digit](width, height);
 }
 
 function make0(width, height) {
