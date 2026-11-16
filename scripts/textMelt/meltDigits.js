@@ -269,7 +269,7 @@ function make3(width, height) {
         let x = CIRCLE_CENTER_X + (R_TOP - LINE_WIDTH) * Math.cos(theta);
         let y = R_TOP - (R_TOP - LINE_WIDTH) * Math.sin(theta);
         points.push([x, y]);
-        distortionExtents.push(0.7);
+        distortionExtents.push(0.4);
     }
 
     // Top joiner
@@ -324,7 +324,7 @@ function make4(width, height) {
         let xExtent = x / (width - LEFT_OFFSET_X - LINE_WIDTH); // xExtent=1 => top
         let y = (height - BOTTOM_OFFSET_Y - LINE_WIDTH) + xExtent * (0 - (height - BOTTOM_OFFSET_Y - LINE_WIDTH));
         points.push([x,y]);
-        distortionExtents.push(0.3);
+        distortionExtents.push(0.2);
     }
 
     // Bottom bit
